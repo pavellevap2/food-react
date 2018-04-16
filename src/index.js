@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import HomePage from './HomePage'
+import Root from './Root'
 import React from 'react'
 
-ReactDOM.render(<HomePage />, document.getElementById('root'))
+ReactDOM.render(<Root />, document.getElementById('root'))
