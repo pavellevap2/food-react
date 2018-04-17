@@ -1,7 +1,24 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../../firebase/index'
-import SignInPage from './SignIn'
+import Grid from 'material-ui/Grid'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import { TextField, CardHeader } from 'material-ui'
+import Button from 'material-ui/Button'
+import { withStyles } from 'material-ui'
+import { DialogTitle } from 'material-ui'
+
+const styles = theme => ({
+  container: {
+    height: '100%',
+  },
+  form: {
+    width: '30%',
+  },
+  title: {
+    fontSize: '3em',
+  },
+})
 
 const INITIAL_STATE = {
   username: '',
@@ -11,22 +28,7 @@ const INITIAL_STATE = {
   error: null,
 }
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-})
-
-const SignUpPage = ({ history }) => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm history={history} />
-    <div>
-      <h2>signin</h2>
-      <SignInPage />
-    </div>
-  </div>
-)
-
-class SignUpForm extends Component {
+class SignUpPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -39,7 +41,7 @@ class SignUpForm extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state
+    const { email, passwordOne } = this.state
     const { history } = this.props
 
     auth
@@ -49,7 +51,7 @@ class SignUpForm extends Component {
         history.push('./home')
       })
       .catch(error => {
-        this.setState(byPropKey('error', error))
+        this.setState({ error: error })
       })
 
     event.preventDefault()
@@ -57,51 +59,75 @@ class SignUpForm extends Component {
 
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event =>
-            this.setState(byPropKey('username', event.target.value))
-          }
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          value={email}
-          onChange={event =>
-            this.setState(byPropKey('email', event.target.value))
-          }
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={passwordOne}
-          onChange={event =>
-            this.setState(byPropKey('passwordOne', event.target.value))
-          }
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={passwordTwo}
-          onChange={event =>
-            this.setState(byPropKey('passwordTwo', event.target.value))
-          }
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button type="submit">Sign Up</button>
+    const { classes } = this.props
+    const isPasswordValid = passwordOne.length && passwordTwo.length
+    const isFormValid =
+      passwordOne === passwordTwo && email.length && username.length
 
-        {error && <p>{error.message}</p>}
-      </form>
+    return (
+      <Grid
+        container
+        direction={'column'}
+        justify={'center'}
+        alignItems={'center'}
+        className={classes.container}
+      >
+        <FormHelperText className={classes.title}>Sign Up</FormHelperText>
+        <FormControl onSubmit={this.onSubmit} className={classes.form}>
+          <TextField
+            value={username}
+            onChange={event => this.setState({ username: event.target.value })}
+            type="text"
+            margin="normal"
+            label="Full Name"
+          />
+          <TextField
+            error={email.length ? false : true}
+            value={email}
+            onChange={event => this.setState({ email: event.target.value })}
+            type="text"
+            label="Email Address"
+            margin="normal"
+          />
+          <TextField
+            value={passwordOne}
+            onChange={event =>
+              this.setState({ passwordOne: event.target.value })
+            }
+            type="password"
+            label="Password"
+            error={isPasswordValid ? false : true}
+            margin="normal"
+          />
+          <TextField
+            value={passwordTwo}
+            onChange={event =>
+              this.setState({ passwordTwo: event.target.value })
+            }
+            type="password"
+            error={isPasswordValid ? false : true}
+            label="Confirm Password"
+            margin="normal"
+          />
+          <Button
+            disabled={isFormValid ? false : true}
+            variant="raised"
+            color="primary"
+            type="submit"
+          >
+            Sign Up
+          </Button>
+          {error && <p>{error.message}</p>}
+        </FormControl>
+      </Grid>
     )
   }
 }
+
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to="./signup">Sign Up</Link>
+    Already have an account? <Link to="./signup">Sign Up</Link>
   </p>
 )
 
-export default withRouter(SignUpPage)
+export default withStyles(styles)(withRouter(SignUpPage))

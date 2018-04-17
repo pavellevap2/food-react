@@ -8,6 +8,7 @@ const SignInPage = ({ history }) => (
   <div>
     <h1>SignIn</h1>
     <SignInForm history={history} />
+    <SignUpLink />
   </div>
 )
 
@@ -80,3 +81,5 @@ class SignInForm extends Component {
 }
 
 export default withRouter(SignInPage)
+
+export { SignInPage }
