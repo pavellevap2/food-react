@@ -1,11 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Authorization from './Authorization'
+import SignUpPage from '../components/Authorization/SignUp'
+import HomePage from './HomePage'
 
 const Root = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Authorization} />
+      <Route exact path="/" component={SignUpPage} />
+      <Route path="/home" component={HomePage} />
     </Switch>
   </BrowserRouter>
 )
