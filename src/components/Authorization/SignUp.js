@@ -121,12 +121,7 @@ class SignUpPage extends Component {
             label="Confirm Password"
             margin="normal"
           />
-          <Button
-            disabled={isFormValid ? false : true}
-            variant="raised"
-            color="primary"
-            type="submit"
-          >
+          <Button variant="raised" color="primary" type="submit">
             Sign Up
           </Button>
           {error && <p>{error.message}</p>}

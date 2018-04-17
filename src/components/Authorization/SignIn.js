@@ -100,7 +100,6 @@ class SignInPage extends Component {
             margin="normal"
           />
           <Button
-            disabled={isFormValid ? false : true}
             variant="raised"
             color="primary"
             margin="normal"
