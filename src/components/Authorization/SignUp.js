@@ -3,10 +3,15 @@ import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
 import { FormControl, FormHelperText } from 'material-ui/Form'
-import { TextField, CardHeader } from 'material-ui'
+import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
-import { DialogTitle } from 'material-ui'
+import styled from 'styled-components'
+
+const InputForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 const styles = theme => ({
   container: {
@@ -18,6 +23,7 @@ const styles = theme => ({
   title: {
     fontSize: '3em',
   },
+  link: { color: '#303F9F', textDecoration: 'none' },
 })
 
 const INITIAL_STATE = {
@@ -73,7 +79,13 @@ class SignUpPage extends Component {
         className={classes.container}
       >
         <FormHelperText className={classes.title}>Sign Up</FormHelperText>
-        <FormControl onSubmit={this.onSubmit} className={classes.form}>
+        <br />
+        <FormHelperText color="primary">
+          <Link className={classes.link} to="/login">
+            Do you already have an account?
+          </Link>
+        </FormHelperText>
+        <InputForm onSubmit={this.onSubmit} className={classes.form}>
           <TextField
             value={username}
             onChange={event => this.setState({ username: event.target.value })}
@@ -118,7 +130,7 @@ class SignUpPage extends Component {
             Sign Up
           </Button>
           {error && <p>{error.message}</p>}
-        </FormControl>
+        </InputForm>
       </Grid>
     )
   }

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import SignUpPage from '../components/Authorization/SignUp'
 import HomePage from './HomePage'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+import SignInPage from '../components/Authorization/SignIn'
 
 const theme = createMuiTheme({
   palette: {
@@ -11,10 +12,11 @@ const theme = createMuiTheme({
 })
 
 const Root = () => (
-  <MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={SignUpPage} />
+        <Route path="/login" component={SignInPage} />
         <Route path="/home" component={HomePage} />
       </Switch>
     </BrowserRouter>
