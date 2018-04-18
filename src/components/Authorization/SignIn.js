@@ -9,11 +9,7 @@ import { withStyles } from 'material-ui'
 import styled from 'styled-components'
 import { authorization, provider } from '../../firebase/firebase'
 import google from './google.png'
-
-const AuthForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`
+import { styles, AuthForm, SignUpBlock } from './commons'
 
 const GoogleBtnImg = styled.img`
   height: 2em;
@@ -24,34 +20,6 @@ const GoogleBtnImg = styled.img`
 const GoogleBtnImgTest = styled.span`
   margin-left: 0.7em;
 `
-
-const SignUpBlock = styled.div`
-  margin-top: 2em;
-`
-
-const styles = theme => ({
-  container: {
-    height: '100%',
-  },
-  form: {
-    width: '100%',
-  },
-  link: {
-    color: theme.palette.primary.dark,
-  },
-  formTitle: {
-    textAlign: 'center',
-    fontSize: '3em',
-    color: theme.palette.primary.dark,
-  },
-  submitButton: {
-    fontSize: '1.4em',
-  },
-  googleBtn: {
-    margin: '2em 0',
-    fontSize: '1.1em',
-  },
-})
 
 class SignInPage extends Component {
   constructor(props) {
@@ -92,7 +60,6 @@ class SignInPage extends Component {
   render() {
     const { email, password, error } = this.state
     const { classes } = this.props
-    console.log(this.state.user)
 
     return (
       <Grid
