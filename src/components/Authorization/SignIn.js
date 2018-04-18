@@ -7,7 +7,7 @@ import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
 import styled from 'styled-components'
-import firebase, { authorization, provider } from '../../firebase/firebase'
+import { authorization, provider } from '../../firebase/firebase'
 import google from './google.png'
 
 const InputForm = styled.form`
@@ -57,13 +57,16 @@ class SignInPage extends Component {
     }
   }
 
-  onSubmit = event => {
+  onSubmitData = event => {
     const { email, password } = this.state
     const { history } = this.props
 
     auth
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(data => {
+        this.setState({
+          user: data,
+        })
         history.push('./home')
       })
       .catch(error => {
@@ -97,7 +100,7 @@ class SignInPage extends Component {
       >
         <FormHelperText className={classes.title}>Sign In</FormHelperText>
         <br />
-        <InputForm onSubmit={this.onSubmit} className={classes.form}>
+        <InputForm onSubmit={this.onSubmitData} className={classes.form}>
           <TextField
             value={email}
             onChange={event => this.setState({ email: event.target.value })}
@@ -113,7 +116,8 @@ class SignInPage extends Component {
             margin="normal"
           />
           <Button
-            color="default"
+            variant="raised"
+            color="dark"
             className={classes.googleBtn}
             onClick={this.login}
           >

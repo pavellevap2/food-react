@@ -6,9 +6,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import SignInPage from '../components/Authorization/SignIn'
 
 const theme = createMuiTheme({
-  palette: {
-    type: 'light',
-  },
+  palette: {},
 })
 
 const Root = () => (

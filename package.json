@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "firebase": "^4.12.1",
     "material-ui": "^1.0.0-beta.42",
     "prettier": "^1.12.0",

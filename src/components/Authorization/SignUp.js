@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
-import { FormControl, FormHelperText } from 'material-ui/Form'
+import { FormHelperText } from 'material-ui/Form'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
@@ -80,9 +80,7 @@ class SignUpPage extends Component {
         alignItems={'center'}
         className={classes.container}
       >
-        <FormHelperText className={classes.title} color="default">
-          Sign Up
-        </FormHelperText>
+        <FormHelperText className={classes.title}>Sign Up</FormHelperText>
         <br />
         <InputForm onSubmit={this.onSubmit} className={classes.form}>
           <TextField
