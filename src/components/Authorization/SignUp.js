@@ -2,136 +2,98 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
-import { FormHelperText } from 'material-ui/Form'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
-import styled from 'styled-components'
-
-const InputForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`
-
-const styles = theme => ({
-  container: {
-    height: '100%',
-  },
-  form: {
-    width: '70%',
-  },
-  title: {
-    fontSize: '3em',
-  },
-  link: { color: '#303F9F', textDecoration: 'none', marginTop: '22em' },
-  button: {
-    margin: '2em 0',
-  },
-})
-
-const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
-  error: null,
-}
+import { styles, AuthForm, SignUpBlock } from './commons'
+import Typography from 'material-ui/Typography'
 
 class SignUpPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
       email: '',
-      passwordOne: '',
-      passwordTwo: '',
+      password: '',
       error: null,
+      user: null,
     }
   }
 
-  onSubmit = event => {
-    const { email, passwordOne } = this.state
-    const { history } = this.props
+  submitData = event => {
+    const { email, password } = this.state
 
     auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState(() => ({ ...INITIAL_STATE }))
-        history.push('./home')
+        this.props.takeUserData(authUser)
+        this.props.history.push('/home')
       })
       .catch(error => {
         this.setState({ error: error })
       })
-
     event.preventDefault()
   }
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state
-    const { classes } = this.props
-    const isPasswordValid = passwordOne === passwordTwo
-
+    const { email, password, error } = this.state
+    const { username, classes, takeUserName } = this.props
+    console.log(username)
     return (
       <Grid
-        margin="normal"
         container
-        direction={'column'}
-        justify={'center'}
-        alignItems={'center'}
+        display="flex"
+        justify="center"
+        alignItems="center"
+        margin="normal"
         className={classes.container}
       >
-        <FormHelperText className={classes.title}>Sign Up</FormHelperText>
-        <br />
-        <InputForm onSubmit={this.onSubmit} className={classes.form}>
-          <TextField
-            value={username}
-            onChange={event => this.setState({ username: event.target.value })}
-            type="text"
-            margin="normal"
-            label="Full Name"
-          />
-          <TextField
-            value={email}
-            onChange={event => this.setState({ email: event.target.value })}
-            type="text"
-            label={'Email Address'}
-            margin="normal"
-          />
-          <TextField
-            value={passwordOne}
-            onChange={event =>
-              this.setState({ passwordOne: event.target.value })
-            }
-            type="password"
-            label="Password"
-            error={isPasswordValid ? false : true}
-            margin="normal"
-          />
-          <TextField
-            value={passwordTwo}
-            onChange={event =>
-              this.setState({ passwordTwo: event.target.value })
-            }
-            type="password"
-            error={isPasswordValid ? false : true}
-            label="Confirm Password"
-            margin="normal"
-          />
-          <Button
-            variant="raised"
-            color="primary"
-            type="submit"
-            className={classes.button}
+        <Grid item md={4} sm={7} xs={10} lg={3}>
+          <Typography
+            align="center"
+            className={classes.formTitle}
+            variant="display3"
           >
-            Sign Up
-          </Button>
-          {error && <p>{error.message}</p>}
-        </InputForm>
-        <FormHelperText color="primary">
-          <Link className={classes.link} to="/">
-            Do you already have an account?
-          </Link>
-        </FormHelperText>
+            SIGN UP
+          </Typography>
+          <AuthForm onSubmit={this.submitData}>
+            <TextField
+              value={username}
+              onChange={e => takeUserName(e.target.value)}
+              type="text"
+              margin="normal"
+              label="Full Name"
+            />
+            <TextField
+              value={email}
+              onChange={e => this.setState({ email: e.target.value })}
+              error={error !== null ? true : false}
+              type="text"
+              label={error !== null ? error.message : 'Email Address'}
+              margin="normal"
+            />
+
+            <TextField
+              value={password}
+              onChange={e => this.setState({ password: e.target.value })}
+              type="password"
+              label="Password"
+              margin="normal"
+            />
+            <Button
+              className={classes.submitButton}
+              variant="raised"
+              color="primary"
+              type="submit"
+            >
+              Get Started
+            </Button>
+          </AuthForm>
+          <SignUpBlock>
+            <Link className={classes.link} to="/">
+              Do you already have an account?
+            </Link>
+          </SignUpBlock>
+        </Grid>
       </Grid>
     )
   }

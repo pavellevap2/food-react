@@ -1,7 +1,8 @@
 import React from 'react'
 import Header from './Header'
 
-const HomePage = () => {
+const HomePage = ({ userName, userData }) => {
+  console.log(userName, userData)
   return (
     <div>
       <Header />
