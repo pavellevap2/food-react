@@ -35,12 +35,12 @@ const styles = theme => ({
     fontSize: '3em',
   },
   link: { color: '#303F9F', textDecoration: 'none', marginTop: '2em' },
-  button: { marginTop: '2em', fontSize: '1.5em' },
+  button: { marginTop: '2em', fontSize: '1.4em' },
   googleBtn: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '2em',
-    fontSize: '1.2em',
+    fontSize: '1.1em',
   },
 })
 
