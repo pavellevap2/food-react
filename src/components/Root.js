@@ -15,8 +15,8 @@ const Root = () => (
   <MuiThemeProvider theme={theme}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={SignUpPage} />
-        <Route path="/login" component={SignInPage} />
+        <Route exact path="/" component={SignInPage} />
+        <Route path="/signup" component={SignUpPage} />
         <Route path="/home" component={HomePage} />
       </Switch>
     </BrowserRouter>

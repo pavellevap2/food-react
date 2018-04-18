@@ -18,12 +18,15 @@ const styles = theme => ({
     height: '100%',
   },
   form: {
-    width: '30%',
+    width: '70%',
   },
   title: {
     fontSize: '3em',
   },
-  link: { color: '#303F9F', textDecoration: 'none' },
+  link: { color: '#303F9F', textDecoration: 'none', marginTop: '22em' },
+  button: {
+    margin: '2em 0',
+  },
 })
 
 const INITIAL_STATE = {
@@ -66,25 +69,21 @@ class SignUpPage extends Component {
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state
     const { classes } = this.props
-    const isPasswordValid = passwordOne.length && passwordTwo.length
-    const isFormValid =
-      passwordOne === passwordTwo && email.length && username.length
+    const isPasswordValid = passwordOne === passwordTwo
 
     return (
       <Grid
+        margin="normal"
         container
         direction={'column'}
         justify={'center'}
         alignItems={'center'}
         className={classes.container}
       >
-        <FormHelperText className={classes.title}>Sign Up</FormHelperText>
-        <br />
-        <FormHelperText color="primary">
-          <Link className={classes.link} to="/login">
-            Do you already have an account?
-          </Link>
+        <FormHelperText className={classes.title} color="default">
+          Sign Up
         </FormHelperText>
+        <br />
         <InputForm onSubmit={this.onSubmit} className={classes.form}>
           <TextField
             value={username}
@@ -94,7 +93,6 @@ class SignUpPage extends Component {
             label="Full Name"
           />
           <TextField
-            error={email.length ? false : true}
             value={email}
             onChange={event => this.setState({ email: event.target.value })}
             type="text"
@@ -121,20 +119,24 @@ class SignUpPage extends Component {
             label="Confirm Password"
             margin="normal"
           />
-          <Button variant="raised" color="primary" type="submit">
+          <Button
+            variant="raised"
+            color="primary"
+            type="submit"
+            className={classes.button}
+          >
             Sign Up
           </Button>
           {error && <p>{error.message}</p>}
         </InputForm>
+        <FormHelperText color="primary">
+          <Link className={classes.link} to="/">
+            Do you already have an account?
+          </Link>
+        </FormHelperText>
       </Grid>
     )
   }
 }
-
-const SignUpLink = () => (
-  <p>
-    Already have an account? <Link to="./signup">Sign Up</Link>
-  </p>
-)
 
 export default withStyles(styles)(withRouter(SignUpPage))

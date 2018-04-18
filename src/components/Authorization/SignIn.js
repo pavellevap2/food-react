@@ -7,29 +7,42 @@ import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
 import styled from 'styled-components'
+import firebase, { authorization, provider } from '../../firebase/firebase'
+import google from './google.png'
 
 const InputForm = styled.form`
   display: flex;
   flex-direction: column;
 `
 
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
-}
+const GoogleBtn = styled.img`
+  height: 2em;
+  width: 2em;
+`
+const SignUpBlock = styled.div`
+  margin-top: '22em';
+  display: flex;
+  justify-content: space-around;
+`
 
 const styles = theme => ({
   container: {
     height: '100%',
   },
   form: {
-    width: '30%',
+    width: '75%',
   },
   title: {
     fontSize: '3em',
   },
-  link: { color: '#303F9F', textDecoration: 'none' },
+  link: { color: '#303F9F', textDecoration: 'none', marginTop: '2em' },
+  button: { marginTop: '2em' },
+  googleBtn: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: '2em',
+    fontSize: '0.8em',
+  },
 })
 
 class SignInPage extends Component {
@@ -37,6 +50,7 @@ class SignInPage extends Component {
     super(props)
 
     this.state = {
+      user: null,
       email: '',
       password: '',
       error: null,
@@ -45,13 +59,11 @@ class SignInPage extends Component {
 
   onSubmit = event => {
     const { email, password } = this.state
-
     const { history } = this.props
 
     auth
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }))
         history.push('./home')
       })
       .catch(error => {
@@ -61,30 +73,32 @@ class SignInPage extends Component {
     event.preventDefault()
   }
 
+  login = () => {
+    authorization.signInWithPopup(provider).then(result => {
+      this.setState({
+        user: result.user,
+      })
+      this.props.history.push('/home')
+    })
+  }
+
   render() {
     const { email, password, error } = this.state
     const { classes } = this.props
-    const isPasswordValid = password.length
-    const isFormValid = email.length
-
+    console.log(password)
     return (
       <Grid
         container
         direction={'column'}
         justify={'center'}
+        margin="normal"
         alignItems={'center'}
         className={classes.container}
       >
         <FormHelperText className={classes.title}>Sign In</FormHelperText>
         <br />
-        <FormHelperText color="primary">
-          <Link className={classes.link} to="/">
-            Dont have an account?
-          </Link>
-        </FormHelperText>
         <InputForm onSubmit={this.onSubmit} className={classes.form}>
           <TextField
-            error={email.length ? false : true}
             value={email}
             onChange={event => this.setState({ email: event.target.value })}
             type="text"
@@ -96,18 +110,31 @@ class SignInPage extends Component {
             onChange={event => this.setState({ password: event.target.value })}
             type="password"
             label="Password"
-            error={isPasswordValid ? false : true}
             margin="normal"
           />
           <Button
+            color="default"
+            className={classes.googleBtn}
+            onClick={this.login}
+          >
+            <GoogleBtn src={google} /> login with Google
+          </Button>
+          <Button
+            className={classes.button}
             variant="raised"
             color="primary"
             margin="normal"
             type="submit"
           >
-            Sign Ip
+            Get Started
           </Button>
         </InputForm>
+        <SignUpBlock>
+          <Link className={classes.link} to="/signup">
+            Dont have an account?
+          </Link>
+        </SignUpBlock>
+        {error && <p>{error.message}</p>}
       </Grid>
     )
   }
