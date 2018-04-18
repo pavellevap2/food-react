@@ -10,36 +10,45 @@ import styled from 'styled-components'
 import { authorization, provider } from '../../firebase/firebase'
 import google from './google.png'
 
-const InputForm = styled.form`
+const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
 `
 
-const GoogleBtn = styled.img`
+const GoogleBtnImg = styled.img`
   height: 2em;
   width: 2em;
+  margin-right: 1em;
 `
+
+const GoogleBtnImgTest = styled.span`
+  margin-left: 0.7em;
+`
+
 const SignUpBlock = styled.div`
-  margin-top: '22em';
-  display: flex;
-  justify-content: space-around;
+  margin-top: 2em;
 `
 
 const styles = theme => ({
   container: {
     height: '100%',
   },
-  form: { width: '100%' },
-  title: {
+  form: {
+    width: '100%',
+  },
+  link: {
+    color: theme.palette.primary.dark,
+  },
+  formTitle: {
     textAlign: 'center',
     fontSize: '3em',
+    color: theme.palette.primary.dark,
   },
-  link: { color: '#303F9F', textDecoration: 'none', marginTop: '2em' },
-  button: { marginTop: '2em', fontSize: '1.4em' },
+  submitButton: {
+    fontSize: '1.4em',
+  },
   googleBtn: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '2em',
+    margin: '2em 0',
     fontSize: '1.1em',
   },
 })
@@ -56,22 +65,18 @@ class SignInPage extends Component {
     }
   }
 
-  onSubmitData = event => {
+  submitData = event => {
     const { email, password } = this.state
     const { history } = this.props
 
-    auth
-      .doSignInWithEmailAndPassword(email, password)
-      .then(data => {
-        this.setState({
-          user: data,
-        })
-        history.push('./home')
+    auth.doSignInWithEmailAndPassword(email, password).then(data => {
+      this.setState({
+        user: data,
       })
-      .catch(error => {
-        this.setState({ error: error })
-      })
-
+    })
+    history.push('/home').catch(error => {
+      this.setState({ error: error })
+    })
     event.preventDefault()
   }
 
@@ -87,23 +92,25 @@ class SignInPage extends Component {
   render() {
     const { email, password, error } = this.state
     const { classes } = this.props
-    console.log(error)
+    console.log(this.state.user)
+
     return (
       <Grid
         container
-        display={'flex'}
+        display="flex"
         justify="center"
         alignItems="center"
         margin="normal"
         className={classes.container}
       >
-        <Grid item md={4} sm={7} xs={8} lg={3}>
-          <FormHelperText className={classes.title}>Sign In</FormHelperText>
+        <Grid item md={4} sm={7} xs={10} lg={3}>
+          <FormHelperText className={classes.formTitle}>Sign In</FormHelperText>
           <br />
-          <InputForm onSubmit={this.onSubmitData}>
+          <AuthForm onSubmit={this.submitData}>
             <TextField
               value={email}
-              onChange={event => this.setState({ email: event.target.value })}
+              onChange={e => this.setState({ email: e.target.value })}
+              error={error !== null ? true : false}
               type="text"
               label={error !== null ? error.message : 'Email Address'}
               margin="normal"
@@ -111,9 +118,7 @@ class SignInPage extends Component {
 
             <TextField
               value={password}
-              onChange={event =>
-                this.setState({ password: event.target.value })
-              }
+              onChange={e => this.setState({ password: e.target.value })}
               type="password"
               label="Password"
               margin="normal"
@@ -124,11 +129,12 @@ class SignInPage extends Component {
               className={classes.googleBtn}
               onClick={this.login}
             >
-              <GoogleBtn src={google} /> login with Google
+              <GoogleBtnImg src={google} />
+              <GoogleBtnImgTest>login with Google</GoogleBtnImgTest>
             </Button>
 
             <Button
-              className={classes.button}
+              className={classes.submitButton}
               variant="raised"
               color="primary"
               margin="normal"
@@ -136,10 +142,10 @@ class SignInPage extends Component {
             >
               Get Started
             </Button>
-          </InputForm>
+          </AuthForm>
           <SignUpBlock>
             <Link className={classes.link} to="/signup">
-              Dont have an account?
+              Don't have an account?
             </Link>
           </SignUpBlock>
         </Grid>
