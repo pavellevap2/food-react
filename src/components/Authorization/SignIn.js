@@ -14,11 +14,10 @@ import Typography from 'material-ui/Typography'
 const GoogleBtnImg = styled.img`
   height: 2em;
   width: 2em;
-  margin-right: 1em;
 `
 
-const GoogleBtnImgTest = styled.span`
-  margin-left: 0.7em;
+const GoogleBtnImgText = styled.span`
+  margin-left: 5%;
 `
 
 class SignInPage extends Component {
@@ -103,7 +102,7 @@ class SignInPage extends Component {
               onClick={this.login}
             >
               <GoogleBtnImg src={google} />
-              <GoogleBtnImgTest>login with Google</GoogleBtnImgTest>
+              <GoogleBtnImgText>login with Google</GoogleBtnImgText>
             </Button>
 
             <Button

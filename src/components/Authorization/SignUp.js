@@ -14,21 +14,20 @@ class SignUpPage extends Component {
     this.state = {
       username: '',
       email: '',
-      passwordTwo: '',
+      password: '',
       error: null,
       user: null,
     }
   }
 
-  onSubmit = event => {
+  submitData = event => {
     const { email, passwordOne } = this.state
-    const { history } = this.props
 
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ user: authUser })
-        history.push('./home')
+        this.props.history.push('./home')
       })
       .catch(error => {
         this.setState({ error: error })
@@ -70,8 +69,9 @@ class SignUpPage extends Component {
             <TextField
               value={email}
               onChange={e => this.setState({ email: e.target.value })}
+              error={error !== null ? true : false}
               type="text"
-              label="Email Address"
+              label={error !== null ? error.message : 'Email Address'}
               margin="normal"
             />
 

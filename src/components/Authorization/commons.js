@@ -31,6 +31,8 @@ export const styles = theme => ({
   },
   googleBtn: {
     marginTop: '2em',
-    fontSize: '1.1em',
+    fontSize: '1em',
+    display: 'flex',
+    justifyContent: 'center',
   },
 })
