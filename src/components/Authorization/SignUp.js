@@ -12,7 +12,6 @@ class SignUpPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
       email: '',
       password: '',
       error: null,
@@ -26,20 +25,19 @@ class SignUpPage extends Component {
     auth
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState({ user: authUser })
+        this.props.takeUserData(authUser)
         this.props.history.push('/home')
       })
       .catch(error => {
         this.setState({ error: error })
       })
-
     event.preventDefault()
   }
 
   render() {
-    const { username, email, password, error } = this.state
-    const { classes } = this.props
-    console.log(email)
+    const { email, password, error } = this.state
+    const { username, classes, takeUserName } = this.props
+    console.log(username)
     return (
       <Grid
         container
@@ -60,7 +58,7 @@ class SignUpPage extends Component {
           <AuthForm onSubmit={this.submitData}>
             <TextField
               value={username}
-              onChange={e => this.setState({ username: e.target.value })}
+              onChange={e => takeUserName(e.target.value)}
               type="text"
               margin="normal"
               label="Full Name"

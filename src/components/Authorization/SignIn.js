@@ -25,7 +25,6 @@ class SignInPage extends Component {
     super(props)
 
     this.state = {
-      user: null,
       email: '',
       password: '',
       error: null,
@@ -34,14 +33,13 @@ class SignInPage extends Component {
 
   submitData = event => {
     const { email, password } = this.state
-    const { history } = this.props
+    const { history, takeUserData } = this.props
 
     auth
       .doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.setState({
-          user: authUser,
-        })
+        takeUserData(authUser)
+
         history.push('/home')
       })
       .catch(error => {
@@ -52,9 +50,7 @@ class SignInPage extends Component {
 
   login = () => {
     authorization.signInWithPopup(provider).then(result => {
-      this.setState({
-        user: result.user,
-      })
+      this.props.takeUserData(result.user)
       this.props.history.push('/home')
     })
   }
