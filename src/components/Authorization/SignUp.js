@@ -94,7 +94,7 @@ class SignUpPage extends Component {
             value={email}
             onChange={event => this.setState({ email: event.target.value })}
             type="text"
-            label="Email Address"
+            label={'Email Address'}
             margin="normal"
           />
           <TextField

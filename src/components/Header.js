@@ -7,6 +7,8 @@ import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Close from '@material-ui/icons/Close'
+import { auth } from '../firebase/index'
+import { withRouter } from 'react-router-dom'
 
 const styles = {
   root: {
@@ -27,6 +29,10 @@ class Header extends React.Component {
     this.state = {
       isMenuOpen: false,
     }
+  }
+
+  logout = () => {
+    auth.doSignOut().then(this.props.history.push('/'))
   }
 
   render() {
@@ -52,7 +58,9 @@ class Header extends React.Component {
             >
               Big Bang Button
             </Typography>
-            <Button color="inherit">Logout</Button>
+            <Button onClick={this.logout} color="inherit">
+              Logout
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
@@ -60,4 +68,4 @@ class Header extends React.Component {
   }
 }
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(withRouter(Header))

@@ -16,6 +16,9 @@ injectGlobal`
   #root{
     height:100%;
   }
+  a{
+    text-decoration: none
+  }
 `
 
 ReactDOM.render(<Root />, document.getElementById('root'))
