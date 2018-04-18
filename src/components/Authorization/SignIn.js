@@ -36,14 +36,17 @@ class SignInPage extends Component {
     const { email, password } = this.state
     const { history } = this.props
 
-    auth.doSignInWithEmailAndPassword(email, password).then(data => {
-      this.setState({
-        user: data,
+    auth
+      .doSignInWithEmailAndPassword(email, password)
+      .then(authUser => {
+        this.setState({
+          user: authUser,
+        })
+        history.push('/home')
       })
-    })
-    history.push('/home').catch(error => {
-      this.setState({ error: error })
-    })
+      .catch(error => {
+        this.setState({ error: error })
+      })
     event.preventDefault()
   }
 

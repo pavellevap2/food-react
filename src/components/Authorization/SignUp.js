@@ -21,13 +21,13 @@ class SignUpPage extends Component {
   }
 
   submitData = event => {
-    const { email, passwordOne } = this.state
+    const { email, password } = this.state
 
     auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState({ user: authUser })
-        this.props.history.push('./home')
+        this.props.history.push('/home')
       })
       .catch(error => {
         this.setState({ error: error })
@@ -39,7 +39,7 @@ class SignUpPage extends Component {
   render() {
     const { username, email, password, error } = this.state
     const { classes } = this.props
-
+    console.log(email)
     return (
       <Grid
         container
@@ -57,7 +57,6 @@ class SignUpPage extends Component {
           >
             SIGN UP
           </Typography>
-          <br />
           <AuthForm onSubmit={this.submitData}>
             <TextField
               value={username}
