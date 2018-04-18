@@ -22,15 +22,15 @@ export const styles = theme => ({
     color: theme.palette.primary.dark,
   },
   formTitle: {
-    textAlign: 'center',
-    fontSize: '3em',
     color: theme.palette.primary.dark,
+    textShadow: '2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.15)',
   },
   submitButton: {
     fontSize: '1.4em',
+    marginTop: '2em',
   },
   googleBtn: {
-    margin: '2em 0',
+    marginTop: '2em',
     fontSize: '1.1em',
   },
 })

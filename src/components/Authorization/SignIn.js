@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
-import { FormHelperText } from 'material-ui/Form'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
@@ -10,6 +9,7 @@ import styled from 'styled-components'
 import { authorization, provider } from '../../firebase/firebase'
 import google from './google.png'
 import { styles, AuthForm, SignUpBlock } from './commons'
+import Typography from 'material-ui/Typography'
 
 const GoogleBtnImg = styled.img`
   height: 2em;
@@ -71,7 +71,13 @@ class SignInPage extends Component {
         className={classes.container}
       >
         <Grid item md={4} sm={7} xs={10} lg={3}>
-          <FormHelperText className={classes.formTitle}>Sign In</FormHelperText>
+          <Typography
+            align="center"
+            className={classes.formTitle}
+            variant="display3"
+          >
+            SIGN IN
+          </Typography>
           <br />
           <AuthForm onSubmit={this.submitData}>
             <TextField
@@ -104,7 +110,6 @@ class SignInPage extends Component {
               className={classes.submitButton}
               variant="raised"
               color="primary"
-              margin="normal"
               type="submit"
             >
               Get Started
