@@ -29,19 +29,18 @@ const styles = theme => ({
   container: {
     height: '100%',
   },
-  form: {
-    width: '75%',
-  },
+  form: { width: '100%' },
   title: {
+    textAlign: 'center',
     fontSize: '3em',
   },
   link: { color: '#303F9F', textDecoration: 'none', marginTop: '2em' },
-  button: { marginTop: '2em' },
+  button: { marginTop: '2em', fontSize: '1.5em' },
   googleBtn: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginTop: '2em',
-    fontSize: '0.8em',
+    fontSize: '1.2em',
   },
 })
 
@@ -88,57 +87,63 @@ class SignInPage extends Component {
   render() {
     const { email, password, error } = this.state
     const { classes } = this.props
-    console.log(password)
+
     return (
       <Grid
         container
-        direction={'column'}
-        justify={'center'}
+        display={'flex'}
+        justify="center"
+        alignItems="center"
         margin="normal"
-        alignItems={'center'}
         className={classes.container}
       >
-        <FormHelperText className={classes.title}>Sign In</FormHelperText>
-        <br />
-        <InputForm onSubmit={this.onSubmitData} className={classes.form}>
-          <TextField
-            value={email}
-            onChange={event => this.setState({ email: event.target.value })}
-            type="text"
-            label="Email Address"
-            margin="normal"
-          />
-          <TextField
-            value={password}
-            onChange={event => this.setState({ password: event.target.value })}
-            type="password"
-            label="Password"
-            margin="normal"
-          />
-          <Button
-            variant="raised"
-            color="dark"
-            className={classes.googleBtn}
-            onClick={this.login}
-          >
-            <GoogleBtn src={google} /> login with Google
-          </Button>
-          <Button
-            className={classes.button}
-            variant="raised"
-            color="primary"
-            margin="normal"
-            type="submit"
-          >
-            Get Started
-          </Button>
-        </InputForm>
-        <SignUpBlock>
-          <Link className={classes.link} to="/signup">
-            Dont have an account?
-          </Link>
-        </SignUpBlock>
-        {error && <p>{error.message}</p>}
+        <Grid item md={3} sm={7} xs={8} lg={3}>
+          <FormHelperText className={classes.title}>Sign In</FormHelperText>
+          <br />
+          <InputForm onSubmit={this.onSubmitData}>
+            <TextField
+              value={email}
+              onChange={event => this.setState({ email: event.target.value })}
+              type="text"
+              label="Email Address"
+              margin="normal"
+            />
+
+            <TextField
+              value={password}
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
+              type="password"
+              label="Password"
+              margin="normal"
+            />
+            <Button
+              variant="raised"
+              color="dark"
+              className={classes.googleBtn}
+              onClick={this.login}
+            >
+              <GoogleBtn src={google} /> login with Google
+            </Button>
+
+            <Button
+              className={classes.button}
+              variant="raised"
+              color="primary"
+              margin="normal"
+              type="submit"
+            >
+              Get Started
+            </Button>
+          </InputForm>
+          <SignUpBlock>
+            <Link className={classes.link} to="/signup">
+              Dont have an account?
+            </Link>
+          </SignUpBlock>
+          {error && <p>{error.message}</p>}
+        </Grid>
       </Grid>
     )
   }
