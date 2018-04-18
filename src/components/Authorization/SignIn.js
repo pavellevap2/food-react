@@ -87,7 +87,7 @@ class SignInPage extends Component {
   render() {
     const { email, password, error } = this.state
     const { classes } = this.props
-
+    console.log(error)
     return (
       <Grid
         container
@@ -97,7 +97,7 @@ class SignInPage extends Component {
         margin="normal"
         className={classes.container}
       >
-        <Grid item md={3} sm={7} xs={8} lg={3}>
+        <Grid item md={4} sm={7} xs={8} lg={3}>
           <FormHelperText className={classes.title}>Sign In</FormHelperText>
           <br />
           <InputForm onSubmit={this.onSubmitData}>
@@ -105,7 +105,7 @@ class SignInPage extends Component {
               value={email}
               onChange={event => this.setState({ email: event.target.value })}
               type="text"
-              label="Email Address"
+              label={error !== null ? error.message : 'Email Address'}
               margin="normal"
             />
 
@@ -120,7 +120,7 @@ class SignInPage extends Component {
             />
             <Button
               variant="raised"
-              color="dark"
+              color="default"
               className={classes.googleBtn}
               onClick={this.login}
             >
@@ -142,7 +142,6 @@ class SignInPage extends Component {
               Dont have an account?
             </Link>
           </SignUpBlock>
-          {error && <p>{error.message}</p>}
         </Grid>
       </Grid>
     )
