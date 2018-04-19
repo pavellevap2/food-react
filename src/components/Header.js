@@ -56,7 +56,7 @@ class Header extends React.Component {
               color="inherit"
               className={classes.flex}
             >
-              Big Bang Button
+              BBB
             </Typography>
             <Button onClick={this.logout} color="inherit">
               Logout

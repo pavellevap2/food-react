@@ -21,7 +21,14 @@ injectGlobal`
   a{
     text-decoration: none
   }
-`
+  li{
+    list-style:none
+  }
+  ul{
+    padding:0,
+    margin:0;
+  }
+  `
 
 ReactDOM.render(
   <Provider store={store}>

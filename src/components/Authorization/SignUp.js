@@ -37,7 +37,7 @@ class SignUpPage extends Component {
   render() {
     const { email, password, error } = this.state
     const { username, classes, takeUserName } = this.props
-    console.log(username)
+
     return (
       <Grid
         container
