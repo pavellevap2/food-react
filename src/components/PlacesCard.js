@@ -76,7 +76,7 @@ class PlacesCard extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, data } = this.props
     const { isFingerUpClicked, isLikeClicked } = this.state
 
     return (
@@ -84,9 +84,9 @@ class PlacesCard extends React.Component {
         <Card className={classes.card}>
           <CardHeader
             className={classes.header}
-            avatar={<Avatar src={KFC} className={classes.avatar} />}
-            title="KFC"
-            subheader="Finger lickin' good "
+            avatar={<Avatar src={data.avatar} className={classes.avatar} />}
+            title={data.name}
+            subheader={data.slogan}
             classes={{
               title: classes.title,
               subheader: classes.subheader,
@@ -98,27 +98,24 @@ class PlacesCard extends React.Component {
                 <Avatar>
                   <Food color="primary" />
                 </Avatar>
-                <ListItemText primary="Кухня" secondary="Фаст-фуд" />
+                <ListItemText primary="Кухня" secondary={data.kitchen} />
               </ListItem>
               <ListItem>
                 <Avatar>
                   <Money color="primary" />
                 </Avatar>
-                <ListItemText primary="Средний чек" secondary="230 рублей" />
+                <ListItemText primary="Средний чек" secondary={data.check} />
               </ListItem>
               <ListItem>
                 <Avatar>
                   <Walk color="primary" />
                 </Avatar>
-                <ListItemText primary="Расположение" secondary="БЦ Кавказ" />
+                <ListItemText primary="Расположение" secondary={data.geo} />
               </ListItem>
             </List>
-            <InfoImg src={kfcBack} alt="back" />
+            <InfoImg src={data.secondBack} alt="back" />
             <Typography className={classes.par} component="p">
-              В основе всех блюд из курицы два оригинальных вкуса панировки –
-              острый «Hot and Spicy» и оригинальный «11 специй и трав». Рецепты
-              этих вкусов хранятся в строжайшем секрете и известны только узкому
-              кругу посвященных лиц из руководителей компании KFC.
+              {data.description}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
@@ -126,10 +123,10 @@ class PlacesCard extends React.Component {
               onClick={this.clickOnBtnLike}
               aria-label="Add to favorites"
             >
-              <FavoriteIcon color={isLikeClicked ? 'error' : 'default'} />
+              <FavoriteIcon color={isLikeClicked ? 'error' : 'disabled'} />
             </IconButton>
             <IconButton onClick={this.clickOnBtnFinger} aria-label="Stars">
-              <Finger color={isFingerUpClicked ? 'error' : 'default'} />
+              <Finger color={isFingerUpClicked ? 'error' : 'disabled'} />
             </IconButton>
           </CardActions>
         </Card>
