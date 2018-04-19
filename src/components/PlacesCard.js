@@ -31,6 +31,7 @@ const InfoImg = styled.img`
   width: 100%;
   height: 10em;
   margin: 1em 0;
+  padding: auto;
 `
 
 //overflow - elipses
@@ -50,7 +51,7 @@ const styles = theme => ({
     paddingTop: 0,
   },
   container: {
-    marginTop: '1em',
+    margin: '0.6em 0',
   },
   media: {
     height: 0,
