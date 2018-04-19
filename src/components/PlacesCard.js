@@ -7,14 +7,14 @@ import Typography from 'material-ui/Typography'
 import red from 'material-ui/colors/red'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import Grid from 'material-ui/Grid'
-import KFC from './KFC.png'
-import Star from '@material-ui/icons/Star'
 import styled from 'styled-components'
 import List, { ListItem, ListItemText } from 'material-ui/List'
+import KFC from './KFC.png'
+import kfcBack from './kfc.jpg'
+import Finger from '@material-ui/icons/ThumbUp'
 import Food from '@material-ui/icons/RoomService'
 import Money from '@material-ui/icons/AttachMoney'
 import Walk from '@material-ui/icons/DirectionsWalk'
-import kfcBack from './kfc.jpg'
 
 const InfoImg = styled.img`
   width: 100%;
@@ -23,12 +23,14 @@ const InfoImg = styled.img`
   padding: auto;
 `
 
-//overflow - elipses
-
 const styles = theme => ({
+  container: {
+    margin: '0.6em 0',
+  },
   card: {
     width: '100%',
   },
+
   title: {
     fontSize: '1.5em',
     color: theme.palette.primary.dark,
@@ -39,13 +41,7 @@ const styles = theme => ({
   content: {
     paddingTop: 0,
   },
-  container: {
-    margin: '0.6em 0',
-  },
-  media: {
-    height: 0,
-    margin: '2em 0',
-  },
+
   actions: {
     display: 'flex',
   },
@@ -56,15 +52,32 @@ const styles = theme => ({
   },
 })
 
-class PlacesCard extends React.Component {
-  state = { expanded: false }
+//лайки?
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded })
+class PlacesCard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLikeClicked: false,
+      isFingerUpClicked: false,
+    }
+  }
+
+  clickOnBtnLike = () => {
+    this.setState({
+      isLikeClicked: !this.state.isLikeClicked,
+    })
+  }
+
+  clickOnBtnFinger = () => {
+    this.setState({
+      isFingerUpClicked: !this.state.isFingerUpClicked,
+    })
   }
 
   render() {
     const { classes } = this.props
+    const { isFingerUpClicked, isLikeClicked } = this.state
 
     return (
       <Grid item md={12} lg={7} xs={10} className={classes.container}>
@@ -73,7 +86,7 @@ class PlacesCard extends React.Component {
             className={classes.header}
             avatar={<Avatar src={KFC} className={classes.avatar} />}
             title="KFC"
-            subheader="БЦ Кавказ"
+            subheader="Finger lickin' good "
             classes={{
               title: classes.title,
               subheader: classes.subheader,
@@ -100,8 +113,7 @@ class PlacesCard extends React.Component {
                 <ListItemText primary="Расположение" secondary="БЦ Кавказ" />
               </ListItem>
             </List>
-            <InfoImg src={kfcBack} />
-
+            <InfoImg src={kfcBack} alt="back" />
             <Typography className={classes.par} component="p">
               В основе всех блюд из курицы два оригинальных вкуса панировки –
               острый «Hot and Spicy» и оригинальный «11 специй и трав». Рецепты
@@ -110,11 +122,14 @@ class PlacesCard extends React.Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon color="error" />
+            <IconButton
+              onClick={this.clickOnBtnLike}
+              aria-label="Add to favorites"
+            >
+              <FavoriteIcon color={isLikeClicked ? 'error' : 'default'} />
             </IconButton>
-            <IconButton aria-label="Stars">
-              <Star />
+            <IconButton onClick={this.clickOnBtnFinger} aria-label="Stars">
+              <Finger color={isFingerUpClicked ? 'error' : 'default'} />
             </IconButton>
           </CardActions>
         </Card>
