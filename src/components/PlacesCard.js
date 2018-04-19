@@ -1,11 +1,6 @@
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
-import Card, {
-  CardHeader,
-  CardContent,
-  CardActions,
-  CardMedia,
-} from 'material-ui/Card'
+import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import Typography from 'material-ui/Typography'
@@ -16,17 +11,11 @@ import KFC from './KFC.png'
 import Star from '@material-ui/icons/Star'
 import styled from 'styled-components'
 import List, { ListItem, ListItemText } from 'material-ui/List'
-import ImageIcon from '@material-ui/icons/Image'
-import WorkIcon from '@material-ui/icons/Work'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
 import Food from '@material-ui/icons/RoomService'
 import Money from '@material-ui/icons/AttachMoney'
 import Walk from '@material-ui/icons/DirectionsWalk'
 import kfcBack from './kfc.jpg'
 
-const InfoBlock = styled.div`
-  margin: 1em 0;
-`
 const InfoImg = styled.img`
   width: 100%;
   height: 10em;
