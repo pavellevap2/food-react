@@ -35,8 +35,18 @@ class SignUpPage extends Component {
   }
 
   render() {
-    const { email, password, error } = this.state
-    const { username, classes, takeUserName } = this.props
+    const { error } = this.state
+    const {
+      username,
+      classes,
+      takeUserName,
+      email,
+      password,
+      takeUserEmail,
+      takeUserPassword,
+      clearForm,
+    } = this.props
+    console.log(email, password)
 
     return (
       <Grid
@@ -65,7 +75,7 @@ class SignUpPage extends Component {
             />
             <TextField
               value={email}
-              onChange={e => this.setState({ email: e.target.value })}
+              onChange={e => takeUserEmail(e.target.value)}
               error={error !== null ? true : false}
               type="text"
               label={error !== null ? error.message : 'Email Address'}
@@ -74,7 +84,7 @@ class SignUpPage extends Component {
 
             <TextField
               value={password}
-              onChange={e => this.setState({ password: e.target.value })}
+              onChange={e => takeUserPassword(e.target.value)}
               type="password"
               label="Password"
               margin="normal"
@@ -89,7 +99,7 @@ class SignUpPage extends Component {
             </Button>
           </AuthForm>
           <SignUpBlock>
-            <Link className={classes.link} to="/">
+            <Link onClick={clearForm} className={classes.link} to="/">
               Do you already have an account?
             </Link>
           </SignUpBlock>
