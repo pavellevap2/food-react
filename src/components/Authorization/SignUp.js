@@ -8,22 +8,12 @@ import { styles, AuthForm, SignUpBlock } from './commons'
 import Typography from 'material-ui/Typography'
 
 class SignUpPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-      error: null,
-      user: null,
-    }
-  }
-
   submitData = event => {
-    const { email, password } = this.state
+    this.props.signUp()
+    event.preventDefault()
   }
 
   render() {
-    const { error } = this.state
     const {
       username,
       classes,
@@ -33,6 +23,7 @@ class SignUpPage extends Component {
       takeUserEmail,
       takeUserPassword,
       clearForm,
+      error,
     } = this.props
 
     return (
@@ -63,17 +54,17 @@ class SignUpPage extends Component {
             <TextField
               value={email}
               onChange={e => takeUserEmail(e.target.value)}
-              error={error !== null ? true : false}
-              type="text"
-              label={error !== null ? error.message : 'Email Address'}
+              error={error.length ? true : false}
+              label={error === 'Invalid email' ? error : 'Email Address'}
               margin="normal"
             />
 
             <TextField
               value={password}
               onChange={e => takeUserPassword(e.target.value)}
+              error={error.length ? true : false}
               type="password"
-              label="Password"
+              label={error === 'Invalid password' ? error : 'Paswword'}
               margin="normal"
             />
             <Button

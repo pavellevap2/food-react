@@ -8,10 +8,10 @@ import * as R from 'ramda'
 const LoginSaga = function*() {
   const password = yield select(getUserPassword)
   const email = yield select(getUserEmail)
-  const userData = yield call(loginWithEmail, email, password)
-  const error = R.path(['error', 'message'], userData)
+  const userAuthData = yield call(loginWithEmail, email, password)
+  const error = R.path(['error', 'message'], userAuthData)
   if (error === undefined) {
-    yield put(takeUserData(userData))
+    yield put(takeUserData(userAuthData))
     yield call(history.push, '/home')
   } else {
     yield put(authError(error))

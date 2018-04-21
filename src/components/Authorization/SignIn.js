@@ -54,8 +54,9 @@ class SignInPage extends Component {
             <TextField
               value={password}
               onChange={e => takeUserPassword(e.target.value)}
-              type={error === 'Invalid password' ? error : 'Paswword'}
-              label="Password"
+              error={error.length ? true : false}
+              type="password"
+              label={error === 'Invalid password' ? error : 'Paswword'}
               margin="normal"
             />
 
