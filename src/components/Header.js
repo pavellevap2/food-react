@@ -30,12 +30,8 @@ class Header extends React.Component {
     }
   }
 
-  logout = () => {
-    this.props.history.push('/')
-  }
-
   render() {
-    const { classes } = this.props
+    const { classes, logout } = this.props
     const { isMenuOpen } = this.state
 
     return (
@@ -57,7 +53,7 @@ class Header extends React.Component {
             >
               BBB
             </Typography>
-            <Button onClick={this.logout} color="inherit">
+            <Button onClick={logout} color="inherit">
               Logout
             </Button>
           </Toolbar>

@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from './Header'
+import HeaderContainer from '../containers/HeaderContainer'
 import PlacesContainer from '../containers/PlacesContainer'
 
 const HomePage = () => (
   <div>
-    <Header />
+    <HeaderContainer />
     <PlacesContainer />
   </div>
 )
