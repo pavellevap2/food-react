@@ -7,7 +7,6 @@ import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Close from '@material-ui/icons/Close'
-import { auth } from '../firebase/index'
 import { withRouter } from 'react-router-dom'
 
 const styles = {
@@ -32,7 +31,7 @@ class Header extends React.Component {
   }
 
   logout = () => {
-    auth.doSignOut().then(this.props.history.push('/'))
+    this.props.history.push('/')
   }
 
   render() {

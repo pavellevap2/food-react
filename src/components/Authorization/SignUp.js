@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
@@ -21,16 +20,6 @@ class SignUpPage extends Component {
 
   submitData = event => {
     const { email, password } = this.state
-
-    auth
-      .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
-        this.props.history.push('/home')
-      })
-      .catch(error => {
-        this.setState({ error: error })
-      })
-    event.preventDefault()
   }
 
   render() {

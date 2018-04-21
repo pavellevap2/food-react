@@ -4,7 +4,6 @@ import Grid from 'material-ui/Grid'
 import Button from 'material-ui/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from 'material-ui/styles'
-import { app } from '../firebase/firebase'
 
 const styles = theme => ({
   fab: {
@@ -16,14 +15,6 @@ const styles = theme => ({
 })
 
 class Places extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      restaraunts: [],
-    }
-  }
-
   componentDidMount() {
     this.props.syncWithDatabase()
   }

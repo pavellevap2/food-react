@@ -6,6 +6,7 @@ import {
   TAKE_USER_EMAIL,
   TAKE_USER_PASSWORD,
   CLEAR_FORM_DATA,
+  AUTH_ERROR,
 } from '../actions/auth'
 
 const userData = handleAction(
@@ -20,7 +21,9 @@ const userName = handleAction(
   '',
 )
 
-export const userEmail = handleActions(
+const authError = handleAction(AUTH_ERROR, (state, { payload }) => payload, '')
+
+const userEmail = handleActions(
   {
     [TAKE_USER_EMAIL]: (state, { payload }) => payload,
     [CLEAR_FORM_DATA]: (state, { payload }) => '',
@@ -28,7 +31,7 @@ export const userEmail = handleActions(
   '',
 )
 
-export const userPassword = handleActions(
+const userPassword = handleActions(
   {
     [TAKE_USER_PASSWORD]: (state, { payload }) => payload,
     [CLEAR_FORM_DATA]: (state, { payload }) => '',
@@ -41,6 +44,7 @@ const auth = combineReducers({
   userName,
   userEmail,
   userPassword,
+  authError,
 })
 
 export default auth
