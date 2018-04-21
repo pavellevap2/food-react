@@ -50,8 +50,6 @@ const styles = theme => ({
   },
 })
 
-//лайки?
-
 class PlacesCard extends React.Component {
   constructor(props) {
     super(props)

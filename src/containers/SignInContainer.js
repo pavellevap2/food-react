@@ -5,12 +5,14 @@ import {
   takeUserEmail,
   takeUserPassword,
   clearFormData,
+  submitLoginUser,
 } from '../actions/auth'
-import { getUserEmail, getUserPassword } from '../selectors/auth'
+import { getUserEmail, getUserPassword, getUserData } from '../selectors/auth'
 
 const mapStateToProps = state => ({
   email: getUserEmail(state),
   password: getUserPassword(state),
+  userData: getUserData(state),
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -18,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
   takeUserEmail: email => dispatch(takeUserEmail(email)),
   takeUserPassword: password => dispatch(takeUserPassword(password)),
   clearForm: () => dispatch(clearFormData()),
+  singIn: () => dispatch(submitLoginUser()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

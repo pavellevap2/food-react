@@ -11,6 +11,8 @@ export const SUBMIT_LOGIN_USER = '@@AUTH/SUBMIT_LOGIN_USER'
 export const takeUserData = createAction(TAKE_USER_DATA)
 export const takeUserName = createAction(TAKE_USER_NAME)
 
+export const submitLoginUser = createAction(SUBMIT_LOGIN_USER)
+
 export const clearFormData = createAction(CLEAR_FORM_DATA)
 
 export const takeUserEmail = createAction(TAKE_USER_EMAIL)

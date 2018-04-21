@@ -29,24 +29,12 @@ class SignInPage extends Component {
     }
   }
 
-  submitData = event => {
-    const { email, password } = this.state
-    const { history, takeUserData } = this.props
-
-    auth
-      .doSignInWithEmailAndPassword(email, password)
-      .then(authUser => {
-        takeUserData(authUser)
-
-        history.push('/home')
-      })
-      .catch(error => {
-        this.setState({ error: error })
-      })
+  loginWithEmail = event => {
+    this.props.singIn()
     event.preventDefault()
   }
 
-  login = () => {
+  loginWithGoogle = () => {
     authorization.signInWithPopup(provider).then(result => {
       this.props.takeUserData(result.user)
       this.props.history.push('/home')
@@ -82,7 +70,7 @@ class SignInPage extends Component {
             SIGN IN
           </Typography>
           <br />
-          <AuthForm onSubmit={this.submitData}>
+          <AuthForm onSubmit={this.loginWithEmail}>
             <TextField
               value={email}
               onChange={e => takeUserEmail(e.target.value)}
@@ -103,7 +91,7 @@ class SignInPage extends Component {
               variant="raised"
               color="default"
               className={classes.googleBtn}
-              onClick={this.login}
+              onClick={this.loginWithGoogle}
             >
               <GoogleBtnImg src={google} />
               <GoogleBtnImgText>login with Google</GoogleBtnImgText>

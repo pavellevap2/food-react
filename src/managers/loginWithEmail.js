@@ -2,7 +2,8 @@ import ENDPOINTS from '../api'
 
 const loginWithEmail = (email, password) =>
   fetch(ENDPOINTS.LOGIN_WITH_EMAIL, {
-    method: 'post',
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
       email: email,
       password: password,

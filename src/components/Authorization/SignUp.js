@@ -25,7 +25,6 @@ class SignUpPage extends Component {
     auth
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        this.props.takeUserData(authUser)
         this.props.history.push('/home')
       })
       .catch(error => {
@@ -46,7 +45,6 @@ class SignUpPage extends Component {
       takeUserPassword,
       clearForm,
     } = this.props
-    console.log(email, password)
 
     return (
       <Grid

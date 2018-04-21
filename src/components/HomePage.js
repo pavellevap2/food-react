@@ -1,15 +1,16 @@
 import React from 'react'
 import Header from './Header'
-import Places from './Places'
+import PlacesContainer from '../containers/PlacesContainer'
 
-const HomePage = ({ userName, userData }) => {
-  console.log(userName, userData)
-  return (
-    <div>
-      <Header />
-      <Places />
-    </div>
-  )
+class HomePage extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <PlacesContainer />
+      </div>
+    )
+  }
 }
 
 export default HomePage
