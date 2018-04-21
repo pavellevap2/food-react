@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Grid from 'material-ui/Grid'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
@@ -8,6 +8,10 @@ import { styles, AuthForm, SignUpBlock } from './commons'
 import Typography from 'material-ui/Typography'
 
 class SignInPage extends Component {
+  componentDidMount() {
+    this.props.goToHomePage()
+  }
+
   loginWithEmail = event => {
     this.props.singIn()
     event.preventDefault()
@@ -80,4 +84,4 @@ class SignInPage extends Component {
   }
 }
 
-export default withStyles(styles)(withRouter(SignInPage))
+export default withStyles(styles)(SignInPage)

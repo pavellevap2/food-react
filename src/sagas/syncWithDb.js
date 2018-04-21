@@ -5,7 +5,8 @@ import syncWithDataBase from '../managers/syncWithDataBase'
 
 const syncWithDb = function*() {
   const userData = yield select(getUserData)
-  const token = yield userData.idToken
+  const localStorageData = localStorage.getItem('userToken')
+  const token = yield userData.idToken || localStorageData
   const database = yield call(syncWithDataBase, token)
   yield put(getDatabaseData(database))
 }
