@@ -12,6 +12,7 @@ const LoginSaga = function*() {
   const error = R.path(['error', 'message'], userAuthData)
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
+    localStorage.setItem('userToken', JSON.stringify(userAuthData.idToken))
     yield call(history.push, '/home')
   } else {
     yield put(authError(error))
