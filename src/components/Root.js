@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import SignUpContainer from '../containers/SignUpContainer'
-import HomePage from '../components/HomePage'
+import MainPageContainer from '../containers/MainPageContainer'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import SignInContainer from '../containers/SignInContainer'
 
@@ -14,9 +14,9 @@ const theme = createMuiTheme({
 const Root = ({ database }) => (
   <MuiThemeProvider theme={theme}>
     <Switch>
-      <Route exact path="/" component={SignInContainer} />
       <Route path="/signup" component={SignUpContainer} />
-      <Route path="/home" component={HomePage} />
+      <Route path="/signin" component={SignInContainer} />
+      <Route exact path="/" component={MainPageContainer} />
     </Switch>
   </MuiThemeProvider>
 )
