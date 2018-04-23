@@ -10,7 +10,6 @@ import { createBrowserHistory } from 'history'
 export const history = createBrowserHistory()
 
 injectGlobal`
-  
   html{
     height:100%;
   }
