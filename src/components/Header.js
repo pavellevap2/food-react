@@ -7,7 +7,6 @@ import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Close from '@material-ui/icons/Close'
-import { auth } from '../firebase/index'
 import { withRouter } from 'react-router-dom'
 
 const styles = {
@@ -31,12 +30,8 @@ class Header extends React.Component {
     }
   }
 
-  logout = () => {
-    auth.doSignOut().then(this.props.history.push('/'))
-  }
-
   render() {
-    const { classes } = this.props
+    const { classes, signOut } = this.props
     const { isMenuOpen } = this.state
 
     return (
@@ -58,8 +53,8 @@ class Header extends React.Component {
             >
               BBB
             </Typography>
-            <Button onClick={this.logout} color="inherit">
-              Logout
+            <Button onClick={signOut} color="inherit">
+              Sign Out
             </Button>
           </Toolbar>
         </AppBar>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { auth } from '../../firebase/index'
 import Grid from 'material-ui/Grid'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
@@ -9,34 +8,23 @@ import { styles, AuthForm, SignUpBlock } from './commons'
 import Typography from 'material-ui/Typography'
 
 class SignUpPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-      error: null,
-      user: null,
-    }
-  }
-
   submitData = event => {
-    const { email, password } = this.state
-
-    auth
-      .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
-        this.props.takeUserData(authUser)
-        this.props.history.push('/home')
-      })
-      .catch(error => {
-        this.setState({ error: error })
-      })
+    this.props.signUp()
     event.preventDefault()
   }
 
   render() {
-    const { email, password, error } = this.state
-    const { username, classes, takeUserName } = this.props
+    const {
+      username,
+      classes,
+      takeUserName,
+      email,
+      password,
+      takeUserEmail,
+      takeUserPassword,
+      clearForm,
+      error,
+    } = this.props
 
     return (
       <Grid
@@ -65,18 +53,18 @@ class SignUpPage extends Component {
             />
             <TextField
               value={email}
-              onChange={e => this.setState({ email: e.target.value })}
-              error={error !== null ? true : false}
-              type="text"
-              label={error !== null ? error.message : 'Email Address'}
+              onChange={e => takeUserEmail(e.target.value)}
+              error={error.length ? true : false}
+              label={error === 'Invalid email' ? error : 'Email Address'}
               margin="normal"
             />
 
             <TextField
               value={password}
-              onChange={e => this.setState({ password: e.target.value })}
+              onChange={e => takeUserPassword(e.target.value)}
+              error={error.length ? true : false}
               type="password"
-              label="Password"
+              label={error === 'Invalid password' ? error : 'Paswword'}
               margin="normal"
             />
             <Button
@@ -89,7 +77,7 @@ class SignUpPage extends Component {
             </Button>
           </AuthForm>
           <SignUpBlock>
-            <Link className={classes.link} to="/">
+            <Link onClick={clearForm} className={classes.link} to="/">
               Do you already have an account?
             </Link>
           </SignUpBlock>

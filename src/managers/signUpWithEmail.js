@@ -1,7 +1,7 @@
 import ENDPOINTS from '../api'
 
-const loginWithEmail = (email, password) =>
-  fetch(ENDPOINTS.LOGIN_WITH_EMAIL, {
+const signUpWithEmail = (email, password) =>
+  fetch(ENDPOINTS.SIGNUP_WITH_EMAIL, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({
@@ -13,4 +13,4 @@ const loginWithEmail = (email, password) =>
     .then(data => data.json())
     .catch(error => console.log(error))
 
-export default loginWithEmail
+export default signUpWithEmail

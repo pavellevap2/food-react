@@ -1,63 +1,31 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { auth } from '../../firebase/index'
+import { Link } from 'react-router-dom'
 import Grid from 'material-ui/Grid'
 import { TextField } from 'material-ui'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
-import styled from 'styled-components'
-import { authorization, provider } from '../../firebase/firebase'
-import google from './google.png'
 import { styles, AuthForm, SignUpBlock } from './commons'
 import Typography from 'material-ui/Typography'
 
-const GoogleBtnImg = styled.img`
-  height: 2em;
-  width: 2em;
-`
-
-const GoogleBtnImgText = styled.span`
-  margin-left: 5%;
-`
-
 class SignInPage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      email: '',
-      password: '',
-      error: null,
-    }
+  componentDidMount() {
+    this.props.goToHomePage()
   }
 
-  submitData = event => {
-    const { email, password } = this.state
-    const { history, takeUserData } = this.props
-
-    auth
-      .doSignInWithEmailAndPassword(email, password)
-      .then(authUser => {
-        takeUserData(authUser)
-
-        history.push('/home')
-      })
-      .catch(error => {
-        this.setState({ error: error })
-      })
+  loginWithEmail = event => {
+    this.props.singIn()
     event.preventDefault()
   }
-
-  login = () => {
-    authorization.signInWithPopup(provider).then(result => {
-      this.props.takeUserData(result.user)
-      this.props.history.push('/home')
-    })
-  }
-
   render() {
-    const { email, password, error } = this.state
-    const { classes } = this.props
+    const {
+      email,
+      password,
+      classes,
+      takeUserEmail,
+      takeUserPassword,
+      clearForm,
+      error,
+    } = this.props
 
     return (
       <Grid
@@ -77,32 +45,24 @@ class SignInPage extends Component {
             SIGN IN
           </Typography>
           <br />
-          <AuthForm onSubmit={this.submitData}>
+          <AuthForm onSubmit={this.loginWithEmail}>
             <TextField
               value={email}
-              onChange={e => this.setState({ email: e.target.value })}
-              error={error !== null ? true : false}
+              onChange={e => takeUserEmail(e.target.value)}
+              error={error.length ? true : false}
               type="text"
-              label={error !== null ? error.message : 'Email Address'}
+              label={error === 'Invalid email' ? error : 'Email Address'}
               margin="normal"
             />
 
             <TextField
               value={password}
-              onChange={e => this.setState({ password: e.target.value })}
+              onChange={e => takeUserPassword(e.target.value)}
+              error={error.length ? true : false}
               type="password"
-              label="Password"
+              label={error === 'Invalid password' ? error : 'Paswword'}
               margin="normal"
             />
-            <Button
-              variant="raised"
-              color="default"
-              className={classes.googleBtn}
-              onClick={this.login}
-            >
-              <GoogleBtnImg src={google} />
-              <GoogleBtnImgText>login with Google</GoogleBtnImgText>
-            </Button>
 
             <Button
               className={classes.submitButton}
@@ -114,7 +74,7 @@ class SignInPage extends Component {
             </Button>
           </AuthForm>
           <SignUpBlock>
-            <Link className={classes.link} to="/signup">
+            <Link onClick={clearForm} className={classes.link} to="/signup">
               Don't have an account?
             </Link>
           </SignUpBlock>
@@ -124,4 +84,4 @@ class SignInPage extends Component {
   }
 }
 
-export default withStyles(styles)(withRouter(SignInPage))
+export default withStyles(styles)(SignInPage)

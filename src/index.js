@@ -4,6 +4,10 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import store from './configureStore'
 import { injectGlobal } from 'styled-components'
+import { Router } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+
+export const history = createBrowserHistory()
 
 injectGlobal`
   
@@ -31,8 +35,10 @@ injectGlobal`
   `
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Root />
-  </Provider>,
+  <Router history={history}>
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  </Router>,
   document.getElementById('root'),
 )
