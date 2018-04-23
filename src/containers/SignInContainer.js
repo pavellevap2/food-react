@@ -6,7 +6,6 @@ import {
   takeUserPassword,
   clearFormData,
   submitLoginUser,
-  toHomePage,
 } from '../actions/auth'
 import {
   getUserEmail,
@@ -28,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
   takeUserPassword: password => dispatch(takeUserPassword(password)),
   clearForm: () => dispatch(clearFormData()),
   singIn: () => dispatch(submitLoginUser()),
-  goToHomePage: () => dispatch(toHomePage()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

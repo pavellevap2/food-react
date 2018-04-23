@@ -77,7 +77,7 @@ class SignUpPage extends Component {
             </Button>
           </AuthForm>
           <SignUpBlock>
-            <Link onClick={clearForm} className={classes.link} to="/">
+            <Link onClick={clearForm} className={classes.link} to="/signin">
               Do you already have an account?
             </Link>
           </SignUpBlock>

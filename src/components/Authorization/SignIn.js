@@ -8,10 +8,6 @@ import { styles, AuthForm, SignUpBlock } from './commons'
 import Typography from 'material-ui/Typography'
 
 class SignInPage extends Component {
-  componentDidMount() {
-    this.props.goToHomePage()
-  }
-
   loginWithEmail = event => {
     this.props.singIn()
     event.preventDefault()

@@ -4,7 +4,7 @@ import { SIGN_OUT } from '../actions/auth'
 
 const signOutSaga = function*() {
   localStorage.removeItem('userToken')
-  yield call(history.push, '/')
+  yield call(history.push, '/signin')
 }
 
 const watcherSignOutSaga = function*() {
