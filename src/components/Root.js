@@ -11,7 +11,7 @@ const theme = createMuiTheme({
   },
 })
 
-const Root = () => (
+const Root = ({ database }) => (
   <MuiThemeProvider theme={theme}>
     <Switch>
       <Route exact path="/" component={SignInContainer} />
