@@ -31,7 +31,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { classes, logout } = this.props
+    const { classes, signOut } = this.props
     const { isMenuOpen } = this.state
 
     return (
@@ -53,8 +53,8 @@ class Header extends React.Component {
             >
               BBB
             </Typography>
-            <Button onClick={logout} color="inherit">
-              Logout
+            <Button onClick={signOut} color="inherit">
+              Sign Out
             </Button>
           </Toolbar>
         </AppBar>

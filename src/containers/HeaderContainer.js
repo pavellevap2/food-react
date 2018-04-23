@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { logout } from '../actions/auth'
+import { signOut } from '../actions/auth'
 import Header from '../components/Header'
 
 const mapDispatchToProps = dispacth => ({
-  logout: () => dispacth(logout()),
+  signOut: () => dispacth(signOut()),
 })
 
 export default connect(undefined, mapDispatchToProps)(Header)
