@@ -17,3 +17,5 @@ export const getAuthError = state => {
     return error
   }
 }
+
+export const getUserTokenId = state => state.auth.userTokenId

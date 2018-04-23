@@ -4,12 +4,15 @@ import { SUBMIT_LOGIN_USER, takeUserData, authError } from '../actions/auth'
 import { getUserPassword, getUserEmail } from '../selectors/auth'
 import { history } from '../index'
 import * as R from 'ramda'
+import { saveUserTokenId } from '../actions/auth'
 
 const LoginSaga = function*() {
   const password = yield select(getUserPassword)
   const email = yield select(getUserEmail)
   const userAuthData = yield call(loginWithEmail, email, password)
+  yield put(saveUserTokenId(userAuthData.idToken))
   const error = R.path(['error', 'message'], userAuthData)
+
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
     localStorage.setItem('userToken', userAuthData.idToken)

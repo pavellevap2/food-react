@@ -7,6 +7,7 @@ import {
   TAKE_USER_PASSWORD,
   CLEAR_FORM_DATA,
   AUTH_ERROR,
+  SAVE_USER_TOKEN_ID,
 } from '../actions/auth'
 
 const userData = handleAction(
@@ -39,12 +40,19 @@ const userPassword = handleActions(
   '',
 )
 
+const userTokenId = handleAction(
+  SAVE_USER_TOKEN_ID,
+  (state, { payload }) => payload,
+  '',
+)
+
 const auth = combineReducers({
   userData,
   userName,
   userEmail,
   userPassword,
   authError,
+  userTokenId,
 })
 
 export default auth

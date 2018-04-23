@@ -10,3 +10,4 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
 sagaMiddleware.run(rootSaga)
 
 export default store
+//onEnter проверка
