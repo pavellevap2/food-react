@@ -14,22 +14,30 @@ import Food from '@material-ui/icons/RoomService'
 import Money from '@material-ui/icons/AttachMoney'
 import Walk from '@material-ui/icons/DirectionsWalk'
 
+const PlacesItem = styled(Grid)`
+  &:first-child {
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+`
+
 const InfoImg = styled.div`
   width: 100%;
   background: url(${({ background }) => background});
-  height: 350px;
+  height: 400px;
   background-position: center;
   background-size: cover;
   margin: 1em 0;
   padding: auto;
+
   @media (min-width: 300px) and (max-width: 850px) {
-    height: 220px;
+    height: 250px;
   }
 `
 
 const styles = theme => ({
   container: {
-    margin: '0.6em 0',
+    margin: '1em 0',
   },
   card: {
     width: '100%',
@@ -39,9 +47,9 @@ const styles = theme => ({
       display: 'flex',
     },
   },
-  test: {
-    test: {
-      fontSize: '1.',
+  cardText: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.3em',
     },
   },
   primary: {
@@ -61,14 +69,31 @@ const styles = theme => ({
   title: {
     fontSize: '1.5em',
     color: theme.palette.primary.dark,
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2.4em',
+    },
+  },
+  header: {
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'normal',
+    },
   },
   subheader: {
     lineHeight: '0',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5em',
+    },
   },
   content: {
     paddingTop: 0,
   },
-
+  actionBtn: {
+    [theme.breakpoints.up('md')]: {
+      height: '1.5em',
+      width: '1.5em',
+      paddingRight: '1em',
+    },
+  },
   actions: {
     display: 'flex',
   },
@@ -126,7 +151,7 @@ class PlacesCard extends React.Component {
     ]
 
     return (
-      <Grid item md={8} lg={8} xs={10} className={classes.container}>
+      <PlacesItem item md={8} lg={8} xs={10} className={classes.container}>
         <Card className={classes.card}>
           <CardHeader
             className={classes.header}
@@ -141,7 +166,7 @@ class PlacesCard extends React.Component {
           <CardContent className={classes.content}>
             <List className={classes.iconsList}>
               {ListInfoData.map((item, i) => (
-                <ListItem>
+                <ListItem key={i}>
                   <Avatar className={classes.icon}>{item.Icon}</Avatar>
                   <ListItemText
                     className={classes.iconItem}
@@ -156,7 +181,7 @@ class PlacesCard extends React.Component {
               ))}
             </List>
             <InfoImg background={data.secondBack} />
-            <Typography className={classes.par} component="p">
+            <Typography className={classes.cardText} component="p">
               {data.description}
             </Typography>
           </CardContent>
@@ -172,7 +197,7 @@ class PlacesCard extends React.Component {
             </IconButton>
           </CardActions>
         </Card>
-      </Grid>
+      </PlacesItem>
     )
   }
 }
