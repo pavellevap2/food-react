@@ -12,6 +12,7 @@ const loginSaga = function*() {
   const userAuthData = yield call(loginWithEmail, email, password)
   yield put(saveUserTokenId(userAuthData.idToken))
   const error = R.path(['error', 'message'], userAuthData)
+  localStorage.setItem('refreshToken', userAuthData.refreshToken)
 
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
