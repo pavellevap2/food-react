@@ -12,6 +12,7 @@ class SignInPage extends Component {
     this.props.singIn()
     event.preventDefault()
   }
+
   render() {
     const {
       email,

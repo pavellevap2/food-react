@@ -14,32 +14,86 @@ import Food from '@material-ui/icons/RoomService'
 import Money from '@material-ui/icons/AttachMoney'
 import Walk from '@material-ui/icons/DirectionsWalk'
 
-const InfoImg = styled.img`
+const PlacesItem = styled(Grid)`
+  &:first-child {
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+  }
+`
+
+const InfoImg = styled.div`
   width: 100%;
-  height: 10em;
+  background: url(${({ background }) => background});
+  height: 400px;
+  background-position: center;
+  background-size: cover;
   margin: 1em 0;
   padding: auto;
+
+  @media (min-width: 300px) and (max-width: 850px) {
+    height: 250px;
+  }
 `
 
 const styles = theme => ({
   container: {
-    margin: '0.6em 0',
+    margin: '1em 0',
   },
   card: {
     width: '100%',
   },
-
+  iconsList: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  cardText: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.3em',
+    },
+  },
+  primary: {
+    [theme.breakpoints.up('1310')]: {
+      fontSize: '1.3em',
+    },
+  },
+  secondary: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.1em',
+    },
+  },
+  icon: {
+    height: '3em',
+    width: '3em',
+  },
   title: {
     fontSize: '1.5em',
     color: theme.palette.primary.dark,
+    [theme.breakpoints.up('md')]: {
+      fontSize: '3em',
+    },
+  },
+  header: {
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'normal',
+    },
   },
   subheader: {
     lineHeight: '0',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5em',
+    },
   },
   content: {
     paddingTop: 0,
   },
-
+  actionBtn: {
+    [theme.breakpoints.up('md')]: {
+      height: '1.5em',
+      width: '1.5em',
+      paddingRight: '1em',
+    },
+  },
   actions: {
     display: 'flex',
   },
@@ -47,6 +101,10 @@ const styles = theme => ({
     backgroundColor: red[500],
     width: '4em',
     height: '4em',
+    [theme.breakpoints.up('md')]: {
+      height: '7em',
+      width: '7em',
+    },
   },
 })
 
@@ -74,9 +132,26 @@ class PlacesCard extends React.Component {
   render() {
     const { classes, data } = this.props
     const { isFingerUpClicked, isLikeClicked } = this.state
+    const ListInfoData = [
+      {
+        Icon: <Food color="primary" />,
+        secondary: data.kitchen,
+        primary: 'Кухня',
+      },
+      {
+        Icon: <Money color="primary" />,
+        secondary: data.check,
+        primary: 'Средний чек',
+      },
+      {
+        Icon: <Walk color="primary" />,
+        secondary: data.geo,
+        primary: 'Расположение',
+      },
+    ]
 
     return (
-      <Grid item md={12} lg={7} xs={10} className={classes.container}>
+      <PlacesItem item md={8} lg={8} xs={10} className={classes.container}>
         <Card className={classes.card}>
           <CardHeader
             className={classes.header}
@@ -89,28 +164,24 @@ class PlacesCard extends React.Component {
             }}
           />
           <CardContent className={classes.content}>
-            <List>
-              <ListItem>
-                <Avatar>
-                  <Food color="primary" />
-                </Avatar>
-                <ListItemText primary="Кухня" secondary={data.kitchen} />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <Money color="primary" />
-                </Avatar>
-                <ListItemText primary="Средний чек" secondary={data.check} />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <Walk color="primary" />
-                </Avatar>
-                <ListItemText primary="Расположение" secondary={data.geo} />
-              </ListItem>
+            <List className={classes.iconsList}>
+              {ListInfoData.map((item, i) => (
+                <ListItem key={i}>
+                  <Avatar className={classes.icon}>{item.Icon}</Avatar>
+                  <ListItemText
+                    className={classes.iconItem}
+                    primary={item.primary}
+                    secondary={item.secondary}
+                    classes={{
+                      primary: classes.primary,
+                      secondary: classes.secondary,
+                    }}
+                  />
+                </ListItem>
+              ))}
             </List>
-            <InfoImg src={data.secondBack} alt="back" />
-            <Typography className={classes.par} component="p">
+            <InfoImg background={data.secondBack} />
+            <Typography className={classes.cardText} component="p">
               {data.description}
             </Typography>
           </CardContent>
@@ -126,7 +197,7 @@ class PlacesCard extends React.Component {
             </IconButton>
           </CardActions>
         </Card>
-      </Grid>
+      </PlacesItem>
     )
   }
 }

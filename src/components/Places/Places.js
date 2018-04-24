@@ -11,6 +11,17 @@ const styles = theme => ({
     zIndex: '2',
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2,
+    [theme.breakpoints.up('md')]: {
+      right: theme.spacing.unit * 4,
+      height: '3em',
+      width: '3em',
+    },
+  },
+  plus: {
+    [theme.breakpoints.up('md')]: {
+      height: '1.3em',
+      width: '1.3em',
+    },
   },
 })
 
@@ -29,7 +40,7 @@ class Places extends React.Component {
           className={this.props.classes.fab}
           color={'primary'}
         >
-          <AddIcon />
+          <AddIcon className={this.props.classes.plus} />
         </Button>
       </Grid>
     )
