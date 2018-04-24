@@ -70,7 +70,7 @@ const styles = theme => ({
     fontSize: '1.5em',
     color: theme.palette.primary.dark,
     [theme.breakpoints.up('md')]: {
-      fontSize: '2.4em',
+      fontSize: '3em',
     },
   },
   header: {
