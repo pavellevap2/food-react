@@ -3,6 +3,7 @@ import { getUserData, getUserTokenId } from '../selectors/auth'
 import { SYNC_WITH_DB, getDatabaseData } from '../actions/database'
 import syncWithDataBase from '../managers/syncWithDataBase'
 import refreshUserData from '../managers/refreshUserData'
+import { saveUserTokenId } from '../actions/auth'
 
 const syncWithDb = function*() {
   const userData = yield select(getUserData)
@@ -17,10 +18,11 @@ const syncWithDb = function*() {
   } else {
     const refreshToken = localStorage.getItem('refreshToken')
     const refreshedUserData = yield call(refreshUserData, refreshToken)
-    const refreshDataToken = refreshedUserData.id_token
+    const refreshUserToken = refreshedUserData.id_token
 
-    localStorage.setItem('userToken', refreshDataToken)
-    const databaseWithRefresh = yield call(syncWithDataBase, refreshDataToken)
+    yield put(saveUserTokenId(refreshUserToken))
+    localStorage.setItem('userToken', refreshUserToken)
+    const databaseWithRefresh = yield call(syncWithDataBase, refreshUserToken)
     yield put(getDatabaseData(databaseWithRefresh))
   }
 }
