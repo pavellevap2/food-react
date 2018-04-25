@@ -9,8 +9,8 @@ import Typography from 'material-ui/Typography'
 
 class SignInPage extends Component {
   loginWithEmail = event => {
-    this.props.singIn()
     event.preventDefault()
+    this.props.singIn()
   }
 
   render() {
