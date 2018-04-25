@@ -16,7 +16,7 @@ const Root = ({ database }) => (
     <Switch>
       <Route path="/signup" component={SignUpContainer} />
       <Route path="/signin" component={SignInContainer} />
-      <Route exact path="/" component={MainPageContainer} />
+      <Route path="/" component={MainPageContainer} />
     </Switch>
   </MuiThemeProvider>
 )

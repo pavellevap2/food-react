@@ -18,6 +18,8 @@ const syncWithDb = function*() {
     const refreshToken = localStorage.getItem('refreshToken')
     const refreshedUserData = yield call(refreshUserData, refreshToken)
     const refreshDataToken = refreshedUserData.id_token
+
+    localStorage.setItem('userToken', refreshDataToken)
     const databaseWithRefresh = yield call(syncWithDataBase, refreshDataToken)
     yield put(getDatabaseData(databaseWithRefresh))
   }
