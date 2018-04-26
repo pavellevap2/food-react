@@ -29,7 +29,7 @@ const PreviewImage = styled.img`
   margin: 1em 0;
 `
 const SelectBlock = styled.div`
-  margin-top: 3em;
+  margin-top: 1em;
   display: flex;
 `
 
@@ -126,8 +126,6 @@ class RestaurantForm extends React.Component {
               label="Название ресторана"
               margin="normal"
             />
-            <InputResImage onChange={getImageData} onLoad={this.takeImage} />
-            <PreviewImage src={image ? image : defaultImg} alt="preview" />
             <SelectBlock>
               <SelectField
                 data={KITHENS}
@@ -151,6 +149,16 @@ class RestaurantForm extends React.Component {
               className={classes.textField}
               margin="normal"
             />
+
+            <TextField
+              label="Описание ресторана"
+              margin="normal"
+              multiline={true}
+              rows={3}
+              rowsMax={6}
+            />
+            <InputResImage onChange={getImageData} onLoad={this.takeImage} />
+            <PreviewImage src={image ? image : defaultImg} alt="preview" />
           </NewRestaurauntFrom>
         </Grid>
       </Grid>

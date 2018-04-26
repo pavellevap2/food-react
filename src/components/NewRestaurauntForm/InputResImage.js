@@ -5,8 +5,8 @@ import Button from 'material-ui/Button'
 
 const InputBlock = styled.div`
   position: relative;
-  margin-top: 2em;
-Zz`
+  margin: 2em 0;
+`
 const InputFile = styled.input`
   position: absolute;
   top: 0;
