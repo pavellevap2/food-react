@@ -75,12 +75,12 @@ class RestaurantForm extends React.Component {
     super(props)
     this.state = {
       restaurantName: '',
+      slogan: '',
       image: '',
       kitchenType: '',
       averageСheck: '',
       restaurantGeo: '',
       restaurantDesc: '',
-      getImageData: this.props.imageData,
     }
   }
 
@@ -93,6 +93,12 @@ class RestaurantForm extends React.Component {
   selectKitchenType = e => {
     this.setState({
       kitchenType: e.target.value,
+    })
+  }
+
+  inputSlogan = e => {
+    this.setState({
+      slogan: e.target.value,
     })
   }
 
@@ -114,6 +120,30 @@ class RestaurantForm extends React.Component {
     })
   }
 
+  submitRestData = event => {
+    const {
+      restaurantName,
+      kitchenType,
+      averageСheck,
+      restaurantGeo,
+      restaurantDesc,
+      slogan,
+    } = this.state
+
+    event.preventDefault()
+
+    this.props.getRestData({
+      name: restaurantName,
+      kitchen: kitchenType,
+      check: averageСheck,
+      geo: restaurantGeo,
+      desc: restaurantDesc,
+      imgUrl: this.props.imageData,
+      slogan: slogan ? slogan : 'Любое',
+      avatar: this.props.imageData,
+    })
+  }
+
   render() {
     const { classes, getImageData, imageData } = this.props
     const {
@@ -123,6 +153,7 @@ class RestaurantForm extends React.Component {
       averageСheck,
       restaurantGeo,
       restaurantDesc,
+      slogan,
     } = this.state
 
     return (
@@ -141,11 +172,17 @@ class RestaurantForm extends React.Component {
           >
             Новый ресторан
           </Typography>
-          <NewRestaurauntFrom autoComplete="off">
+          <NewRestaurauntFrom onSubmit={this.submitRestData}>
             <TextField
               value={restaurantName}
               onChange={e => this.setState({ restaurantName: e.target.value })}
               label="Название ресторана"
+              margin="normal"
+            />
+            <TextField
+              value={slogan}
+              onChange={e => this.inputSlogan(e)}
+              label="Слоган если есть"
               margin="normal"
             />
             <SelectBlock>
@@ -188,6 +225,7 @@ class RestaurantForm extends React.Component {
             <PreviewImage src={image ? image : defaultImg} alt="preview" />
             <SubmitBtnBlock>
               <Button
+                type="submit"
                 className={classes.submitBtn}
                 variant="raised"
                 color="primary"
