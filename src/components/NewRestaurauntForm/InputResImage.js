@@ -34,7 +34,7 @@ class InputResImage extends React.Component {
   render() {
     return (
       <InputBlock>
-        <AddBtn variant="raised" color="primary">
+        <AddBtn variant="raised" color="default">
           Добавить изображение
         </AddBtn>
         <InputFile onChange={this.addImageToStorage} type="file" />

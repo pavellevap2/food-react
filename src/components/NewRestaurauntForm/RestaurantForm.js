@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography'
 import InputResImage from './InputResImage'
 import defaultImg from './default.png'
 import SelectField from './SelectField'
+import Button from 'material-ui/Button'
 
 const KITHENS = [
   'Фаст-фуд',
@@ -32,6 +33,12 @@ const SelectBlock = styled.div`
   margin-top: 1em;
   display: flex;
 `
+const SubmitBtnBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2em;
+`
 
 const styles = theme => ({
   container: {
@@ -55,6 +62,11 @@ const styles = theme => ({
   textField: {
     width: '100%',
     marginTop: '1em',
+  },
+  submitBtn: {
+    fontSize: '1.2em',
+    width: '100%',
+    padding: '0.5em 0',
   },
 })
 
@@ -113,7 +125,6 @@ class RestaurantForm extends React.Component {
       restaurantDesc,
     } = this.state
 
-    console.log(this.state)
     return (
       <Grid
         container
@@ -122,7 +133,7 @@ class RestaurantForm extends React.Component {
         alignItems="center"
         margin="normal"
       >
-        <Grid item xs={10} lg={4}>
+        <Grid item xs={10} lg={5}>
           <Typography
             align="center"
             variant="display2"
@@ -175,6 +186,15 @@ class RestaurantForm extends React.Component {
             />
             <InputResImage onChange={getImageData} onLoad={this.takeImage} />
             <PreviewImage src={image ? image : defaultImg} alt="preview" />
+            <SubmitBtnBlock>
+              <Button
+                className={classes.submitBtn}
+                variant="raised"
+                color="primary"
+              >
+                Добавить ресторан
+              </Button>
+            </SubmitBtnBlock>
           </NewRestaurauntFrom>
         </Grid>
       </Grid>
