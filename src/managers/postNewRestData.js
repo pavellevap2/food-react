@@ -1,7 +1,7 @@
 import ENDPOINTS from '../api'
 
-const postNewRestData = data =>
-  fetch(ENDPOINTS, {
+const postNewRestData = (data, token) =>
+  fetch(ENDPOINTS.SYNC_WITH_DB(token), {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({

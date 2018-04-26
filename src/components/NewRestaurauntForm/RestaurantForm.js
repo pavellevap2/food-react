@@ -121,6 +121,8 @@ class RestaurantForm extends React.Component {
   }
 
   submitRestData = event => {
+    event.preventDefault()
+
     const {
       restaurantName,
       kitchenType,
@@ -129,8 +131,6 @@ class RestaurantForm extends React.Component {
       restaurantDesc,
       slogan,
     } = this.state
-
-    event.preventDefault()
 
     this.props.getRestData({
       name: restaurantName,
@@ -142,6 +142,7 @@ class RestaurantForm extends React.Component {
       slogan: slogan ? slogan : 'Любое',
       avatar: this.props.imageData,
     })
+    this.props.submitData()
   }
 
   render() {

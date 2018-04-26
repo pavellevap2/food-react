@@ -33,6 +33,8 @@ class Places extends React.Component {
 
   render() {
     const { database } = this.props
+    console.log(database)
+
     return (
       <Grid container justify={'center'} alignItems="center">
         {database.map((data, i) => <PlacesCard key={i} data={data} />)}
