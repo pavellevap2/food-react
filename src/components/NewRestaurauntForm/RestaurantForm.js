@@ -54,6 +54,7 @@ const styles = theme => ({
   },
   textField: {
     width: '100%',
+    marginTop: '1em',
   },
 })
 
@@ -66,6 +67,8 @@ class RestaurantForm extends React.Component {
       kitchenType: '',
       averageСheck: '',
       restaurantGeo: '',
+      restaurantDesc: '',
+      getImageData: this.props.imageData,
     }
   }
 
@@ -93,6 +96,12 @@ class RestaurantForm extends React.Component {
     })
   }
 
+  inputRestaurauntDesc = e => {
+    this.setState({
+      restaurantDesc: e.target.value,
+    })
+  }
+
   render() {
     const { classes, getImageData, imageData } = this.props
     const {
@@ -101,8 +110,10 @@ class RestaurantForm extends React.Component {
       kitchenType,
       averageСheck,
       restaurantGeo,
+      restaurantDesc,
     } = this.state
 
+    console.log(this.state)
     return (
       <Grid
         container
@@ -111,13 +122,13 @@ class RestaurantForm extends React.Component {
         alignItems="center"
         margin="normal"
       >
-        <Grid item lg={4}>
+        <Grid item xs={10} lg={4}>
           <Typography
             align="center"
             variant="display2"
             className={classes.formTitle}
           >
-            Добавить новый ресторан
+            Новый ресторан
           </Typography>
           <NewRestaurauntFrom autoComplete="off">
             <TextField
@@ -147,12 +158,17 @@ class RestaurantForm extends React.Component {
               onChange={e => this.inputRestaurauntGeo(e)}
               label="Месторасположение заведения"
               className={classes.textField}
+              multiline={true}
+              rows={1}
+              rowsMax={3}
               margin="normal"
             />
 
             <TextField
               label="Описание ресторана"
               margin="normal"
+              value={restaurantDesc}
+              onChange={e => this.inputRestaurauntDesc(e)}
               multiline={true}
               rows={3}
               rowsMax={6}

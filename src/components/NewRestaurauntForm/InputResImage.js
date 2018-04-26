@@ -28,7 +28,7 @@ class InputResImage extends React.Component {
     const storageRef = storage.ref()
     const userImageRef = storageRef.child('images' + file.name)
     userImageRef.put(file)
-    userImageRef.getDownloadURL().then(url => this.props.onChange(url))
+    userImageRef.getDownloadURL().then(url => console.log(url))
   }
 
   render() {

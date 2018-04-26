@@ -24,7 +24,7 @@ const SelectField = ({
     <InputLabel htmlFor="age-simple">{selectName}</InputLabel>
     <Select value={value} onChange={e => onChange(e)}>
       {data.map((item, i) => (
-        <MenuItem key="i" value={item}>
+        <MenuItem key={i} value={item}>
           {item}
         </MenuItem>
       ))}
