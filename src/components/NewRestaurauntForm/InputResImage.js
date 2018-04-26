@@ -2,11 +2,11 @@ import React from 'react'
 import storage from '../../firebase/firebase'
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
-import AddIcon from '@material-ui/icons/Add'
 
 const InputBlock = styled.div`
   position: relative;
-`
+  margin-top: 2em;
+Zz`
 const InputFile = styled.input`
   position: absolute;
   top: 0;
@@ -34,10 +34,10 @@ class InputResImage extends React.Component {
   render() {
     return (
       <InputBlock>
-        <AddBtn variant="fab" color={'primary'}>
-          <AddIcon />
+        <AddBtn variant="raised" color="primary">
+          Добавить изображение
         </AddBtn>
-        <InputFile type="file" />
+        <InputFile onChange={this.addImageToStorage} type="file" />
       </InputBlock>
     )
   }

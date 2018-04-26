@@ -4,7 +4,8 @@ import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const styles = {
   root: {
@@ -19,13 +20,18 @@ const styles = {
   },
 }
 
+const HeaderLogo = styled(Link)`
+  color: white;
+`
+
 const Header = ({ classes, signOut }) => (
   <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
-          BBB
+          <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
+
         <Button onClick={signOut} color="inherit">
           Sign Out
         </Button>
