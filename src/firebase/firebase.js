@@ -11,6 +11,6 @@ const config = {
 
 firebase.initializeApp(config)
 
-const storage = firebase.storage()
+export const storage = firebase.storage()
 
-export default storage
+export const messasging = firebase.messaging()
