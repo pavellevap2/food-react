@@ -14,7 +14,8 @@ const syncWithDb = function*() {
   const database = yield call(syncWithDataBase, token)
 
   if (!database.error) {
-    yield put(getDatabaseData(database))
+    const databaseValues = Object.values(database)
+    yield put(getDatabaseData(databaseValues))
   } else {
     const refreshToken = localStorage.getItem('refreshToken')
     const refreshedUserData = yield call(refreshUserData, refreshToken)
@@ -23,8 +24,8 @@ const syncWithDb = function*() {
     yield put(saveUserTokenId(refreshUserToken))
     localStorage.setItem('userToken', refreshUserToken)
     const databaseWithRefresh = yield call(syncWithDataBase, refreshUserToken)
-    const databaseValues = Object.values(databaseWithRefresh)
-    yield put(getDatabaseData(databaseValues))
+    const refreshDatabaseValues = Object.values(databaseWithRefresh)
+    yield put(getDatabaseData(refreshDatabaseValues))
   }
 }
 

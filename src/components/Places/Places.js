@@ -33,7 +33,6 @@ class Places extends React.Component {
 
   render() {
     const { database } = this.props
-    console.log(database)
 
     return (
       <Grid container justify={'center'} alignItems="center">
