@@ -12,7 +12,6 @@ const syncWithDb = function*() {
 
   const token = userData.idToken || localStorageToken || savedToken
   const database = yield call(syncWithDataBase, token)
-
   if (!database.error) {
     const databaseValues = Object.values(database)
     yield put(getDatabaseData(databaseValues))

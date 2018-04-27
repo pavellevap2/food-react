@@ -142,11 +142,13 @@ class RestaurantForm extends React.Component {
       slogan: slogan ? slogan : 'Любое',
       avatar: this.props.imageData,
     })
+
     this.props.submitData()
   }
 
   render() {
     const { classes, getImageData, imageData } = this.props
+
     const {
       restaurantName,
       image,
