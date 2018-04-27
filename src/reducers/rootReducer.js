@@ -1,11 +1,11 @@
 import auth from './auth'
 import { combineReducers } from 'redux'
-import databaseData from './databaseData'
+import restaurauntsData from './restauraunts'
 import newRestauraunt from './newRestauraunt'
 
 const rootReducer = combineReducers({
   auth,
-  databaseData,
+  restaurauntsData,
   newRestauraunt,
 })
 

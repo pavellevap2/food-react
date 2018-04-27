@@ -5,6 +5,28 @@ import Button from 'material-ui/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import preloader from './preloader.jpeg'
+
+const PreloaderBlock = styled.div`
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const PreloaderImg = styled.img.attrs({ src: preloader, alt: 'preloader' })`
+  animation: preloader-logo-spin infinite 5s linear;
+
+  @keyframes preloader-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`
 
 const styles = theme => ({
   fab: {
@@ -32,21 +54,29 @@ class Places extends React.Component {
   }
 
   render() {
-    const { database } = this.props
+    const { database, preloader } = this.props
 
     return (
-      <Grid container justify={'center'} alignItems="center">
-        {database.map((data, i) => <PlacesCard key={i} data={data} />)}
-        <Link to="/new_restaurant">
-          <Button
-            variant="fab"
-            className={this.props.classes.fab}
-            color={'primary'}
-          >
-            <AddIcon className={this.props.classes.plus} />
-          </Button>
-        </Link>
-      </Grid>
+      <div>
+        {preloader ? (
+          <PreloaderBlock>
+            <PreloaderImg />
+          </PreloaderBlock>
+        ) : (
+          <Grid container justify={'center'} alignItems="center">
+            {database.map((data, i) => <PlacesCard key={i} data={data} />)}
+            <Link to="/new_restaurant">
+              <Button
+                variant="fab"
+                className={this.props.classes.fab}
+                color={'primary'}
+              >
+                <AddIcon className={this.props.classes.plus} />
+              </Button>
+            </Link>
+          </Grid>
+        )}
+      </div>
     )
   }
 }
