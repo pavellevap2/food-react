@@ -4,6 +4,7 @@ import watcherSyncWithDb from './syncWithDb'
 import watcherSignUp from './signUpSaga'
 import watcherSignOutSaga from './signoutSaga'
 import startSaga from './startSaga'
+import watcherPushNewRestData from './pushNewRestData'
 
 const RootSaga = function*() {
   yield all([
@@ -12,6 +13,7 @@ const RootSaga = function*() {
     call(watcherSyncWithDb),
     call(watcherSignUp),
     call(watcherSignOutSaga),
+    call(watcherPushNewRestData),
   ])
 }
 

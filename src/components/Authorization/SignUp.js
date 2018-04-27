@@ -9,8 +9,8 @@ import Typography from 'material-ui/Typography'
 
 class SignUpPage extends Component {
   submitData = event => {
-    this.props.signUp()
     event.preventDefault()
+    this.props.signUp()
   }
 
   render() {

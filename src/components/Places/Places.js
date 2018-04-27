@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid'
 import Button from 'material-ui/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from 'material-ui/styles'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   fab: {
@@ -32,16 +33,19 @@ class Places extends React.Component {
 
   render() {
     const { database } = this.props
+
     return (
       <Grid container justify={'center'} alignItems="center">
         {database.map((data, i) => <PlacesCard key={i} data={data} />)}
-        <Button
-          variant="fab"
-          className={this.props.classes.fab}
-          color={'primary'}
-        >
-          <AddIcon className={this.props.classes.plus} />
-        </Button>
+        <Link to="/new_restaurant">
+          <Button
+            variant="fab"
+            className={this.props.classes.fab}
+            color={'primary'}
+          >
+            <AddIcon className={this.props.classes.plus} />
+          </Button>
+        </Link>
       </Grid>
     )
   }

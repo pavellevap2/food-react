@@ -1,6 +1,6 @@
 {
-  "restaraunts": [
-    {
+  "restaraunts": {
+    "vbnhgfgygv": {
       "name": "KFC",
       "avatar":
         "https://upload.wikimedia.org/wikipedia/ru/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
@@ -12,7 +12,7 @@
         "В основе всех блюд из курицы два оригинальных вкуса \n панировки –острый «Hot and Spicy» и оригинальный «11 специй и трав». Рецепты этих вкусов хранятся в строжайшем секрете и известны только узкому кругу посвященных лиц из руководителей компании KFC",
       "secondBack": "https://i.ytimg.com/vi/4Q77UhKID_A/maxresdefault.jpg"
     },
-    {
+    "dsfghjhgfdfghgfd": {
       "name": "McDonald’s",
       "avatar":
         "https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg",
@@ -24,5 +24,5 @@
         "Есть нормальный скидон за сотку берёшь кофе и мороженное блабла блабла блаб лаблалбл аблаблабла блаб алаблаба лаблабла",
       "secondBack": "http://edu102.ru/images/1217888257.jpg"
     }
-  ]
+  }
 }
