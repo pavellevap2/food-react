@@ -1,9 +1,8 @@
 import React from 'react'
-import Input, { InputLabel } from 'material-ui/Input'
+import { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
 import { FormControl } from 'material-ui/Form'
 import Select from 'material-ui/Select'
-import styled from 'styled-components'
 import { withStyles } from 'material-ui'
 
 const styles = theme => ({

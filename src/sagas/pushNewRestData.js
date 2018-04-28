@@ -1,8 +1,7 @@
-import { put, call, select, takeEvery } from 'redux-saga/effects'
+import { call, select, takeEvery } from 'redux-saga/effects'
 import { getRestData } from '../selectors/newRestauraunt'
 import postNewRestData from '../managers/postNewRestData'
 import { SUBMIT_REST_DATA } from '../actions/newRestauraunt'
-import { history } from '../index'
 
 const pushNewRestData = function*() {
   const restData = yield select(getRestData)
