@@ -4,19 +4,28 @@ import PlacesContainer from '../containers/PlacesContainer'
 import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
+import ConfigVotePopup from './ConfigVotePopup'
 
-const MainPage = ({ userToken }) => (
-  <div>
-    <HeaderContainer />
-    {userToken ? (
+class MainPage extends React.Component {
+  render() {
+    return (
       <div>
-        <Route path="/new_restaurant" component={RestaurauntFormContainer} />
-        <Route exact path="/" component={PlacesContainer} />
+        <HeaderContainer />
+        {this.props.showVoteConfig ? <ConfigVotePopup /> : null}
+        {this.props.userToken ? (
+          <div>
+            <Route
+              path="/new_restaurant"
+              component={RestaurauntFormContainer}
+            />
+            <Route exact path="/" component={PlacesContainer} />
+          </div>
+        ) : (
+          <Redirect to="signup" />
+        )}
       </div>
-    ) : (
-      <Redirect to="signup" />
-    )}
-  </div>
-)
+    )
+  }
+}
 
 export default MainPage

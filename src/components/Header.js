@@ -15,7 +15,7 @@ const styles = {
     flex: 1,
   },
   voteBtn: {
-    marginRight: '2em',
+    marginRight: '1em',
   },
 }
 
@@ -23,14 +23,18 @@ const HeaderLogo = styled(Link)`
   color: white;
 `
 
-const Header = ({ classes, signOut }) => (
+const Header = ({ classes, signOut, showVoteCongig }) => (
   <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
           <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
-        <Button onClick={signOut} className={classes.voteBtn} color="inherit">
+        <Button
+          onClick={() => showVoteCongig(true)}
+          className={classes.voteBtn}
+          color="inherit"
+        >
           Начать голосвание
         </Button>
 
