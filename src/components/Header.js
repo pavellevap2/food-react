@@ -14,9 +14,8 @@ const styles = {
   flex: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+  voteBtn: {
+    marginRight: '2em',
   },
 }
 
@@ -31,9 +30,12 @@ const Header = ({ classes, signOut }) => (
         <Typography variant="title" color="inherit" className={classes.flex}>
           <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
+        <Button onClick={signOut} className={classes.voteBtn} color="inherit">
+          Начать голосвание
+        </Button>
 
         <Button onClick={signOut} color="inherit">
-          Sign Out
+          Выйти
         </Button>
       </Toolbar>
     </AppBar>
