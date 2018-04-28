@@ -13,4 +13,4 @@ firebase.initializeApp(config)
 
 export const storage = firebase.storage()
 
-export const messasging = firebase.messaging()
+//сделать файлом

@@ -8,6 +8,7 @@ const ENDPOINTS = {
   SYNC_WITH_DB: token =>
     `https://food-fd399.firebaseio.com/restaraunts.json?auth=${token}`,
   REFRESH_DATA: `https://securetoken.googleapis.com/v1/token?key=${API_KEY}`,
+  PUSH_CLOUD_MESSAGE: ``,
 }
 
 export default ENDPOINTS
