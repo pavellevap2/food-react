@@ -4,14 +4,14 @@ import PlacesContainer from '../containers/PlacesContainer'
 import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
-import ConfigVotePopup from './ConfigVotePopup'
+import VoteConfigContainer from '../containers/VoteConfigContainer'
 
 class MainPage extends React.Component {
   render() {
     return (
       <div>
         <HeaderContainer />
-        {this.props.showVoteConfig ? <ConfigVotePopup /> : null}
+        {this.props.showVoteConfig ? <VoteConfigContainer /> : null}
         {this.props.userToken ? (
           <div>
             <Route

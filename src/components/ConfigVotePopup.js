@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SelectField from '../components/NewRestaurauntForm/SelectField'
+import Button from 'material-ui/Button'
 
 const PopupBlock = styled.div`
   z-index: 2;
@@ -16,30 +17,42 @@ const PopupBlock = styled.div`
 const PopupInner = styled.div`
   position: absolute;
   margin: auto;
-  left: 18%;
-  right: 18%;
-  top: 20%;
-  bottom: 20%;
+  left: 15%;
+  right: 15%;
+  top: 15%;
+  bottom: 15%;
   background-color: white;
   border: 2px solid #3f51b5;
 `
+const PopupTitleBlock = styled.div`
+  width: 100%;
+`
+
 const PopupTitle = styled.h2`
   width: 100%;
   color: #3f51b5;
 `
+
 const VOTE_DATE = Array(24)
   .fill(1)
   .map((_, i) => (i < 10 ? `0${i}:00` : `${i} : 00`))
 
-const ConfigVotePopup = props => {
+const ConfigVotePopup = ({ showVoteCongig }) => {
   return (
     <PopupBlock>
       <PopupInner>
-        <PopupTitle>Конфигурация голосования</PopupTitle>
-        <SelectField data={VOTE_DATE} value="sd" />
+        <PopupTitleBlock>
+          <PopupTitle>Конфигурация голосования</PopupTitle>
+        </PopupTitleBlock>
+
+        <SelectField data={VOTE_DATE} value={'любое'} />
+        <Button onClick={() => showVoteCongig(false)} color="inherit">
+          Закрыть настройки
+        </Button>
       </PopupInner>
     </PopupBlock>
   )
 }
 
+//доделать попап,экшены и разрешения
 export default ConfigVotePopup
