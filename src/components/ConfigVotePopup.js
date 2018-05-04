@@ -25,6 +25,8 @@ const PopupInner = styled.div`
   bottom: 15%;
   background-color: white;
   border: 2px solid #3f51b5;
+  display: flex;
+  flex-direction: column;
 `
 const PopupTitleBlock = styled.div`
   width: 100%;
@@ -70,9 +72,9 @@ class ConfigVotePopup extends React.Component {
     } = this.props
     return (
       <PopupBlock>
-        <Grid container>
-          <Grid item xs={12} md={8} lg={6}>
-            <PopupInner>
+        <PopupInner>
+          <Grid container alignItems="center">
+            <Grid item xs={12} lg={12}>
               <PopupTitleBlock>
                 <PopupTitle>Конфигурация голосования</PopupTitle>
               </PopupTitleBlock>
@@ -100,9 +102,9 @@ class ConfigVotePopup extends React.Component {
               >
                 Стартануть голосование
               </Button>
-            </PopupInner>
+            </Grid>
           </Grid>
-        </Grid>
+        </PopupInner>
       </PopupBlock>
     )
   }

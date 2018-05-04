@@ -15,8 +15,7 @@ const styles = {
     flex: 1,
   },
   voteBtn: {
-    margin: '0 1em',
-    whiteSpace: 'nowrap',
+    margin: '0 0.5em',
   },
 }
 
@@ -36,7 +35,7 @@ const Header = ({ classes, signOut, showVoteCongig }) => (
           className={classes.voteBtn}
           color="inherit"
         >
-          Начать голосвание
+          Голосование
         </Button>
 
         <Button onClick={signOut} color="inherit">
