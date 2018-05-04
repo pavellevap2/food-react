@@ -7,7 +7,7 @@ import { withStyles } from 'material-ui'
 
 const styles = theme => ({
   formControl: {
-    width: '50%',
+    width: '90%',
   },
 })
 

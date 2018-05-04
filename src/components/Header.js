@@ -15,7 +15,8 @@ const styles = {
     flex: 1,
   },
   voteBtn: {
-    marginRight: '1em',
+    margin: '0 1em',
+    whiteSpace: 'nowrap',
   },
 }
 
