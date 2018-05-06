@@ -12,17 +12,28 @@ class MainPage extends React.Component {
   }
 
   render() {
+    const { showVoteConfig, userToken, voteStarting, voteEnding } = this.props
+    console.log(voteStarting)
     return (
       <div>
         <HeaderContainer />
-        {this.props.showVoteConfig ? <VoteConfigContainer /> : null}
-        {this.props.userToken ? (
+        {showVoteConfig ? <VoteConfigContainer /> : null}
+        {userToken ? (
           <div>
-            <Route
-              path="/new_restaurant"
-              component={RestaurauntFormContainer}
-            />
-            <Route exact path="/" component={PlacesContainer} />
+            <div>
+              {voteStarting ? (
+                <h1>Голосование началось</h1>
+              ) : voteEnding ? (
+                <h1>Голосование завершилось</h1>
+              ) : null}
+            </div>
+            <div>
+              <Route
+                path="/new_restaurant"
+                component={RestaurauntFormContainer}
+              />
+              <Route exact path="/" component={PlacesContainer} />
+            </div>
           </div>
         ) : (
           <Redirect to="signup" />

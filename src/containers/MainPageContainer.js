@@ -1,12 +1,18 @@
 import MainPage from '../components/MainPage'
 import { connect } from 'react-redux'
 import { getUserTokenId } from '../selectors/auth'
-import { isVoteConfigShown } from '../selectors/voteConfig'
+import {
+  isVoteConfigShown,
+  getVoteStarting,
+  getVoteEnding,
+} from '../selectors/voteConfig'
 import { checkVoteState } from '../actions/voteConfig'
 
 const mapStateToProps = state => ({
   userToken: getUserTokenId(state),
   showVoteConfig: isVoteConfigShown(state),
+  voteStarting: getVoteStarting(state),
+  voteEnding: getVoteEnding(state),
 })
 
 const mapDispatchToProps = dispatch => ({

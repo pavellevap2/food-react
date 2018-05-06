@@ -9,9 +9,10 @@ import {
 const voteStartingSaga = function*() {
   const START_TIME = yield select(getNumberStartTime)
   const END_TIME = yield select(getNumberEndTime)
-  const CURRENT_TIME = new Date().getHours()
+  const CURRENT_TIME = 1
 
   if (START_TIME >= CURRENT_TIME && START_TIME <= END_TIME) {
+    console.log('здесь')
     yield put(voteStarting(true))
   } else if (END_TIME >= CURRENT_TIME) {
     yield put(voteEnding(true))
