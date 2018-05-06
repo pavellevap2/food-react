@@ -4,6 +4,8 @@ import {
   SHOW_VOTE_CONFIG,
   SELECT_START_TIME,
   SELECT_END_TIME,
+  VOTE_STARTING,
+  VOTE_ENDING,
 } from '../actions/voteConfig'
 
 const showVoteConfig = handleAction(
@@ -24,10 +26,24 @@ const endTime = handleAction(
   '',
 )
 
+const voteStarting = handleAction(
+  VOTE_STARTING,
+  (state, { payload }) => payload,
+  false,
+)
+
+const voteEnding = handleAction(
+  VOTE_ENDING,
+  (state, { payload }) => payload,
+  false,
+)
+
 const voteConfig = combineReducers({
   showVoteConfig,
   startTime,
   endTime,
+  voteStarting,
+  voteEnding,
 })
 
 export default voteConfig

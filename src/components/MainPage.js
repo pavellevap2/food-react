@@ -5,8 +5,13 @@ import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
 import VoteConfigContainer from '../containers/VoteConfigContainer'
+import moment from 'moment'
 
 class MainPage extends React.Component {
+  componentDidMount() {
+    this.props.checkVoteState()
+  }
+
   render() {
     return (
       <div>

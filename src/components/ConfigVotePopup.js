@@ -27,6 +27,7 @@ const PopupInner = styled.div`
   border: 2px solid #3f51b5;
   display: flex;
   flex-direction: column;
+  margin: 0 5%;
 `
 const PopupTitleBlock = styled.div`
   width: 100%;
@@ -53,14 +54,6 @@ const VOTE_DATE = Array(24)
   .map((_, i) => (i < 10 ? `0${i}:00` : `${i} : 00`))
 
 class ConfigVotePopup extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      startTime: '',
-      endTime: '',
-    }
-  }
-
   render() {
     const {
       showVoteCongig,
@@ -86,6 +79,7 @@ class ConfigVotePopup extends React.Component {
                 onChange={e => selectStartTime(e.target.value)}
               />
               <EndTimeBlock />
+
               <SelectField
                 selectName="окончание голосования"
                 data={VOTE_DATE}
