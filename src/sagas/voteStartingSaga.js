@@ -1,4 +1,4 @@
-import { put, call, select, takeEvery } from 'redux-saga/effects'
+import { put, select, takeEvery } from 'redux-saga/effects'
 import { getNumberStartTime, getNumberEndTime } from '../selectors/voteConfig'
 import {
   CHECK_VOTE_STATE,
