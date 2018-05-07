@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
-import { showVoteConfig, selectStartTime } from '../actions/voteConfig'
+import { showVoteConfig, selectTimeRange } from '../actions/voteConfig'
 import ConfigVotePopup from '../components/ConfigVotePopup'
-import { getStartTime } from '../selectors/voteConfig'
+import { getTimeRange } from '../selectors/voteConfig'
 
 const mapStateToProps = state => ({
-  startTime: getStartTime(state),
+  timeRange: getTimeRange(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   showVoteCongig: data => dispatch(showVoteConfig(data)),
-  selectStartTime: time => dispatch(selectStartTime(time)),
+  selectTimeRange: time => dispatch(selectTimeRange(time)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfigVotePopup)
