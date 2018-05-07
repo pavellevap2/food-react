@@ -20,30 +20,9 @@ const startTime = handleAction(
   '',
 )
 
-const endTime = handleAction(
-  SELECT_END_TIME,
-  (state, { payload }) => payload,
-  '',
-)
-
-const voteStarting = handleAction(
-  VOTE_STARTING,
-  (state, { payload }) => payload,
-  false,
-)
-
-const voteEnding = handleAction(
-  VOTE_ENDING,
-  (state, { payload }) => payload,
-  false,
-)
-
 const voteConfig = combineReducers({
   showVoteConfig,
   startTime,
-  endTime,
-  voteStarting,
-  voteEnding,
 })
 
 export default voteConfig

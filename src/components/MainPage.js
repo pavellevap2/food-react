@@ -9,19 +9,13 @@ import VoteConfigContainer from '../containers/VoteConfigContainer'
 class MainPage extends React.Component {
   render() {
     const { showVoteConfig, userToken, voteStarting, voteEnding } = this.props
+
     return (
       <div>
         <HeaderContainer />
         {showVoteConfig ? <VoteConfigContainer /> : null}
         {userToken ? (
           <div>
-            <div>
-              {voteStarting ? (
-                <h1>Голосование началось</h1>
-              ) : voteEnding ? (
-                <h1>Голосование завершилось</h1>
-              ) : null}
-            </div>
             <div>
               <Route
                 path="/new_restaurant"

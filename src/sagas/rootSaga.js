@@ -5,7 +5,6 @@ import watcherSignUp from './signUpSaga'
 import watcherSignOutSaga from './signoutSaga'
 import startSaga from './startSaga'
 import watcherPushNewRestData from './pushNewRestData'
-import watcherVoteStarting from './voteStartingSaga'
 
 const RootSaga = function*() {
   yield all([
@@ -15,7 +14,6 @@ const RootSaga = function*() {
     call(watcherSignUp),
     call(watcherSignOutSaga),
     call(watcherPushNewRestData),
-    call(watcherVoteStarting),
   ])
 }
 

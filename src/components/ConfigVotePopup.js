@@ -5,6 +5,8 @@ import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
 import Grid from 'material-ui/Grid'
 
+const VOTE_DATES = [5, 10, 15, 25, 30, 60, 90]
+
 const PopupBlock = styled.div`
   z-index: 2;
   position: fixed;
@@ -19,10 +21,10 @@ const PopupBlock = styled.div`
 const PopupInner = styled.div`
   position: absolute;
   margin: auto;
-  left: 15%;
-  right: 15%;
-  top: 15%;
-  bottom: 15%;
+  left: 10%;
+  right: 10%;
+  top: 10%;
+  bottom: 10%;
   background-color: white;
   border: 2px solid #3f51b5;
   display: flex;
@@ -38,9 +40,6 @@ const PopupTitle = styled.h2`
   width: 100%;
   color: #3f51b5;
 `
-const EndTimeBlock = styled.div`
-  margin: 1em 0;
-`
 
 const styles = {
   submitBtn: {
@@ -49,20 +48,9 @@ const styles = {
   },
 }
 
-const VOTE_DATE = Array(24)
-  .fill(1)
-  .map((_, i) => (i < 10 ? `0${i}:00` : `${i} : 00`))
-
 class ConfigVotePopup extends React.Component {
   render() {
-    const {
-      showVoteCongig,
-      classes,
-      endTime,
-      startTime,
-      selectStartTime,
-      selectEndTime,
-    } = this.props
+    const { showVoteCongig, classes, startTime, selectStartTime } = this.props
     return (
       <PopupBlock>
         <PopupInner>
@@ -73,20 +61,11 @@ class ConfigVotePopup extends React.Component {
               </PopupTitleBlock>
 
               <SelectField
-                selectName="старт голосования"
-                data={VOTE_DATE}
+                selectName="длительность"
+                data={VOTE_DATES}
                 value={startTime}
                 onChange={e => selectStartTime(e.target.value)}
               />
-              <EndTimeBlock />
-
-              <SelectField
-                selectName="окончание голосования"
-                data={VOTE_DATE}
-                value={endTime}
-                onChange={e => selectEndTime(e.target.value)}
-              />
-
               <Button
                 onClick={() => showVoteCongig(false)}
                 type="submit"
