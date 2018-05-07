@@ -5,7 +5,7 @@ import { GET_VOTE_TIME_RANGE, saveTimeRange } from '../actions/voteParams'
 const getVoteTimeRangeSaga = function*() {
   const userToken = localStorage.getItem('userToken')
   const voteTime = yield call(getVoteTime, userToken)
-  yield put(saveTimeRange(voteTime))
+  yield put(saveTimeRange(voteTime.time))
 }
 
 const watcherGetVoteTimeRangeSaga = function*() {

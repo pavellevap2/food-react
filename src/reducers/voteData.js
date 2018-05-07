@@ -8,8 +8,8 @@ const timeRange = handleAction(
   0,
 )
 
-const voteParams = combineReducers({
+const voteData = combineReducers({
   timeRange,
 })
 
-export default voteParams
+export default voteData

@@ -3,14 +3,14 @@ import { combineReducers } from 'redux'
 import restaurauntsData from './restauraunts'
 import newRestauraunt from './newRestauraunt'
 import voteConfig from './voteConfig'
-import voteParams from './voteParams'
+import voteData from './voteData'
 
 const rootReducer = combineReducers({
   auth,
   restaurauntsData,
   newRestauraunt,
   voteConfig,
-  voteParams,
+  voteData,
 })
 
 export default rootReducer

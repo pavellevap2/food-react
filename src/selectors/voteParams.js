@@ -1,1 +1,1 @@
-export const getTimeRange = state => state.voteParams.timeRange
+export const getTimeRange = state => state.voteData.timeRange
