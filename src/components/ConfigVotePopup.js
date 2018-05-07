@@ -51,7 +51,7 @@ const styles = {
 
 class ConfigVotePopup extends React.Component {
   render() {
-    const { showVoteCongig, classes, timeRange, selectTimeRange } = this.props
+    const { startVote, classes, timeRange, selectTimeRange } = this.props
     return (
       <PopupBlock>
         <PopupInner>
@@ -68,7 +68,7 @@ class ConfigVotePopup extends React.Component {
                 onChange={e => selectTimeRange(e.target.value)}
               />
               <Button
-                onClick={() => showVoteCongig(false)}
+                onClick={startVote}
                 type="submit"
                 variant="raised"
                 color="primary"

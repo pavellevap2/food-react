@@ -13,6 +13,7 @@ class MainPage extends React.Component {
 
   render() {
     const { showVoteConfig, userToken, timeRange } = this.props
+
     return (
       <div>
         <HeaderContainer />
