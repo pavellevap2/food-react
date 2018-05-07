@@ -7,16 +7,16 @@ import {
 } from '../actions/voteConfig'
 
 const voteStartingSaga = function*() {
-  const START_TIME = yield select(getNumberStartTime)
-  const END_TIME = yield select(getNumberEndTime)
-  const CURRENT_TIME = 1
+  const startTime = yield select(getNumberStartTime)
+  const endTime = yield select(getNumberEndTime)
+  const currentTime = new Date().getHours()
 
-  if (START_TIME >= CURRENT_TIME && START_TIME <= END_TIME) {
-    console.log('здесь')
+  if (startTime >= currentTime && startTime <= endTime) {
     yield put(voteStarting(true))
-  } else if (END_TIME >= CURRENT_TIME) {
+  } else if (endTime >= currentTime) {
     yield put(voteEnding(true))
   }
+  console.log(startTime, endTime)
 }
 
 const watcherVoteStartingSaga = function*() {

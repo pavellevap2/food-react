@@ -1,3 +1,5 @@
+import mometnt from 'moment'
+
 export const isVoteConfigShown = state => state.voteConfig.showVoteConfig
 
 export const getStartTime = state => state.voteConfig.startTime
@@ -5,15 +7,24 @@ export const getStartTime = state => state.voteConfig.startTime
 export const getEndTime = state => state.voteConfig.endTime
 
 export const getNumberStartTime = state => {
-  const TIME = state.voteConfig.startTime
-  return !Number(TIME[0]) ? Number(TIME.slice(0, 2)) : Number(TIME.slice(0, 3))
+  const time = state.voteConfig.startTime
+  return mometnt(time, 'HH:mm').hours()
 }
 
 export const getNumberEndTime = state => {
-  const TIME = state.voteConfig.endTime
-  return !Number(TIME[0]) ? Number(TIME.slice(0, 2)) : Number(TIME.slice(0, 3))
+  const time = state.voteConfig.endTime
+  return mometnt(time, 'HH:mm').hours()
 }
 
-export const getVoteStarting = state => state.voteConfig.voteStarting
+const currTime = new Date().getHours()
 
-export const getVoteEnding = state => state.voteConfig.voteEnding
+export const getVoteStarting = state => {
+  const startTime = getNumberStartTime(state)
+  const endTime = getNumberEndTime(state)
+  return startTime < endTime ? true : false
+}
+
+export const getVoteEnding = state => {
+  const endTime = getNumberEndTime(state)
+  return endTime <= currTime ? true : false
+}

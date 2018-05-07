@@ -7,13 +7,8 @@ import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
 import VoteConfigContainer from '../containers/VoteConfigContainer'
 
 class MainPage extends React.Component {
-  componentDidMount() {
-    this.props.checkVoteState()
-  }
-
   render() {
     const { showVoteConfig, userToken, voteStarting, voteEnding } = this.props
-    console.log(voteStarting)
     return (
       <div>
         <HeaderContainer />

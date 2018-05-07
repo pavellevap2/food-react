@@ -5,11 +5,18 @@ import {
   selectEndTime,
 } from '../actions/voteConfig'
 import ConfigVotePopup from '../components/ConfigVotePopup'
-import { getEndTime, getStartTime } from '../selectors/voteConfig'
+import {
+  getEndTime,
+  getStartTime,
+  getVoteStarting,
+  getVoteEnding,
+} from '../selectors/voteConfig'
 
 const mapStateToProps = state => ({
   endTime: getEndTime(state),
   startTime: getStartTime(state),
+  voteStarting: getVoteStarting(state),
+  voteEnding: getVoteEnding(state),
 })
 
 const mapDispatchToProps = dispatch => ({
