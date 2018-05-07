@@ -7,6 +7,10 @@ import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
 import VoteConfigContainer from '../containers/VoteConfigContainer'
 
 class MainPage extends React.Component {
+  componentDidMount() {
+    this.props.getVoteTimeRange()
+  }
+
   render() {
     const { showVoteConfig, userToken, voteStarting, voteEnding } = this.props
 

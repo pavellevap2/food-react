@@ -8,7 +8,7 @@ import Grid from 'material-ui/Grid'
 const VOTE_DATES = [5, 10, 15, 25, 30, 60, 90]
 
 const PopupBlock = styled.div`
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -30,6 +30,7 @@ const PopupInner = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 5%;
+  z-index: 5;
 `
 const PopupTitleBlock = styled.div`
   width: 100%;
