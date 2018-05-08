@@ -13,15 +13,12 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { showVoteConfig, userToken, voteRange, voteActively } = this.props
-
+    const { showVoteConfig, userToken, voteRange, isVoteEnding } = this.props
     return (
       <div>
         <HeaderContainer />
         {showVoteConfig ? <VoteConfigContainer /> : null}
-        {voteActively ? (
-          <div>{voteRange ? <VotesTableContainer /> : null}</div>
-        ) : null}
+        <VotesTableContainer />
         {userToken ? (
           <div>
             <div>

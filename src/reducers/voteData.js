@@ -19,12 +19,6 @@ const startingVotes = handleAction(
   [],
 )
 
-const voteActively = handleAction(
-  VOTE_ACTIVELY,
-  (state, { payload }) => payload,
-  false,
-)
-
 const votesTableData = handleAction(
   SAVE_VOTES_TABLE,
   (state, { payload }) => payload,
@@ -34,7 +28,6 @@ const votesTableData = handleAction(
 const voteData = combineReducers({
   timeRange,
   startingVotes,
-  voteActively,
   votesTableData,
 })
 

@@ -5,9 +5,10 @@ import putVoteTime from '../managers/putVoteTIme'
 import { saveTimeRange, voteActively } from '../actions/voteData'
 import { getRestauraunts } from '../selectors/restauraunts'
 import startVote from '../managers/startVote'
+import { getVoteEndingTime } from '../selectors/voteData'
 
 const startVoteSaga = function*() {
-  const timeRange = yield select(getTimeRange)
+  const timeRange = yield select(getVoteEndingTime)
   const userToken = localStorage.getItem('userToken')
   yield call(putVoteTime, userToken, timeRange)
   yield put(saveTimeRange(timeRange))
@@ -19,7 +20,6 @@ const startVoteSaga = function*() {
     vote: 0,
   }))
   yield call(startVote, userToken, restaurauntsVotes)
-  yield put(voteActively(true))
 }
 
 const watcherStartVoteSaga = function*() {

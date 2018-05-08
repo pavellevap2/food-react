@@ -5,7 +5,7 @@ import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
 import Grid from 'material-ui/Grid'
 
-const VOTE_DATES = [0, 5, 10, 15, 25, 30, 60, 90]
+const VOTE_DATES = [0.5, 5, 10, 15, 25, 30, 60, 90]
 
 const PopupBlock = styled.div`
   z-index: 4;

@@ -15,13 +15,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-  container: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
 })
 
 class VotesTable extends React.Component {
@@ -32,8 +25,8 @@ class VotesTable extends React.Component {
   render() {
     const { votesTable, classes } = this.props
     return (
-      <Grid container className={classes.container}>
-        <Grid item xs={12}>
+      <Grid container justify="center">
+        <Grid item xs={12} lg={6}>
           <Paper className={classes.root}>
             <Table>
               <TableHead>

@@ -2,9 +2,11 @@ import { connect } from 'react-redux'
 import { signOut } from '../actions/auth'
 import Header from '../components/Header'
 import { showVoteConfig } from '../actions/voteConfig'
-import { getTimeRangeDB } from '../selectors/voteData'
+import { getVoteEnding } from '../selectors/voteData'
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  isVoteEnding: getVoteEnding(state),
+})
 
 const mapDispatchToProps = dispacth => ({
   signOut: () => dispacth(signOut()),

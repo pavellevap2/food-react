@@ -23,21 +23,31 @@ const HeaderLogo = styled(Link)`
   color: white;
 `
 
-const Header = ({ classes, signOut, showVoteConfig }) => (
+const Header = ({ classes, signOut, showVoteConfig, isVoteEnding }) => (
   <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
           <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
+        {isVoteEnding ? (
+          <Button
+            onClick={() => showVoteConfig(true)}
+            className={classes.voteBtn}
+            color="inherit"
+          >
+            Голосование
+          </Button>
+        ) : (
+          <Typography color="inherit">Голосование началось</Typography>
+        )}
         <Button
           onClick={() => showVoteConfig(true)}
           className={classes.voteBtn}
           color="inherit"
         >
-          Голосование
+          Голосование2
         </Button>
-
         <Button onClick={signOut} color="inherit">
           Выйти
         </Button>
