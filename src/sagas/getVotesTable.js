@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import getVotesData from '../managers/getVotesData'
-import { TAKE_VOTES_TABLE } from '../actions/voteData'
+import { TAKE_VOTES_TABLE, saveVotesTable } from '../actions/voteData'
 
 const getVotesTable = function*() {
   const token = localStorage.getItem('userToken')
-  const votesData = yield call(getVotesData, token)
+  const votesTableData = yield call(getVotesData, token)
+  yield put(saveVotesTable(votesTableData))
 }
 
 const watcherGetVotesTable = function*() {

@@ -1,4 +1,28 @@
 import React from 'react'
+import { withStyles } from 'material-ui/styles'
+import Table, {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
+import Grid from 'material-ui/Grid'
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+  },
+  container: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+})
 
 class VotesTable extends React.Component {
   componentDidMount() {
@@ -6,12 +30,34 @@ class VotesTable extends React.Component {
   }
 
   render() {
+    const { votesTable, classes } = this.props
     return (
-      <div>
-        <h1>тест</h1>
-      </div>
+      <Grid container className={classes.container}>
+        <Grid item xs={12}>
+          <Paper className={classes.root}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Ресторан</TableCell>
+                  <TableCell numeric>Голоса</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {votesTable.map((x, i) => {
+                  return (
+                    <TableRow key={i}>
+                      <TableCell>{x.name}</TableCell>
+                      <TableCell numeric>{x.vote}</TableCell>
+                    </TableRow>
+                  )
+                })}
+              </TableBody>
+            </Table>
+          </Paper>
+        </Grid>
+      </Grid>
     )
   }
 }
 
-export default VotesTable
+export default withStyles(styles)(VotesTable)

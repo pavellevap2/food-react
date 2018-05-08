@@ -3,6 +3,7 @@ import {
   SAVE_TIME_RANGE,
   CLEAR_VOTES,
   VOTE_ACTIVELY,
+  SAVE_VOTES_TABLE,
 } from '../actions/voteData'
 import { combineReducers } from 'redux'
 
@@ -24,10 +25,17 @@ const voteActively = handleAction(
   false,
 )
 
+const votesTableData = handleAction(
+  SAVE_VOTES_TABLE,
+  (state, { payload }) => payload,
+  [],
+)
+
 const voteData = combineReducers({
   timeRange,
   startingVotes,
   voteActively,
+  votesTableData,
 })
 
 export default voteData
