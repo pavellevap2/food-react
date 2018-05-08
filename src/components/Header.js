@@ -23,22 +23,20 @@ const HeaderLogo = styled(Link)`
   color: white;
 `
 
-const Header = ({ classes, signOut, showVoteCongig, timeRange }) => (
+const Header = ({ classes, signOut, showVoteConfig }) => (
   <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
           <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
-        {!timeRange ? (
-          <Button
-            onClick={() => showVoteCongig(true)}
-            className={classes.voteBtn}
-            color="inherit"
-          >
-            Голосование
-          </Button>
-        ) : null}
+        <Button
+          onClick={() => showVoteConfig(true)}
+          className={classes.voteBtn}
+          color="inherit"
+        >
+          Голосование
+        </Button>
 
         <Button onClick={signOut} color="inherit">
           Выйти

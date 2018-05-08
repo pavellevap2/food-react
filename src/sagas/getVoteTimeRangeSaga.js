@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import getVoteTime from '../managers/getVoteTime'
 import { GET_VOTE_TIME_RANGE, saveTimeRange } from '../actions/voteParams'
 

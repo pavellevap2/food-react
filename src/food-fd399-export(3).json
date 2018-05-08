@@ -1,0 +1,41 @@
+{
+  "restaraunts": {
+    "-LBl6hT3YAM1RTT57SCe": {
+      "avatar": "",
+      "check": "",
+      "description": "",
+      "geo": "",
+      "kitchen": "",
+      "name": "",
+      "secondBack": "",
+      "slogan": "Любое"
+    },
+    "dsfghjhgfdfghgfd": {
+      "avatar":
+        "https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg",
+      "check": "280 рублей",
+      "description":
+        "Есть нормальный скидон за сотку берёшь кофе и мороженное блабла блабла блаб лаблалбл аблаблабла блаб алаблаба лаблабла",
+      "geo": "ТЦ Центр Города",
+      "kitchen": "Фаст-фуд",
+      "name": "McDonald’s",
+      "secondBack": "http://edu102.ru/images/1217888257.jpg",
+      "slogan": " I'm Lovin' It"
+    },
+    "vbnhgfgygv": {
+      "avatar":
+        "https://upload.wikimedia.org/wikipedia/ru/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
+      "check": "230 рублей",
+      "description":
+        "В основе всех блюд из курицы два оригинальных вкуса \n панировки –острый «Hot and Spicy» и оригинальный «11 специй и трав». Рецепты этих вкусов хранятся в строжайшем секрете и известны только узкому кругу посвященных лиц из руководителей компании KFC",
+      "geo": "БЦ Кавказ",
+      "kitchen": "Фаст-фуд",
+      "name": "KFC",
+      "secondBack": "https://i.ytimg.com/vi/4Q77UhKID_A/maxresdefault.jpg",
+      "slogan": "Finger lickin' good"
+    }
+  },
+  "voteTime": {
+    "time": 5
+  }
+}

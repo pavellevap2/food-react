@@ -5,4 +5,5 @@ const syncWithDataBase = token =>
     .then(data => data.json())
     .catch(error => console.log(error))
 
+//переделать,достать тут данные
 export default syncWithDataBase

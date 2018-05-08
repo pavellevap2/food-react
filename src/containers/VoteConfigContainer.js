@@ -1,9 +1,5 @@
 import { connect } from 'react-redux'
-import {
-  showVoteConfig,
-  selectTimeRange,
-  startVote,
-} from '../actions/voteConfig'
+import { selectTimeRange, startVote } from '../actions/voteConfig'
 import ConfigVotePopup from '../components/ConfigVotePopup'
 import { getTimeRange } from '../selectors/voteConfig'
 

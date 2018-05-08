@@ -8,6 +8,7 @@ import {
 import syncWithDataBase from '../managers/syncWithDataBase'
 import refreshUserData from '../managers/refreshUserData'
 import { saveUserTokenId } from '../actions/auth'
+import { getRestauraunts } from '../selectors/restauraunts'
 
 const syncWithDb = function*() {
   yield put(showPreloader(true))
@@ -30,9 +31,9 @@ const syncWithDb = function*() {
     localStorage.setItem('userToken', refreshUserToken)
     const databaseWithRefresh = yield call(syncWithDataBase, refreshUserToken)
     const refreshDatabaseValues = Object.values(databaseWithRefresh)
+
     yield put(getDatabaseData(refreshDatabaseValues))
   }
-
   yield put(showPreloader(false))
 }
 
@@ -41,3 +42,4 @@ const watcherSyncWithDb = function*() {
 }
 
 export default watcherSyncWithDb
+//[{...,key}] такой вид
