@@ -7,6 +7,7 @@ import startSaga from './startSaga'
 import watcherPushNewRestData from './pushNewRestData'
 import watcherGetVoteTimeRangeSaga from './getVoteTimeRangeSaga'
 import watcherStartVoteSaga from './startVoteSaga'
+import watcherGetVotesTable from './getVotesTable'
 
 const RootSaga = function*() {
   yield all([
@@ -18,6 +19,7 @@ const RootSaga = function*() {
     call(watcherPushNewRestData),
     call(watcherGetVoteTimeRangeSaga),
     call(watcherStartVoteSaga),
+    call(watcherGetVotesTable),
   ])
 }
 
