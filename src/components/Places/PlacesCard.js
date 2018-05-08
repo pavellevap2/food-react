@@ -112,15 +112,8 @@ class PlacesCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLikeClicked: false,
       isFingerUpClicked: false,
     }
-  }
-
-  clickOnBtnLike = () => {
-    this.setState({
-      isLikeClicked: !this.state.isLikeClicked,
-    })
   }
 
   clickOnBtnFinger = () => {
@@ -130,8 +123,8 @@ class PlacesCard extends React.Component {
   }
 
   render() {
-    const { classes, data } = this.props
-    const { isFingerUpClicked, isLikeClicked } = this.state
+    const { classes, data, index, makeVote, votesData } = this.props
+    const { isFingerUpClicked } = this.state
     const ListInfoData = [
       {
         Icon: <Food color="primary" />,
@@ -187,12 +180,17 @@ class PlacesCard extends React.Component {
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton
-              onClick={this.clickOnBtnLike}
-              aria-label="Add to favorites"
+              onClick={() => {
+                makeVote({
+                  vote: !isFingerUpClicked
+                    ? votesData[index].vote + 1
+                    : votesData[index].vote - 1,
+                  index,
+                })
+                this.clickOnBtnFinger()
+              }}
+              aria-label="Stars"
             >
-              <FavoriteIcon color={isLikeClicked ? 'error' : 'disabled'} />
-            </IconButton>
-            <IconButton onClick={this.clickOnBtnFinger} aria-label="Stars">
               <Finger color={isFingerUpClicked ? 'error' : 'disabled'} />
             </IconButton>
           </CardActions>

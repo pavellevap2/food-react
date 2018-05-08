@@ -4,6 +4,7 @@ import {
   CLEAR_VOTES,
   VOTE_ACTIVELY,
   SAVE_VOTES_TABLE,
+  MAKE_VOTE,
 } from '../actions/voteData'
 import { combineReducers } from 'redux'
 
@@ -25,10 +26,13 @@ const votesTableData = handleAction(
   [],
 )
 
+const voteParams = handleAction(MAKE_VOTE, (state, { payload }) => payload, {})
+
 const voteData = combineReducers({
   timeRange,
   startingVotes,
   votesTableData,
+  voteParams,
 })
 
 export default voteData

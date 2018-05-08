@@ -12,3 +12,5 @@ export const getVoteEnding = state => {
   const endTime = state.voteData.timeRange
   return endTime <= moment().unix() ? true : false
 }
+
+export const getVotePrams = state => state.voteData.voteParams

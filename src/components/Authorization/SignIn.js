@@ -47,7 +47,7 @@ class SignInPage extends Component {
               value={email}
               onChange={e => takeUserEmail(e.target.value)}
               error={error.length ? true : false}
-              type="text"
+              type="email"
               label={error === 'Invalid email' ? error : 'Email Address'}
               margin="normal"
             />

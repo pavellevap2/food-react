@@ -54,7 +54,7 @@ class Places extends React.Component {
   }
 
   render() {
-    const { database, preloader } = this.props
+    const { database, preloader, makeVote, voteData } = this.props
 
     return (
       <div>
@@ -64,7 +64,15 @@ class Places extends React.Component {
           </PreloaderBlock>
         ) : (
           <Grid container justify={'center'} alignItems="center">
-            {database.map((data, i) => <PlacesCard key={i} data={data} />)}
+            {database.map((data, i) => (
+              <PlacesCard
+                key={i}
+                index={i}
+                votesData={voteData}
+                makeVote={makeVote}
+                data={data}
+              />
+            ))}
             <Link to="/new_restaurant">
               <Button
                 variant="fab"
