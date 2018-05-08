@@ -10,6 +10,8 @@ const ENDPOINTS = {
   REFRESH_DATA: `https://securetoken.googleapis.com/v1/token?key=${API_KEY}`,
   VOTE_TIME: token =>
     `https://food-fd399.firebaseio.com/voteTime.json?auth=${token}`,
+  VOTE_DATA: token =>
+    `https://food-fd399.firebaseio.com/voteData.json?auth=${token}`,
 }
 
 export default ENDPOINTS

@@ -20,8 +20,7 @@ const syncWithDb = function*() {
   const database = yield call(syncWithDataBase, token)
 
   if (!database.error) {
-    const databaseValues = Object.values(database)
-    yield put(getDatabaseData(databaseValues))
+    yield put(getDatabaseData(database))
   } else {
     const refreshToken = localStorage.getItem('refreshToken')
     const refreshedUserData = yield call(refreshUserData, refreshToken)
@@ -30,9 +29,7 @@ const syncWithDb = function*() {
     yield put(saveUserTokenId(refreshUserToken))
     localStorage.setItem('userToken', refreshUserToken)
     const databaseWithRefresh = yield call(syncWithDataBase, refreshUserToken)
-    const refreshDatabaseValues = Object.values(databaseWithRefresh)
-
-    yield put(getDatabaseData(refreshDatabaseValues))
+    yield put(getDatabaseData(databaseWithRefresh))
   }
   yield put(showPreloader(false))
 }
@@ -42,4 +39,3 @@ const watcherSyncWithDb = function*() {
 }
 
 export default watcherSyncWithDb
-//[{...,key}] такой вид

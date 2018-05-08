@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import RestaurauntFormContainer from '../containers/RestaurauntFormContainer'
 import VoteConfigContainer from '../containers/VoteConfigContainer'
+import VoteTable from './VoteTable'
 
 class MainPage extends React.Component {
   componentDidMount() {
@@ -12,11 +13,13 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { showVoteConfig, userToken } = this.props
+    const { showVoteConfig, userToken, voteRange, voteActively } = this.props
+
     return (
       <div>
         <HeaderContainer />
         {showVoteConfig ? <VoteConfigContainer /> : null}
+        {voteActively ? <div>{voteRange ? <VoteTable /> : null}</div> : null}
         {userToken ? (
           <div>
             <div>
