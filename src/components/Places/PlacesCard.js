@@ -122,7 +122,7 @@ class PlacesCard extends React.Component {
   }
 
   render() {
-    const { classes, data, index, makeVote, votesData } = this.props
+    const { classes, data, index, makeVote, voteEnding } = this.props
     const { isFingerUpClicked } = this.state
     const ListInfoData = [
       {
@@ -179,11 +179,10 @@ class PlacesCard extends React.Component {
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton
+              disabled={voteEnding ? true : false}
               onClick={() => {
                 makeVote({
-                  vote: !isFingerUpClicked
-                    ? votesData[index].vote + 1
-                    : votesData[index].vote - 1,
+                  voteStatus: isFingerUpClicked,
                   index,
                 })
                 this.clickOnBtnFinger()

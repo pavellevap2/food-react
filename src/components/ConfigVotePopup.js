@@ -21,14 +21,12 @@ const PopupBlock = styled.div`
 const PopupInner = styled.div`
   position: absolute;
   margin: auto;
-  left: 10%;
-  right: 10%;
+  left: 5%;
+  right: 5%;
   top: 10%;
   bottom: 10%;
   background-color: white;
   border: 2px solid #3f51b5;
-  display: flex;
-  flex-direction: column;
   margin: 0 5%;
   z-index: 5;
 `
@@ -45,7 +43,7 @@ const PopupTitle = styled.h2`
 const styles = {
   submitBtn: {
     marginTop: '3em',
-    width: '60%',
+    width: '90%',
   },
 }
 
@@ -55,14 +53,15 @@ class ConfigVotePopup extends React.Component {
     return (
       <PopupBlock>
         <PopupInner>
-          <Grid container alignItems="center">
-            <Grid item xs={12} lg={12}>
+          <Grid container justify="center">
+            <Grid item xs={12} lg={6}>
+              <Button />
               <PopupTitleBlock>
                 <PopupTitle>Конфигурация голосования</PopupTitle>
               </PopupTitleBlock>
 
               <SelectField
-                selectName="длительность"
+                selectName="длительность в минутах"
                 data={VOTE_DATES}
                 value={timeRange}
                 onChange={e => selectTimeRange(e.target.value)}

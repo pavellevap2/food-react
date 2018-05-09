@@ -17,6 +17,11 @@ const styles = {
   voteBtn: {
     margin: '0 0.5em',
   },
+  voteTitle: {
+    fontSize: '1rem',
+    whiteSpace: 'nowrap',
+    marginLeft: '0.5em',
+  },
 }
 
 const HeaderLogo = styled(Link)`
@@ -39,15 +44,10 @@ const Header = ({ classes, signOut, showVoteConfig, isVoteEnding }) => (
             Голосование
           </Button>
         ) : (
-          <Typography color="inherit">Голосование началось</Typography>
+          <Typography className={classes.voteTitle} color="inherit">
+            Голосование началось
+          </Typography>
         )}
-        <Button
-          onClick={() => showVoteConfig(true)}
-          className={classes.voteBtn}
-          color="inherit"
-        >
-          Голосование2
-        </Button>
         <Button onClick={signOut} color="inherit">
           Выйти
         </Button>

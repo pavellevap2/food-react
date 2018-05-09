@@ -54,7 +54,7 @@ class Places extends React.Component {
   }
 
   render() {
-    const { database, preloader, makeVote, voteData } = this.props
+    const { database, preloader, makeVote, voteData, voteEnding } = this.props
 
     return (
       <div>
@@ -71,6 +71,7 @@ class Places extends React.Component {
                 votesData={voteData}
                 makeVote={makeVote}
                 data={data}
+                voteEnding={voteEnding}
               />
             ))}
             <Link to="/new_restaurant">

@@ -6,10 +6,21 @@ import getVotesData from '../managers/getVotesData'
 
 const makeVoteSaga = function*() {
   const token = localStorage.getItem('userToken')
-  const data = yield select(getVotePrams)
-  yield call(changeVoteNumber, token, data.index, data.vote)
   const votesTableData = yield call(getVotesData, token)
   yield put(saveVotesTable(votesTableData))
+
+  const currentVoteData = yield select(getVotePrams)
+  console.log(currentVoteData)
+
+  const currentVoteValue = votesTableData[currentVoteData.index].vote
+  const nextVote = currentVoteData.voteStatus
+    ? currentVoteValue - 1
+    : currentVoteValue + 1
+
+  yield call(changeVoteNumber, token, currentVoteData.index, nextVote)
+
+  const votesRefreshTableData = yield call(getVotesData, token)
+  yield put(saveVotesTable(votesRefreshTableData))
 }
 
 const watcherMakeVoteSaga = function*() {

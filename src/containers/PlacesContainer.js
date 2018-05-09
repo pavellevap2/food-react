@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { syncWithDb } from '../actions/database'
 import { getRestauraunts, getPreloader } from '../selectors/restauraunts'
 import { makeVote } from '../actions/voteData'
-import { getVotesTableData } from '../selectors/voteData'
+import { getVotesTableData, getVoteEnding } from '../selectors/voteData'
 
 const mapStateToProps = state => ({
   database: getRestauraunts(state),
   preloader: getPreloader(state),
   voteData: getVotesTableData(state),
+  voteEnding: getVoteEnding(state),
 })
 
 const mapDispatchToProps = dispatch => ({
