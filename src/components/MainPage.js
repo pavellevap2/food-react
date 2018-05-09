@@ -13,14 +13,15 @@ class MainPage extends React.Component {
   }
 
   render() {
-    const { showVoteConfig, userToken, voteRange, isVoteEnding } = this.props
+    const { showVoteConfig, userToken } = this.props
+
     return (
       <div>
         <HeaderContainer />
-        {showVoteConfig ? <VoteConfigContainer /> : null}
-        <VotesTableContainer />
         {userToken ? (
           <div>
+            {showVoteConfig ? <VoteConfigContainer /> : null}
+            <VotesTableContainer />
             <div>
               <Route
                 path="/new_restaurant"

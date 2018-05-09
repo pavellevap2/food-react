@@ -8,12 +8,11 @@ import {
 import syncWithDataBase from '../managers/syncWithDataBase'
 import refreshUserData from '../managers/refreshUserData'
 import { saveUserTokenId } from '../actions/auth'
-import { getRestauraunts } from '../selectors/restauraunts'
 
 const syncWithDb = function*() {
   yield put(showPreloader(true))
   const userData = yield select(getUserData)
-  const localStorageToken = localStorage.getItem('refreshToken')
+  const localStorageToken = localStorage.getItem('userToken')
   const savedToken = yield select(getUserTokenId)
 
   const token = userData.idToken || localStorageToken || savedToken

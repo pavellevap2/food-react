@@ -2,7 +2,6 @@ import { handleAction } from 'redux-actions'
 import {
   SAVE_TIME_RANGE,
   CLEAR_VOTES,
-  VOTE_ACTIVELY,
   SAVE_VOTES_TABLE,
   MAKE_VOTE,
 } from '../actions/voteData'
