@@ -13,7 +13,10 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+    overflowX: 'hidden',
+  },
+  resultTable: {
+    color: theme.palette.primary.dark,
   },
 })
 
@@ -32,17 +35,26 @@ class VotesTable extends React.Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Статус голосования</TableCell>
-                  <TableCell numeric>
+                  <TableCell className={classes.resultTable}>
+                    Статус голосования
+                  </TableCell>
+                  <TableCell numeric className={classes.resultTable}>
                     {isVoteEnding
                       ? 'Голосование завершено'
                       : `Окончание в ${endTime}`}
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell>Ресторан</TableCell>
-                  <TableCell numeric>Голоса</TableCell>
-                </TableRow>
+                {isVoteEnding ? (
+                  <TableRow>
+                    <TableCell>Результаты предыдущего голосования</TableCell>
+                    <TableCell numeric>Голоса</TableCell>
+                  </TableRow>
+                ) : (
+                  <TableRow>
+                    <TableCell>Ресторан</TableCell>
+                    <TableCell numeric>Голоса</TableCell>
+                  </TableRow>
+                )}
               </TableHead>
               <TableBody>
                 {votesTable.map((x, i) => {
