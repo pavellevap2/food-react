@@ -68,7 +68,7 @@ class Places extends React.Component {
               <PlacesCard
                 key={i}
                 index={i}
-                votesData={voteData}
+                voteData={voteData}
                 makeVote={makeVote}
                 data={data}
                 voteEnding={voteEnding}

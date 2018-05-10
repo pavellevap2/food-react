@@ -24,6 +24,7 @@ class VotesTable extends React.Component {
 
   render() {
     const { votesTable, classes } = this.props
+
     return (
       <Grid container justify="center">
         <Grid item xs={10} sm={10} md={8} lg={6}>

@@ -1,7 +1,8 @@
 import moment from 'moment'
 import { getTimeRange } from './voteConfig'
 
-export const getVotesTableData = state => state.voteData.votesTableData
+export const getVotesTableData = state =>
+  state.voteData.votesTableData.map(x => ({ ...x, vote: x.vote.length }))
 
 export const getVoteEndingTime = state => {
   const timeRange = getTimeRange(state)

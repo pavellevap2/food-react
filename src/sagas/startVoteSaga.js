@@ -16,10 +16,9 @@ const startVoteSaga = function*() {
   const restaurauntsVotes = currentRestauraunts.map(x => ({
     key: x.key,
     name: x.name,
-    vote: 0,
+    vote: [],
   }))
   yield call(startVote, userToken, restaurauntsVotes)
-
   yield put(saveVotesTable(restaurauntsVotes))
 }
 

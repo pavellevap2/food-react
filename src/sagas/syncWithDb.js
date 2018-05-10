@@ -12,7 +12,6 @@ import { saveUserTokenId } from '../actions/auth'
 const syncWithDb = function*() {
   yield put(showPreloader(true))
   const userData = yield select(getUserData)
-  console.log(userData)
   const localStorageToken = localStorage.getItem('userToken')
   const savedToken = yield select(getUserTokenId)
 

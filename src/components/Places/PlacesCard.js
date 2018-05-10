@@ -122,7 +122,7 @@ class PlacesCard extends React.Component {
   }
 
   render() {
-    const { classes, data, index, makeVote, voteEnding } = this.props
+    const { classes, data, index, makeVote, voteEnding, voteData } = this.props
     const { isFingerUpClicked } = this.state
     const ListInfoData = [
       {
