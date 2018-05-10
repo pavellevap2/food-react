@@ -107,95 +107,77 @@ const styles = theme => ({
   },
 })
 
-class PlacesCard extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isFingerUpClicked: false,
-    }
-  }
+const PlacesCard = ({ classes, data, index, makeVote, voteEnding }) => {
+  const ListInfoData = [
+    {
+      Icon: <Food color="primary" />,
+      secondary: data.kitchen,
+      primary: 'Кухня',
+    },
+    {
+      Icon: <Money color="primary" />,
+      secondary: data.check,
+      primary: 'Средний чек',
+    },
+    {
+      Icon: <Walk color="primary" />,
+      secondary: data.geo,
+      primary: 'Расположение',
+    },
+  ]
 
-  clickOnBtnFinger = () => {
-    this.setState({
-      isFingerUpClicked: !this.state.isFingerUpClicked,
-    })
-  }
-
-  render() {
-    const { classes, data, index, makeVote, voteEnding, voteData } = this.props
-    const { isFingerUpClicked } = this.state
-    const ListInfoData = [
-      {
-        Icon: <Food color="primary" />,
-        secondary: data.kitchen,
-        primary: 'Кухня',
-      },
-      {
-        Icon: <Money color="primary" />,
-        secondary: data.check,
-        primary: 'Средний чек',
-      },
-      {
-        Icon: <Walk color="primary" />,
-        secondary: data.geo,
-        primary: 'Расположение',
-      },
-    ]
-
-    return (
-      <PlacesItem item md={8} lg={8} xs={10} className={classes.container}>
-        <Card className={classes.card}>
-          <CardHeader
-            className={classes.header}
-            avatar={<Avatar src={data.avatar} className={classes.avatar} />}
-            title={data.name}
-            subheader={data.slogan}
-            classes={{
-              title: classes.title,
-              subheader: classes.subheader,
+  return (
+    <PlacesItem item md={8} lg={8} xs={10} className={classes.container}>
+      <Card className={classes.card}>
+        <CardHeader
+          className={classes.header}
+          avatar={<Avatar src={data.avatar} className={classes.avatar} />}
+          title={data.name}
+          subheader={data.slogan}
+          classes={{
+            title: classes.title,
+            subheader: classes.subheader,
+          }}
+        />
+        <CardContent className={classes.content}>
+          <List className={classes.iconsList}>
+            {ListInfoData.map((item, i) => (
+              <ListItem key={i}>
+                <Avatar className={classes.icon}>{item.Icon}</Avatar>
+                <ListItemText
+                  className={classes.iconItem}
+                  primary={item.primary}
+                  secondary={item.secondary}
+                  classes={{
+                    primary: classes.primary,
+                    secondary: classes.secondary,
+                  }}
+                />
+              </ListItem>
+            ))}
+          </List>
+          <InfoImg background={data.secondBack} />
+          <Typography className={classes.cardText} component="p">
+            {data.description}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.actions} disableActionSpacing>
+          <IconButton
+            disabled={voteEnding ? true : false}
+            onClick={() => {
+              makeVote({
+                voteStatus: data.voteStatus,
+                index,
+              })
             }}
-          />
-          <CardContent className={classes.content}>
-            <List className={classes.iconsList}>
-              {ListInfoData.map((item, i) => (
-                <ListItem key={i}>
-                  <Avatar className={classes.icon}>{item.Icon}</Avatar>
-                  <ListItemText
-                    className={classes.iconItem}
-                    primary={item.primary}
-                    secondary={item.secondary}
-                    classes={{
-                      primary: classes.primary,
-                      secondary: classes.secondary,
-                    }}
-                  />
-                </ListItem>
-              ))}
-            </List>
-            <InfoImg background={data.secondBack} />
-            <Typography className={classes.cardText} component="p">
-              {data.description}
-            </Typography>
-          </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton
-              disabled={voteEnding ? true : false}
-              onClick={() => {
-                makeVote({
-                  voteStatus: data.voteStatus,
-                  index,
-                })
-                this.clickOnBtnFinger()
-              }}
-              aria-label="Stars"
-            >
-              <Finger color={data.voteStatus ? 'error' : 'disabled'} />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </PlacesItem>
-    )
-  }
+            aria-label="Stars"
+          >
+            <Finger color={data.voteStatus ? 'error' : 'disabled'} />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </PlacesItem>
+  )
 }
 
 export default withStyles(styles)(PlacesCard)
