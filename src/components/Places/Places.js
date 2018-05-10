@@ -54,8 +54,15 @@ class Places extends React.Component {
   }
 
   render() {
-    const { database, preloader, makeVote, voteData, voteEnding } = this.props
+    const {
+      database,
+      preloader,
+      makeVote,
+      voteEnding,
+      votesAndRestaraunts,
+    } = this.props
 
+    console.log(votesAndRestaraunts)
     return (
       <div>
         {preloader ? (
@@ -64,11 +71,10 @@ class Places extends React.Component {
           </PreloaderBlock>
         ) : (
           <Grid container justify={'center'} alignItems="center">
-            {database.map((data, i) => (
+            {votesAndRestaraunts.map((data, i) => (
               <PlacesCard
                 key={i}
                 index={i}
-                voteData={voteData}
                 makeVote={makeVote}
                 data={data}
                 voteEnding={voteEnding}

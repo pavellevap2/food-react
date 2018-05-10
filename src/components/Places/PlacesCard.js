@@ -182,14 +182,14 @@ class PlacesCard extends React.Component {
               disabled={voteEnding ? true : false}
               onClick={() => {
                 makeVote({
-                  voteStatus: isFingerUpClicked,
+                  voteStatus: data.voteStatus,
                   index,
                 })
                 this.clickOnBtnFinger()
               }}
               aria-label="Stars"
             >
-              <Finger color={isFingerUpClicked ? 'error' : 'disabled'} />
+              <Finger color={data.voteStatus ? 'error' : 'disabled'} />
             </IconButton>
           </CardActions>
         </Card>
