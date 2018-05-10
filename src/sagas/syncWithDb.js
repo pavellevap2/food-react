@@ -14,20 +14,19 @@ const syncWithDb = function*() {
   const userData = yield select(getUserData)
   const localStorageToken = localStorage.getItem('userToken')
   const savedToken = yield select(getUserTokenId)
-
-  const token = userData.idToken || localStorageToken || savedToken
-  const database = yield call(syncWithDataBase, token)
+  const token = localStorageToken || userData.idToken || savedToken
+  const database = yield call(syncWithDataBase, token + 'a')
 
   if (!database.error) {
     yield put(getDatabaseData(database))
   } else {
     const refreshToken = localStorage.getItem('refreshToken')
     const refreshedUserData = yield call(refreshUserData, refreshToken)
-    const refreshUserToken = refreshedUserData.id_token
+    const refreshedUserToken = refreshedUserData.id_token
 
-    yield put(saveUserTokenId(refreshUserToken))
-    localStorage.setItem('userToken', refreshUserToken)
-    const databaseWithRefresh = yield call(syncWithDataBase, refreshUserToken)
+    yield put(saveUserTokenId(refreshedUserToken))
+    localStorage.setItem('userToken', refreshedUserToken)
+    const databaseWithRefresh = yield call(syncWithDataBase, refreshedUserToken)
     yield put(getDatabaseData(databaseWithRefresh))
   }
   yield put(showPreloader(false))

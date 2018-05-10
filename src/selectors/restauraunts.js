@@ -19,7 +19,6 @@ export const getRestaurauntsWidthVotes = state => {
       return []
     }
   }
-  console.log('rest-', currRestarauntsData())
   return currRestarauntsData()
 }
 

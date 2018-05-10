@@ -147,7 +147,7 @@ class RestaurantForm extends React.Component {
   }
 
   render() {
-    const { classes, getImageData } = this.props
+    const { classes, getImageData, popupShownState } = this.props
 
     const {
       restaurantName,
