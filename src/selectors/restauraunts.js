@@ -5,7 +5,7 @@ export const getRestauraunts = state => state.restaurauntsData.restauraunts
 export const getRestaurauntsWidthVotes = state => {
   const restaraunts = getRestauraunts(state)
   const votes = getVotesFromDb(state)
-  const email = localStorage.getItem('email')
+  const userId = localStorage.getItem('userId')
 
   const currRestarauntsData = () => {
     if (votes.length) {
@@ -13,7 +13,7 @@ export const getRestaurauntsWidthVotes = state => {
         ...x,
         voteStatus: votes
           .find(y => x.key === y.key)
-          .vote.some(z => z === email),
+          .vote.some(z => z === userId),
       }))
     } else {
       return []

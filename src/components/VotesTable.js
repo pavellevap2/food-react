@@ -23,14 +23,22 @@ class VotesTable extends React.Component {
   }
 
   render() {
-    const { votesTable, classes } = this.props
+    const { votesTable, classes, isVoteEnding, endTime } = this.props
 
     return (
       <Grid container justify="center">
-        <Grid item xs={10} sm={10} md={8} lg={6}>
+        <Grid item xs={11} sm={10} md={8} lg={6}>
           <Paper className={classes.root}>
             <Table>
               <TableHead>
+                <TableRow>
+                  <TableCell>Статус голосования</TableCell>
+                  <TableCell numeric>
+                    {isVoteEnding
+                      ? 'Голосование завершено'
+                      : `Окончание в ${endTime}`}
+                  </TableCell>
+                </TableRow>
                 <TableRow>
                   <TableCell>Ресторан</TableCell>
                   <TableCell numeric>Голоса</TableCell>

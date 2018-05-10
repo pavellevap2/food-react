@@ -13,12 +13,13 @@ const makeVoteSaga = function*() {
   const currentVoteData = yield select(getVotePrams)
 
   const currentVoteValue = votesTableData[currentVoteData.index].vote
-  const userEmail = localStorage.getItem('email')
+  const userId = localStorage.getItem('userId')
+
   const currIndex = currentVoteData.index
 
   const nextVote = currentVoteData.voteStatus
-    ? currentVoteValue.filter((x, i) => x !== userEmail)
-    : [...currentVoteValue, userEmail]
+    ? currentVoteValue.filter((x, i) => x !== userId)
+    : [...currentVoteValue, userId]
 
   yield call(changeVoteNumber, token, currIndex, nextVote)
 
