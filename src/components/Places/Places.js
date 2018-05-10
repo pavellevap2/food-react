@@ -54,15 +54,8 @@ class Places extends React.Component {
   }
 
   render() {
-    const {
-      database,
-      preloader,
-      makeVote,
-      voteEnding,
-      votesAndRestaraunts,
-    } = this.props
+    const { preloader, makeVote, voteEnding, votesAndRestaraunts } = this.props
 
-    console.log(votesAndRestaraunts)
     return (
       <div>
         {preloader ? (

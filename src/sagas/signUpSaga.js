@@ -8,7 +8,6 @@ import {
   saveUserTokenId,
 } from '../actions/auth'
 import { history } from '../index'
-
 import * as R from 'ramda'
 
 const signUp = function*() {
@@ -16,12 +15,13 @@ const signUp = function*() {
   const password = yield select(getUserPassword)
   const userAuthData = yield call(signUpWithEmail, email, password)
   const error = R.path(['error', 'message'], userAuthData)
-  yield put(saveUserTokenId(userAuthData.idToken))
 
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
+    yield put(saveUserTokenId(userAuthData.idToken))
     localStorage.setItem('userToken', JSON.stringify(userAuthData.idToken))
     localStorage.setItem('email', userAuthData.email)
+    localStorage.setItem('refreshToken', userAuthData.refreshToken)
 
     yield call(history.push, '/')
   } else {

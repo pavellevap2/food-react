@@ -20,7 +20,6 @@ export const getRestaurauntsWidthVotes = state => {
     }
   }
 
-  console.log('data', currRestarauntsData())
   return currRestarauntsData()
 }
 

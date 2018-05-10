@@ -17,7 +17,7 @@ const makeVoteSaga = function*() {
   const currIndex = currentVoteData.index
 
   const nextVote = currentVoteData.voteStatus
-    ? currentVoteValue.filter((x, i) => x != userEmail)
+    ? currentVoteValue.filter((x, i) => x !== userEmail)
     : [...currentVoteValue, userEmail]
 
   yield call(changeVoteNumber, token, currIndex, nextVote)

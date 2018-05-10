@@ -8,10 +8,6 @@ import VoteConfigContainer from '../containers/VoteConfigContainer'
 import VotesTableContainer from '../containers/VotesTableContainer'
 
 class MainPage extends React.Component {
-  componentDidMount() {
-    this.props.getVoteTimeRange()
-  }
-
   render() {
     const { showVoteConfig, userToken } = this.props
 

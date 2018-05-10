@@ -6,12 +6,7 @@ import {
   clearFormData,
   submitSignupUser,
 } from '../actions/auth'
-import {
-  getUserEmail,
-  getUserPassword,
-  getUserName,
-  getAuthError,
-} from '../selectors/auth'
+import { getUserEmail, getUserPassword, getAuthError } from '../selectors/auth'
 
 const mapStateToProps = state => ({
   email: getUserEmail(state),

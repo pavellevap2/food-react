@@ -3,7 +3,7 @@ import { call, takeEvery } from 'redux-saga/effects'
 import { SIGN_OUT } from '../actions/auth'
 
 const signOutSaga = function*() {
-  localStorage.removeItem('userToken')
+  localStorage.clear()
   yield call(history.push, '/signin')
 }
 
