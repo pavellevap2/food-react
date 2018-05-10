@@ -2,9 +2,9 @@ import React from 'react'
 import HeaderContainer from '../containers/HeaderContainer'
 import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-import NewRestaurauntFormContainer from '../containers/NewRestaurauntFormContainer'
 import VoteConfigContainer from '../containers/VoteConfigContainer'
 import HomePage from './HomePage'
+import NewRestarauntFormPageContainer from '../containers/NewRestarauntFormPageContainer'
 
 class MainPage extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class MainPage extends React.Component {
             <div>
               <Route
                 path="/new_restaurant"
-                component={NewRestaurauntFormContainer}
+                component={NewRestarauntFormPageContainer}
               />
               <Route exact path="/" component={HomePage} />
             </div>

@@ -1,10 +1,6 @@
 import RestaurauntForm from '../components/NewRestaurauntForm'
 import { connect } from 'react-redux'
-import {
-  getImageData,
-  getRestData,
-  getPopupShownState,
-} from '../selectors/newRestauraunt'
+import { getImageData, getRestData } from '../selectors/newRestauraunt'
 import {
   getImagesData,
   getRestaurauntData,
@@ -14,7 +10,6 @@ import {
 const mapStateToProps = state => ({
   imageData: getImageData(state),
   restData: getRestData(state),
-  popupShownState: getPopupShownState(state),
 })
 
 const mapDispatchToProps = dispatch => ({

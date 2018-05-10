@@ -2,7 +2,7 @@ import { handleAction } from 'redux-actions'
 import {
   GET_IMAGES_DATA,
   GET_RESTAURAUNT_DATA,
-  SHOW_NEW_RESTARAUNT_POPUP,
+  SHOW_FINAL_CARD,
 } from '../actions/newRestauraunt'
 import { combineReducers } from 'redux'
 
@@ -18,8 +18,8 @@ const restaurauntData = handleAction(
   {},
 )
 
-const showPopup = handleAction(
-  SHOW_NEW_RESTARAUNT_POPUP,
+const showFinalCard = handleAction(
+  SHOW_FINAL_CARD,
   (state, { payload }) => payload,
   false,
 )
@@ -27,7 +27,7 @@ const showPopup = handleAction(
 const newRestauraunt = combineReducers({
   imageData,
   restaurauntData,
-  showPopup,
+  showFinalCard,
 })
 
 export default newRestauraunt
