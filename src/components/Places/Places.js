@@ -70,7 +70,7 @@ class Places extends React.Component {
             <PreloaderImg />
           </PreloaderBlock>
         ) : (
-          <Grid container justify={'center'} alignItems="center">
+          <Grid container justify="center" alignItems="center">
             {votesAndRestaraunts.map((data, i) => (
               <PlacesCard
                 key={i}
