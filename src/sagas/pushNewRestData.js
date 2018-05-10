@@ -22,7 +22,6 @@ const pushNewRestData = function*() {
 
   const currVotesData = yield call(getVotesData, token)
   yield put(saveVotesTable(currVotesData))
-  yield delay(20000000)
 }
 
 const watcherPushNewRestData = function*() {

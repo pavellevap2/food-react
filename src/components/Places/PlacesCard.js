@@ -125,7 +125,6 @@ const PlacesCard = ({ classes, data, index, makeVote, voteEnding }) => {
       primary: 'Расположение',
     },
   ]
-
   return (
     <PlacesItem item md={8} lg={8} xs={10} className={classes.container}>
       <Card className={classes.card}>

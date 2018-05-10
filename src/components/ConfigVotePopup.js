@@ -48,6 +48,9 @@ const styles = {
     marginTop: '3em',
     width: '90%',
   },
+  closeBtn: {
+    float: 'right',
+  },
 }
 
 class ConfigVotePopup extends React.Component {
@@ -66,7 +69,10 @@ class ConfigVotePopup extends React.Component {
             <Grid item xs={12} lg={6}>
               <PopupTitleBlock>
                 <PopupTitle>Конфигурация голосования</PopupTitle>
-                <IconButton onClick={() => showVoteConfig(false)}>
+                <IconButton
+                  className={classes.closeBtn}
+                  onClick={() => showVoteConfig(false)}
+                >
                   <Close />
                 </IconButton>
               </PopupTitleBlock>

@@ -20,7 +20,7 @@ const signUp = function*() {
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
     yield put(saveUserTokenId(userAuthData.idToken))
-    localStorage.setItem('userToken', JSON.stringify(userAuthData.idToken))
+    localStorage.setItem('userToken', userAuthData.idToken)
     localStorage.setItem('userId', userAuthData.localId)
     localStorage.setItem('refreshToken', userAuthData.refreshToken)
     yield put(clearFormData())
