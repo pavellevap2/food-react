@@ -1,5 +1,5 @@
 import React from 'react'
-import { storage } from '../../firebase/firebase'
+import { storage } from '../../firebase'
 import styled from 'styled-components'
 import Button from 'material-ui/Button'
 

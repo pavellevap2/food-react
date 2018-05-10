@@ -14,9 +14,13 @@ const styles = {
   flex: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+  voteBtn: {
+    margin: '0 0.5em',
+  },
+  voteTitle: {
+    fontSize: '1rem',
+    whiteSpace: 'nowrap',
+    marginLeft: '0.5em',
   },
 }
 
@@ -24,16 +28,28 @@ const HeaderLogo = styled(Link)`
   color: white;
 `
 
-const Header = ({ classes, signOut }) => (
+const Header = ({ classes, signOut, showVoteConfig, isVoteEnding }) => (
   <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
           <HeaderLogo to="/">BBB</HeaderLogo>
         </Typography>
-
+        {isVoteEnding ? (
+          <Button
+            onClick={() => showVoteConfig(true)}
+            className={classes.voteBtn}
+            color="inherit"
+          >
+            Голосование
+          </Button>
+        ) : (
+          <Typography className={classes.voteTitle} color="inherit">
+            Голосование началось
+          </Typography>
+        )}
         <Button onClick={signOut} color="inherit">
-          Sign Out
+          Выйти
         </Button>
       </Toolbar>
     </AppBar>

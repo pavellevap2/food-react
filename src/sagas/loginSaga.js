@@ -17,6 +17,7 @@ const loginSaga = function*() {
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
     localStorage.setItem('userToken', userAuthData.idToken)
+    localStorage.setItem('email', userAuthData.email)
     yield call(history.push, '/')
   } else {
     yield put(authError(error))

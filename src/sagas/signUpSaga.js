@@ -21,6 +21,8 @@ const signUp = function*() {
   if (error === undefined) {
     yield put(takeUserData(userAuthData))
     localStorage.setItem('userToken', JSON.stringify(userAuthData.idToken))
+    localStorage.setItem('email', userAuthData.email)
+
     yield call(history.push, '/')
   } else {
     yield put(authError(error))
