@@ -10,8 +10,8 @@ import getVoteTime from '../managers/getVoteTime'
 const getVotesTable = function*() {
   const userToken = localStorage.getItem('userToken')
   const voteTime = yield call(getVoteTime, userToken)
-  yield put(saveTimeRange(voteTime.time))
 
+  yield put(saveTimeRange(voteTime.time))
   const votesTableData = yield call(getVotesData, userToken)
   yield put(saveVotesTable(votesTableData))
 }

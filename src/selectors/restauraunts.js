@@ -8,7 +8,7 @@ export const getRestaurauntsWidthVotes = state => {
   const userId = localStorage.getItem('userId')
 
   const currRestarauntsData = () => {
-    if (votes.length) {
+    if (votes.length && votes !== undefined) {
       return restaraunts.map(x => ({
         ...x,
         voteStatus: votes
@@ -19,7 +19,7 @@ export const getRestaurauntsWidthVotes = state => {
       return []
     }
   }
-
+  console.log('rest-', currRestarauntsData())
   return currRestarauntsData()
 }
 

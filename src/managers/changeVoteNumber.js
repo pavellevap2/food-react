@@ -1,7 +1,7 @@
 import ENDPOINTS from '../api'
 
 const changeVoteNumber = (token, index, data) =>
-  fetch(ENDPOINTS.TEST(token, index), {
+  fetch(ENDPOINTS.CURR_VOTE(token, index), {
     method: 'PUT',
     body: JSON.stringify(data),
   })
