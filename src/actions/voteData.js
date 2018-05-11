@@ -6,6 +6,7 @@ export const TAKE_VOTES_TABLE = '@@VOTE_DATA/TAKE_VOTES_TABLE'
 export const SAVE_VOTES_TABLE = '@@VOTE_DATA/SAVE_VOTES_TABLE'
 export const MAKE_VOTE = '@@VOTE_DATA/MAKE_VOTE'
 export const SHOW_VOTES_PRELOADER = '@@VOTE_DATA/SHOW_VOTES_PRELOADER'
+export const SHOW_LIKE_PRELOADER = '@@VOTE_DATA/SHOW_LIKE_PRELOADER'
 
 export const saveTimeRange = createAction(SAVE_TIME_RANGE)
 export const clearVotes = createAction(CLEAR_VOTES)
@@ -13,3 +14,4 @@ export const takeVotesTable = createAction(TAKE_VOTES_TABLE)
 export const saveVotesTable = createAction(SAVE_VOTES_TABLE)
 export const makeVote = createAction(MAKE_VOTE)
 export const showVotesPreloader = createAction(SHOW_VOTES_PRELOADER)
+export const showLikePreloader = createAction(SHOW_LIKE_PRELOADER)

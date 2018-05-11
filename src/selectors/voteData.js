@@ -4,13 +4,16 @@ import { getTimeRange } from './voteConfig'
 export const getVotesFromDb = state => state.voteData.votesTableData
 
 export const getVotesTableData = state => {
-  const test = getVotesFromDb(state).map(x => ({ ...x, vote: x.vote.length }))
-  function compare(a, b) {
+  const votedData = getVotesFromDb(state).map(x => ({
+    ...x,
+    vote: x.vote.length,
+  }))
+  function filtersData(a, b) {
     if (a.vote < b.vote) return +1
     if (a.vote > b.vote) return -1
     return 0
   }
-  return test.sort(compare)
+  return votedData.sort(filtersData)
 }
 
 export const getVoteEndingTime = state => {
@@ -29,3 +32,5 @@ export const getEndHoursTime = state =>
 export const getVotePrams = state => state.voteData.voteParams
 
 export const getVotesPrelodaerStatus = state => state.voteData.votesPreloader
+
+export const getLikePreloaderStatus = state => state.voteData.likePreloader

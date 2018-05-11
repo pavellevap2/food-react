@@ -12,6 +12,7 @@ import Finger from '@material-ui/icons/ThumbUp'
 import Food from '@material-ui/icons/RoomService'
 import Money from '@material-ui/icons/AttachMoney'
 import Walk from '@material-ui/icons/DirectionsWalk'
+import PreloaderIcon from '../Preloader'
 
 const PlacesItem = styled(Grid)`
   &:first-child {
@@ -107,7 +108,14 @@ const styles = theme => ({
   },
 })
 
-const PlacesCard = ({ classes, data, index, makeVote, voteEnding }) => {
+const PlacesCard = ({
+  classes,
+  data,
+  index,
+  makeVote,
+  voteEnding,
+  showPreloader,
+}) => {
   const ListInfoData = [
     {
       Icon: <Food color="primary" />,
@@ -171,7 +179,11 @@ const PlacesCard = ({ classes, data, index, makeVote, voteEnding }) => {
             }}
             aria-label="Stars"
           >
-            <Finger color={data.voteStatus ? 'error' : 'disabled'} />
+            {showPreloader === index ? (
+              <PreloaderIcon />
+            ) : (
+              <Finger color={data.voteStatus ? 'error' : 'disabled'} />
+            )}
           </IconButton>
         </CardActions>
       </Card>

@@ -4,6 +4,7 @@ import {
   MAKE_VOTE,
   saveVotesTable,
   showVotesPreloader,
+  showLikePreloader,
 } from '../actions/voteData'
 import { getVotePrams } from '../selectors/voteData'
 import getVotesData from '../managers/getVotesData'
@@ -15,10 +16,11 @@ const makeVoteSaga = function*() {
 
   yield put(saveVotesTable(votesTableData))
   const currentVoteData = yield select(getVotePrams)
+  const currIndex = currentVoteData.index
+  yield put(showLikePreloader(currIndex))
   const currentVoteValue = votesTableData[currentVoteData.index].vote
   const userId = localStorage.getItem('userId')
 
-  const currIndex = currentVoteData.index
   const nextVote = currentVoteData.voteStatus
     ? currentVoteValue.filter((x, i) => x !== userId)
     : [...currentVoteValue, userId]
@@ -30,6 +32,7 @@ const makeVoteSaga = function*() {
   )
   yield put(saveVotesTable(usefullVotesTable))
   yield put(showVotesPreloader(false))
+  yield put(showLikePreloader(-1))
 }
 
 const watcherMakeVoteSaga = function*() {

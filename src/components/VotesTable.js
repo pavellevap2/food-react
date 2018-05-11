@@ -8,20 +8,7 @@ import Table, {
 } from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 import Grid from 'material-ui/Grid'
-import Replay from '@material-ui/icons/DataUsage'
-import styled from 'styled-components'
-
-const PreloaderIcon = styled(Replay)`
-  animation: preloader-logo-spin infinite 5s linear;
-  @keyframes preloader-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`
+import PreloaderIcon from './Preloader'
 
 const styles = theme => ({
   root: {

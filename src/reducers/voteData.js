@@ -5,6 +5,7 @@ import {
   SAVE_VOTES_TABLE,
   MAKE_VOTE,
   SHOW_VOTES_PRELOADER,
+  SHOW_LIKE_PRELOADER,
 } from '../actions/voteData'
 import { combineReducers } from 'redux'
 
@@ -32,6 +33,12 @@ const votesPreloader = handleAction(
   false,
 )
 
+const likePreloader = handleAction(
+  SHOW_LIKE_PRELOADER,
+  (state, { payload }) => payload,
+  -1,
+)
+
 const voteParams = handleAction(MAKE_VOTE, (state, { payload }) => payload, {})
 
 const voteData = combineReducers({
@@ -40,6 +47,7 @@ const voteData = combineReducers({
   votesTableData,
   voteParams,
   votesPreloader,
+  likePreloader,
 })
 
 export default voteData
