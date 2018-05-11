@@ -8,6 +8,20 @@ import Table, {
 } from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 import Grid from 'material-ui/Grid'
+import Replay from '@material-ui/icons/DataUsage'
+import styled from 'styled-components'
+
+const PreloaderIcon = styled(Replay)`
+  animation: preloader-logo-spin infinite 5s linear;
+  @keyframes preloader-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`
 
 const styles = theme => ({
   root: {
@@ -26,11 +40,17 @@ class VotesTable extends React.Component {
   }
 
   render() {
-    const { votesTable, classes, isVoteEnding, endTime } = this.props
+    const {
+      votesTable,
+      classes,
+      isVoteEnding,
+      endTime,
+      showPreloader,
+    } = this.props
 
     return (
       <Grid container justify="center">
-        <Grid item xs={11} sm={10} md={8} lg={6}>
+        <Grid item md={8} lg={8} xs={10}>
           <Paper className={classes.root}>
             <Table>
               <TableHead>
@@ -61,7 +81,13 @@ class VotesTable extends React.Component {
                   return (
                     <TableRow key={i}>
                       <TableCell>{x.name}</TableCell>
-                      <TableCell numeric>{x.vote}</TableCell>
+                      <TableCell numeric>
+                        {showPreloader ? (
+                          <PreloaderIcon color="primary" />
+                        ) : (
+                          x.vote
+                        )}
+                      </TableCell>
                     </TableRow>
                   )
                 })}

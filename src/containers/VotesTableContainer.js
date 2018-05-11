@@ -5,12 +5,14 @@ import {
   getVotesTableData,
   getVoteEnding,
   getEndHoursTime,
+  getVotesPrelodaerStatus,
 } from '../selectors/voteData'
 
 const mapStateToProps = state => ({
   votesTable: getVotesTableData(state),
   isVoteEnding: getVoteEnding(state),
   endTime: getEndHoursTime(state),
+  showPreloader: getVotesPrelodaerStatus(state),
 })
 
 const mapDispatchToProps = dispatch => ({

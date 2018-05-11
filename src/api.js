@@ -11,10 +11,9 @@ const ENDPOINTS = {
   VOTE_TIME: token =>
     `https://food-fd399.firebaseio.com/voteTime.json?auth=${token}`,
   VOTE_DATA: token =>
-    `https://food-fd399.firebaseio.com/voteData/data.json?auth=${token}`,
+    `https://food-fd399.firebaseio.com/voteData.json?auth=${token}`,
   CURR_VOTE: (token, index) =>
     `https://food-fd399.firebaseio.com/voteData/data/${index}/vote.json?auth=${token}`,
-  ADD_NEW_VOTE: token => {},
 }
 
 export default ENDPOINTS

@@ -1,8 +1,8 @@
 import React from 'react'
-import VotesTableContainer from '../containers/VotesTableContainer'
-import PlacesContainer from '../containers/PlacesContainer'
+import VotesTableContainer from '../../containers/VotesTableContainer'
+import PlacesContainer from '../../containers/PlacesContainer'
 import styled from 'styled-components'
-import preloader from './Places/preloader.jpeg'
+import preloader from './preloader.jpeg'
 
 const PreloaderBlock = styled.div`
   width: 100%;
