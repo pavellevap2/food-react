@@ -11,7 +11,6 @@ const startVoteSaga = function*() {
   const userToken = localStorage.getItem('userToken')
   yield call(putVoteTime, userToken, timeRange)
   yield put(saveTimeRange(timeRange))
-  yield put(showVoteConfig(false))
   const currentRestauraunts = yield select(getRestauraunts)
   const restaurauntsVotes = currentRestauraunts.map(x => ({
     key: x.key,
@@ -20,6 +19,7 @@ const startVoteSaga = function*() {
   }))
   yield call(startVote, userToken, restaurauntsVotes)
   yield put(saveVotesTable(restaurauntsVotes))
+  yield put(showVoteConfig(false))
 }
 
 const watcherStartVoteSaga = function*() {

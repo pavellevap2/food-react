@@ -43,11 +43,8 @@ const Header = ({ classes, signOut, showVoteConfig, isVoteEnding }) => (
           >
             Голосование
           </Button>
-        ) : (
-          <Typography className={classes.voteTitle} color="inherit">
-            Голосование началось
-          </Typography>
-        )}
+        ) : null}
+
         <Button onClick={signOut} color="inherit">
           Выйти
         </Button>

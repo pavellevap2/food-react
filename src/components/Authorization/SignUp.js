@@ -15,9 +15,7 @@ class SignUpPage extends Component {
 
   render() {
     const {
-      username,
       classes,
-      takeUserName,
       email,
       password,
       takeUserEmail,
@@ -44,13 +42,6 @@ class SignUpPage extends Component {
             SIGN UP
           </Typography>
           <AuthForm onSubmit={this.submitData}>
-            <TextField
-              value={username}
-              onChange={e => takeUserName(e.target.value)}
-              type="text"
-              margin="normal"
-              label="Full Name"
-            />
             <TextField
               value={email}
               onChange={e => takeUserEmail(e.target.value)}

@@ -5,28 +5,6 @@ import Button from 'material-ui/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import preloader from './preloader.jpeg'
-
-const PreloaderBlock = styled.div`
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const PreloaderImg = styled.img.attrs({ src: preloader, alt: 'preloader' })`
-  animation: preloader-logo-spin infinite 5s linear;
-
-  @keyframes preloader-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`
 
 const styles = theme => ({
   fab: {
@@ -49,49 +27,30 @@ const styles = theme => ({
 })
 
 class Places extends React.Component {
-  componentDidMount() {
-    this.props.syncWithDatabase()
-  }
-
   render() {
-    const {
-      database,
-      preloader,
-      makeVote,
-      voteEnding,
-      votesAndRestaraunts,
-    } = this.props
+    const { makeVote, voteEnding, votesAndRestaraunts } = this.props
 
-    console.log(votesAndRestaraunts)
     return (
-      <div>
-        {preloader ? (
-          <PreloaderBlock>
-            <PreloaderImg />
-          </PreloaderBlock>
-        ) : (
-          <Grid container justify={'center'} alignItems="center">
-            {votesAndRestaraunts.map((data, i) => (
-              <PlacesCard
-                key={i}
-                index={i}
-                makeVote={makeVote}
-                data={data}
-                voteEnding={voteEnding}
-              />
-            ))}
-            <Link to="/new_restaurant">
-              <Button
-                variant="fab"
-                className={this.props.classes.fab}
-                color={'primary'}
-              >
-                <AddIcon className={this.props.classes.plus} />
-              </Button>
-            </Link>
-          </Grid>
-        )}
-      </div>
+      <Grid container justify="center" alignItems="center">
+        {votesAndRestaraunts.map((data, i) => (
+          <PlacesCard
+            key={i}
+            index={i}
+            makeVote={makeVote}
+            data={data}
+            voteEnding={voteEnding}
+          />
+        ))}
+        <Link to="/new_restaurant">
+          <Button
+            variant="fab"
+            className={this.props.classes.fab}
+            color={'primary'}
+          >
+            <AddIcon className={this.props.classes.plus} />
+          </Button>
+        </Link>
+      </Grid>
     )
   }
 }

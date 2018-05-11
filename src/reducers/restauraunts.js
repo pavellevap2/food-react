@@ -1,9 +1,9 @@
 import { handleAction } from 'redux-actions'
-import { GET_DB_DATA, SHOW_PRELOADER } from '../actions/database'
+import { GET_RESTARAUNTS_DATA, SHOW_PRELOADER } from '../actions/restaraunts'
 import { combineReducers } from 'redux'
 
 const restauraunts = handleAction(
-  GET_DB_DATA,
+  GET_RESTARAUNTS_DATA,
   (state, { payload }) => payload,
   [],
 )

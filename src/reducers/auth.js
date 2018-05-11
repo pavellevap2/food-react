@@ -2,7 +2,6 @@ import { handleAction, handleActions } from 'redux-actions'
 import { combineReducers } from 'redux'
 import {
   TAKE_USER_DATA,
-  TAKE_USER_NAME,
   TAKE_USER_EMAIL,
   TAKE_USER_PASSWORD,
   CLEAR_FORM_DATA,
@@ -14,12 +13,6 @@ const userData = handleAction(
   TAKE_USER_DATA,
   (state, { payload }) => payload,
   {},
-)
-
-const userName = handleAction(
-  TAKE_USER_NAME,
-  (state, { payload }) => payload,
-  '',
 )
 
 const authError = handleAction(AUTH_ERROR, (state, { payload }) => payload, '')
@@ -48,7 +41,6 @@ const userTokenId = handleAction(
 
 const auth = combineReducers({
   userData,
-  userName,
   userEmail,
   userPassword,
   authError,

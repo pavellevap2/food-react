@@ -4,6 +4,8 @@ import SelectField from '../components/NewRestaurauntForm/SelectField'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui'
 import Grid from 'material-ui/Grid'
+import Close from '@material-ui/icons/Close'
+import IconButton from 'material-ui/IconButton'
 
 const VOTE_DATES = [0.5, 5, 10, 15, 25, 30, 60, 90]
 
@@ -31,6 +33,7 @@ const PopupInner = styled.div`
   z-index: 5;
 `
 const PopupTitleBlock = styled.div`
+  display: flex;
   width: 100%;
   margin-bottom: 3em;
 `
@@ -45,19 +48,33 @@ const styles = {
     marginTop: '3em',
     width: '90%',
   },
+  closeBtn: {
+    float: 'right',
+  },
 }
 
 class ConfigVotePopup extends React.Component {
   render() {
-    const { startVote, classes, timeRange, selectTimeRange } = this.props
+    const {
+      startVote,
+      classes,
+      timeRange,
+      selectTimeRange,
+      showVoteConfig,
+    } = this.props
     return (
       <PopupBlock>
         <PopupInner>
           <Grid container justify="center">
             <Grid item xs={12} lg={6}>
-              <Button />
               <PopupTitleBlock>
                 <PopupTitle>Конфигурация голосования</PopupTitle>
+                <IconButton
+                  className={classes.closeBtn}
+                  onClick={() => showVoteConfig(false)}
+                >
+                  <Close />
+                </IconButton>
               </PopupTitleBlock>
 
               <SelectField

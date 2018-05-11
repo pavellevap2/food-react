@@ -14,4 +14,3 @@ const loginWithEmail = (email, password) =>
     .catch(error => console.log(error))
 
 export default loginWithEmail
-//auth manager and db manager

@@ -1,6 +1,5 @@
 import Places from '../components/Places'
 import { connect } from 'react-redux'
-import { syncWithDb } from '../actions/database'
 import {
   getRestauraunts,
   getPreloader,
@@ -18,7 +17,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  syncWithDatabase: () => dispatch(syncWithDb()),
   makeVote: (vote, index) => dispatch(makeVote(vote, index)),
 })
 

@@ -16,4 +16,9 @@ export const getVoteEnding = state => {
   return endTime <= moment().unix() ? true : false
 }
 
+export const getEndHoursTime = state =>
+  moment.unix(state.voteData.timeRange).format('HH.mm')
+
 export const getVotePrams = state => state.voteData.voteParams
+
+export const getVotesPrelodaerStatus = state => state.voteData.votesPreloader
