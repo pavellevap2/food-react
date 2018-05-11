@@ -6,7 +6,6 @@ import watcherSignOutSaga from './signoutSaga'
 import startSaga from './startSaga'
 import watcherPushNewRestData from './pushNewRestData'
 import watcherStartVoteSaga from './startVoteSaga'
-import watcherGetVotesTable from './getVotesTable'
 import watcherMakeVoteSaga from './makeVoteSaga'
 
 const RootSaga = function*() {
@@ -18,7 +17,6 @@ const RootSaga = function*() {
     call(watcherSignOutSaga),
     call(watcherPushNewRestData),
     call(watcherStartVoteSaga),
-    call(watcherGetVotesTable),
     call(watcherMakeVoteSaga),
   ])
 }
