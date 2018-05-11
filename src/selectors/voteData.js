@@ -3,8 +3,15 @@ import { getTimeRange } from './voteConfig'
 
 export const getVotesFromDb = state => state.voteData.votesTableData
 
-export const getVotesTableData = state =>
-  getVotesFromDb(state).map(x => ({ ...x, vote: x.vote.length }))
+export const getVotesTableData = state => {
+  const test = getVotesFromDb(state).map(x => ({ ...x, vote: x.vote.length }))
+  function compare(a, b) {
+    if (a.vote < b.vote) return +1
+    if (a.vote > b.vote) return -1
+    return 0
+  }
+  return test.sort(compare)
+}
 
 export const getVoteEndingTime = state => {
   const timeRange = getTimeRange(state)
