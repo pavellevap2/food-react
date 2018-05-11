@@ -1,7 +1,6 @@
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
-import Card, { CardActions, CardContent } from 'material-ui/Card'
-import Button from 'material-ui/Button'
+import Card, { CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 import Check from '@material-ui/icons/CheckCircle'
@@ -41,10 +40,7 @@ const styles = theme => ({
   },
 })
 
-const FinalCard = props => {
-  const { classes } = props
-  const bull = <span className={classes.bullet}>•</span>
-
+const FinalCard = ({ classes }) => {
   return (
     <Grid
       className={classes.container}
