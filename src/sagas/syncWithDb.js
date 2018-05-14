@@ -6,20 +6,19 @@ import {
   getRestarauntsData,
 } from '../actions/restaraunts'
 import syncWithDataBase from '../managers/syncWithDataBase'
-import refreshUserData from '../managers/refreshUserData'
-import { saveUserTokenId } from '../actions/auth'
 import getVoteTime from '../managers/getVoteTime'
 import getVotesData from '../managers/getVotesData'
 import { saveVotesTable, saveTimeRange } from '../actions/voteData'
+import refreshTokenSaga from './refreshTokenSaga'
 
 const syncWithDb = function*() {
   yield put(showPreloader(true))
   const userData = yield select(getUserData)
   const localStorageToken = localStorage.getItem('userToken')
   const savedToken = yield select(getUserTokenId)
+
   const token = localStorageToken || userData.idToken || savedToken
   const database = yield call(syncWithDataBase, token)
-
   const voteTime = yield call(getVoteTime, token)
   const voteData = yield call(getVotesData, token)
 
@@ -28,12 +27,10 @@ const syncWithDb = function*() {
     yield put(saveVotesTable(voteData))
     yield put(saveTimeRange(voteTime.time))
   } else {
-    const refreshToken = localStorage.getItem('refreshToken')
-    const refreshedUserData = yield call(refreshUserData, refreshToken)
-    const refreshedUserToken = refreshedUserData.id_token
-
-    yield put(saveUserTokenId(refreshedUserToken))
-    localStorage.setItem('userToken', refreshedUserToken)
+    yield call(refreshTokenSaga)
+    const savedRefreshedToken = yield select(getUserTokenId)
+    const refreshedUserToken =
+      localStorage.getItem('userToken') || savedRefreshedToken
 
     const databaseWithRefresh = yield call(syncWithDataBase, refreshedUserToken)
     const refreshedVoteTime = yield call(getVoteTime, refreshedUserToken)

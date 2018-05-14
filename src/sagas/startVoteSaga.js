@@ -5,19 +5,29 @@ import { saveTimeRange, saveVotesTable } from '../actions/voteData'
 import { getRestauraunts } from '../selectors/restauraunts'
 import startVote from '../managers/startVote'
 import { getVoteEndingTime } from '../selectors/voteData'
+import refreshTokenSaga from './refreshTokenSaga'
 
 const startVoteSaga = function*() {
   const timeRange = yield select(getVoteEndingTime)
-  const userToken = localStorage.getItem('userToken')
-  yield call(putVoteTime, userToken, timeRange)
+  const token = localStorage.getItem('userToken')
+  const updateVoteTime = yield call(putVoteTime, token, timeRange)
+
+  if (updateVoteTime.error || !updateVoteTime) {
+    yield call(refreshTokenSaga)
+    const refreshedToken = localStorage.getItem('userToken')
+    yield call(putVoteTime, refreshedToken, timeRange)
+  }
+
+  const usefullToken = localStorage.getItem('userToken')
   yield put(saveTimeRange(timeRange))
   const currentRestauraunts = yield select(getRestauraunts)
-  const restaurauntsVotes = currentRestauraunts.map(x => ({
-    key: x.key,
-    name: x.name,
+  const restaurauntsVotes = currentRestauraunts.map(({ key, name }) => ({
+    key: key,
+    name: name,
     vote: [],
   }))
-  yield call(startVote, userToken, restaurauntsVotes)
+
+  yield call(startVote, usefullToken, restaurauntsVotes)
   yield put(saveVotesTable(restaurauntsVotes))
   yield put(showVoteConfig(false))
 }

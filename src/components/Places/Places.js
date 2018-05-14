@@ -1,10 +1,10 @@
 import React from 'react'
-import PlacesCard from './PlacesCard'
 import Grid from 'material-ui/Grid'
 import Button from 'material-ui/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
+import PlacesCardContainer from '../../containers/PlacesCardContainer'
 
 const styles = theme => ({
   fab: {
@@ -33,7 +33,7 @@ class Places extends React.Component {
     return (
       <Grid container justify="center" alignItems="center">
         {votesAndRestaraunts.map((data, i) => (
-          <PlacesCard
+          <PlacesCardContainer
             key={i}
             index={i}
             makeVote={makeVote}
