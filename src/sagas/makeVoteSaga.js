@@ -6,19 +6,34 @@ import {
   showVotesPreloader,
   showLikePreloader,
 } from '../actions/voteData'
-import { getVotePrams } from '../selectors/voteData'
+import { getVotePrams, getVotesFromDb } from '../selectors/voteData'
 import getVotesData from '../managers/getVotesData'
+import refreshTokenSaga from './refreshTokenSaga'
 
 const makeVoteSaga = function*() {
   yield put(showVotesPreloader(true))
   const token = localStorage.getItem('userToken')
   const votesTableData = yield call(getVotesData, token)
 
-  yield put(saveVotesTable(votesTableData))
+  if (!votesTableData || votesTableData.error) {
+    yield call(refreshTokenSaga)
+    const refreshedToken = localStorage.getItem('userToken')
+    const refreshedVotesData = yield call(getVotesData, refreshedToken)
+    yield put(saveVotesTable(refreshedVotesData))
+    yield call(voteSaga)
+  } else {
+    yield put(saveVotesTable(votesTableData))
+    yield call(voteSaga)
+  }
+}
+
+const voteSaga = function*() {
+  const token = localStorage.getItem('userToken')
+  const votesTableData = yield select(getVotesFromDb)
   const currentVoteData = yield select(getVotePrams)
   const currIndex = currentVoteData.index
   yield put(showLikePreloader(currIndex))
-  const currentVoteValue = votesTableData[currentVoteData.index].vote
+  const currentVoteValue = votesTableData[currIndex].vote
   const userId = localStorage.getItem('userId')
 
   const nextVote = currentVoteData.voteStatus

@@ -12,9 +12,9 @@ const startVoteSaga = function*() {
   yield call(putVoteTime, userToken, timeRange)
   yield put(saveTimeRange(timeRange))
   const currentRestauraunts = yield select(getRestauraunts)
-  const restaurauntsVotes = currentRestauraunts.map(x => ({
-    key: x.key,
-    name: x.name,
+  const restaurauntsVotes = currentRestauraunts.map(({ key, name }) => ({
+    key: key,
+    name: name,
     vote: [],
   }))
   yield call(startVote, userToken, restaurauntsVotes)

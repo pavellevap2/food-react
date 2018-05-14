@@ -1,8 +1,5 @@
 import { connect } from 'react-redux'
-import {
-  getVotesPrelodaerStatus,
-  getLikePreloaderStatus,
-} from '../selectors/voteData'
+import { getLikePreloaderStatus } from '../selectors/voteData'
 import PlacesCard from '../components/Places/PlacesCard'
 
 const mapStateToProps = state => ({
