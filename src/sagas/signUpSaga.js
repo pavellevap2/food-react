@@ -21,10 +21,10 @@ const signUp = function*() {
     yield put(takeUserData(userAuthData))
     yield put(saveUserTokenId(userAuthData.idToken))
     localStorage.setItem('userToken', userAuthData.idToken)
+
     localStorage.setItem('userId', userAuthData.localId)
     localStorage.setItem('refreshToken', userAuthData.refreshToken)
     yield put(clearFormData())
-
     yield call(history.push, '/')
   } else {
     yield put(authError(error))

@@ -1,4 +1,4 @@
-import { call, select, takeEvery, put, all } from 'redux-saga/effects'
+import { call, select, takeEvery, put } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 import { getRestData } from '../selectors/newRestauraunt'
 import postNewRestData from '../managers/postNewRestData'
@@ -8,15 +8,31 @@ import getVotesData from '../managers/getVotesData'
 import startVote from '../managers/startVote'
 import { saveVotesTable } from '../actions/voteData'
 import { history } from '../index'
+import refreshTokenSaga from './refreshTokenSaga'
 
 const pushNewRestData = function*() {
   yield put(showFinalCard(true))
   const restData = yield select(getRestData)
   const token = localStorage.getItem('userToken')
-  yield call(postNewRestData, restData, token)
-  const currentRestaraunts = yield call(syncWithDataBase, token)
+  const newRestData = yield call(postNewRestData, restData, token)
 
+  if (newRestData.error || !newRestData) {
+    yield call(refreshTokenSaga)
+    const refreshedToken = localStorage.getItem('userToken')
+    yield call(postNewRestData, restData, refreshedToken)
+
+    yield call(restDataSaga)
+  } else {
+    yield call(restDataSaga)
+  }
+}
+
+const restDataSaga = function*() {
+  const token = localStorage.getItem('userToken')
+  const restData = yield select(getRestData)
+  const currentRestaraunts = yield call(syncWithDataBase, token)
   const newVoteData = currentRestaraunts.find(x => x.name === restData.name)
+
   const votesTableData = yield call(getVotesData, token)
   const selectedVoteData = { key: newVoteData.key, name: newVoteData.name }
   const newVotesData = votesTableData.concat(selectedVoteData)
@@ -25,7 +41,8 @@ const pushNewRestData = function*() {
   const currVotesData = yield call(getVotesData, token)
   yield put(saveVotesTable(currVotesData))
   yield delay(500)
-  yield all([put(showFinalCard(false)), call(history.push, '/')])
+  yield put(showFinalCard(false))
+  yield call(history.push, '/')
 }
 
 const watcherPushNewRestData = function*() {

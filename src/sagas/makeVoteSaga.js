@@ -20,6 +20,7 @@ const makeVoteSaga = function*() {
     const refreshedToken = localStorage.getItem('userToken')
     const refreshedVotesData = yield call(getVotesData, refreshedToken)
     yield put(saveVotesTable(refreshedVotesData))
+
     yield call(voteSaga)
   } else {
     yield put(saveVotesTable(votesTableData))
@@ -32,19 +33,20 @@ const voteSaga = function*() {
   const votesTableData = yield select(getVotesFromDb)
   const currentVoteData = yield select(getVotePrams)
   const currIndex = currentVoteData.index
+
   yield put(showLikePreloader(currIndex))
   const currentVoteValue = votesTableData[currIndex].vote
   const userId = localStorage.getItem('userId')
-
   const nextVote = currentVoteData.voteStatus
     ? currentVoteValue.filter((x, i) => x !== userId)
     : [...currentVoteValue, userId]
-  yield call(changeVoteNumber, token, currIndex, nextVote)
 
+  yield call(changeVoteNumber, token, currIndex, nextVote)
   const votesRefreshTableData = yield call(getVotesData, token)
   const usefullVotesTable = votesRefreshTableData.map(
     x => (!x.vote ? { ...x, vote: 0 } : x),
   )
+
   yield put(saveVotesTable(usefullVotesTable))
   yield put(showVotesPreloader(false))
   yield put(showLikePreloader(-1))

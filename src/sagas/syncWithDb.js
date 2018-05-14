@@ -16,9 +16,9 @@ const syncWithDb = function*() {
   const userData = yield select(getUserData)
   const localStorageToken = localStorage.getItem('userToken')
   const savedToken = yield select(getUserTokenId)
+
   const token = localStorageToken || userData.idToken || savedToken
   const database = yield call(syncWithDataBase, token)
-
   const voteTime = yield call(getVoteTime, token)
   const voteData = yield call(getVotesData, token)
 
