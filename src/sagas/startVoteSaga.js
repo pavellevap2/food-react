@@ -26,6 +26,7 @@ const startVoteSaga = function*() {
     name: name,
     vote: [],
   }))
+
   yield call(startVote, usefullToken, restaurauntsVotes)
   yield put(saveVotesTable(restaurauntsVotes))
   yield put(showVoteConfig(false))
